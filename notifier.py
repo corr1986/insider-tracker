@@ -23,27 +23,27 @@ def _format_message(signal: TickerSignal) -> str:
     the total score, the score breakdown lines, and a link to OpenInsider.
     """
     today = date.today().strftime("%d/%m/%Y")
-    lines = [f"INSIDER TRACKER — {today}", ""]
-    lines.append(f"${signal.ticker} — {signal.company}")
+    lines = [f"🔍 INSIDER TRACKER — {today}", ""]
+    lines.append(f"📌 ${signal.ticker} — {signal.company}")
     for tx in signal.transactions:
-        lines.append(f"{tx.insider_name} ({tx.title}) -> ${tx.value:,.0f}")
+        lines.append(f"👤 {tx.insider_name} ({tx.title}) → ${tx.value:,.0f}")
     lines.append("")
-    lines.append(f"Score: {signal.score} pt")
+    lines.append(f"📊 Score: {signal.score} pt")
     lines.extend(signal.score_breakdown)
     lines.append("")
-    lines.append(f"openinsider.com/{signal.ticker}")
+    lines.append(f"🔗 openinsider.com/{signal.ticker}")
     return "\n".join(lines)
 
 
 def _no_signal_message() -> str:
     """Return a Telegram message string indicating no insider signals today."""
     today = date.today().strftime("%d/%m/%Y")
-    return f"INSIDER TRACKER — {today}\nNessun segnale insider oggi."
+    return f"🔍 INSIDER TRACKER — {today}\n😴 Nessun segnale insider oggi."
 
 
 def _error_message(error: str) -> str:
     """Format an error string as a Telegram alert message."""
-    return f"INSIDER TRACKER — Errore scraping OpenInsider:\n{error}"
+    return f"⚠️ INSIDER TRACKER — Errore scraping OpenInsider:\n{error}"
 
 
 def _send_telegram(text: str, token: str, chat_id: str) -> bool:
