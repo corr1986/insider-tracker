@@ -3,7 +3,7 @@ from unittest.mock import patch, MagicMock
 import requests as req
 from scraper import InsiderTransaction
 from scorer import TickerSignal
-from notifier import _format_message, _no_signal_message, send_signal, send_error
+from notifier import _format_message, _no_signal_message, _signal_label, send_signal, send_error
 
 
 def make_signal():
@@ -19,6 +19,35 @@ def make_signal():
         score_breakdown=["• CEO buy +4", "• CFO buy +3", "• Importo $2,500,000 (≥$500K) +4", "• Cluster 2 insider +3"],
     )
 
+
+# ── _signal_label ─────────────────────────────────────────────────────────
+
+def test_signal_label_debole_for_score_5():
+    assert "Debole" in _signal_label(5)
+
+def test_signal_label_debole_for_score_7():
+    assert "Debole" in _signal_label(7)
+
+def test_signal_label_buono_for_score_8():
+    assert "Buono" in _signal_label(8)
+
+def test_signal_label_buono_for_score_10():
+    assert "Buono" in _signal_label(10)
+
+def test_signal_label_ottimo_for_score_11():
+    assert "Ottimo" in _signal_label(11)
+
+def test_signal_label_ottimo_for_score_13():
+    assert "Ottimo" in _signal_label(13)
+
+def test_signal_label_eccellente_for_score_14():
+    assert "Eccellente" in _signal_label(14)
+
+def test_signal_label_eccellente_for_max_score():
+    assert "Eccellente" in _signal_label(17)
+
+
+# ── _format_message ────────────────────────────────────────────────────────
 
 def test_format_message_contains_ticker():
     assert "$AAPL" in _format_message(make_signal())
@@ -36,6 +65,10 @@ def test_format_message_contains_score():
 
 def test_format_message_contains_openinsider_link():
     assert "openinsider.com/AAPL" in _format_message(make_signal())
+
+def test_format_message_contains_signal_label():
+    # make_signal() has score=17 → Eccellente
+    assert "Eccellente" in _format_message(make_signal())
 
 def test_no_signal_message_contains_no_signal_text():
     assert "Nessun segnale" in _no_signal_message()
