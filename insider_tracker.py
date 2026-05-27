@@ -31,6 +31,12 @@ logger = logging.getLogger(__name__)
 LAST_SEEN_FILE = Path("last_seen.json")
 
 
+def is_weekday(today: Optional[date] = None) -> bool:
+    """Return True if the given date (default: today) is Monday–Friday."""
+    d = today if today is not None else date.today()
+    return d.weekday() < 5  # 0=Mon … 4=Fri, 5=Sat, 6=Sun
+
+
 def load_last_seen() -> dict:
     """Load the last_seen dict from disk, or return an empty dict if absent."""
     if LAST_SEEN_FILE.exists():
@@ -98,6 +104,10 @@ def main() -> None:
     On fatal errors, sends an error alert to Telegram and logs to errors.log.
     """
     load_dotenv()
+
+    if not is_weekday():
+        logger.info("Weekend — skipping.")
+        return
 
     try:
         token = os.environ["TELEGRAM_TOKEN"].strip()

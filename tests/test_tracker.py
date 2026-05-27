@@ -1,8 +1,12 @@
 from datetime import date, timedelta
 from scraper import InsiderTransaction
 from scorer import TickerSignal
+from unittest.mock import patch
+
 from insider_tracker import (
     already_sent_today,
+    is_weekday,
+    main,
     mark_sent,
     pick_top_signal,
 )
@@ -46,3 +50,27 @@ def test_pick_top_signal_returns_none_when_all_sent_today():
     last_seen = {"AAPL": str(date.today()), "MSFT": str(date.today())}
     signals = [make_signal("AAPL", 15), make_signal("MSFT", 8)]
     assert pick_top_signal(signals, last_seen=last_seen) is None
+
+
+# ── is_weekday ────────────────────────────────────────────────────────────
+
+def test_is_weekday_true_on_monday():
+    assert is_weekday(date(2026, 5, 25)) is True   # lunedì
+
+def test_is_weekday_true_on_friday():
+    assert is_weekday(date(2026, 5, 29)) is True   # venerdì
+
+def test_is_weekday_false_on_saturday():
+    assert is_weekday(date(2026, 5, 30)) is False  # sabato
+
+def test_is_weekday_false_on_sunday():
+    assert is_weekday(date(2026, 5, 31)) is False  # domenica
+
+
+# ── main() weekend skip ───────────────────────────────────────────────────
+
+@patch("insider_tracker.is_weekday", return_value=False)
+@patch("insider_tracker._fetch_all")
+def test_main_does_not_fetch_on_weekend(mock_fetch, mock_is_weekday):
+    main()
+    mock_fetch.assert_not_called()
