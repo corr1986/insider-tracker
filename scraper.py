@@ -33,10 +33,18 @@ def _parse_value(value_str: str) -> float:
     """Parse a dollar-formatted string like '$1,234,567' into a float.
 
     Strips all non-numeric characters except the decimal point.
-    Returns 0.0 if the string contains no numeric content.
+    Returns 0.0 if the string contains no numeric content or is malformed
+    (e.g. multiple decimal points, unparseable after cleaning).
     """
     clean = re.sub(r"[^\d.]", "", value_str)
-    return float(clean) if clean else 0.0
+    if not clean or clean.count(".") > 1:
+        logger.warning("Could not parse value: %r", value_str)
+        return 0.0
+    try:
+        return float(clean)
+    except ValueError:
+        logger.warning("Could not parse value: %r", value_str)
+        return 0.0
 
 
 def _parse_date(date_str: str) -> Optional[date]:
@@ -50,6 +58,18 @@ def _parse_date(date_str: str) -> Optional[date]:
         return None
 
 
+# OpenInsider tinytable column indices (verified against live HTML — see docs/plans)
+_COL_FILING_DATE = 1
+_COL_TRADE_DATE = 2
+_COL_TICKER = 3
+_COL_COMPANY = 4
+_COL_INSIDER_NAME = 5
+_COL_TITLE = 6
+_COL_TRADE_TYPE = 7
+_COL_VALUE = 12
+_MIN_COLS = 13
+
+
 def parse_transactions(
     html: str, min_value: float, lookback_days: int
 ) -> List[InsiderTransaction]:
@@ -57,7 +77,7 @@ def parse_transactions(
 
     Filters applied:
     - Only open-market purchases (Trade Type == 'P')
-    - Trade date within the lookback window (today minus lookback_days)
+    - Trade date must be >= today - lookback_days (inclusive)
     - Transaction value >= min_value
 
     Column indices (verified against the live OpenInsider 'tinytable' layout):
@@ -92,31 +112,31 @@ def parse_transactions(
 
     for row in tbody.find_all("tr"):
         cols = [td.get_text(strip=True) for td in row.find_all("td")]
-        if len(cols) < 13:
+        if len(cols) < _MIN_COLS:
             continue
 
         # Only include open-market purchases
-        if cols[7] != "P":
+        if cols[_COL_TRADE_TYPE] != "P":
             continue
 
-        trade_date = _parse_date(cols[2])
+        trade_date = _parse_date(cols[_COL_TRADE_DATE])
         if trade_date is None or trade_date < cutoff:
             continue
 
-        value = _parse_value(cols[12])
+        value = _parse_value(cols[_COL_VALUE])
         if value < min_value:
             continue
 
-        ticker = cols[3].upper().strip()
-        company = cols[4].strip()
+        ticker = cols[_COL_TICKER].upper().strip()
+        company = cols[_COL_COMPANY].strip()
         if not ticker or not company:
             continue
 
         transactions.append(InsiderTransaction(
             ticker=ticker,
             company=company,
-            insider_name=cols[5].strip(),
-            title=cols[6].strip(),
+            insider_name=cols[_COL_INSIDER_NAME].strip(),
+            title=cols[_COL_TITLE].strip(),
             value=value,
             trade_date=trade_date,
         ))
@@ -138,15 +158,17 @@ def fetch_transactions(
 
 
 def deduplicate(transactions: List[InsiderTransaction]) -> List[InsiderTransaction]:
-    """Remove duplicate transactions.
+    """Remove duplicate transactions (same ticker + insider name + trade date).
 
-    Two transactions are considered duplicates when they share the same
-    ticker symbol, insider name, and trade date.  The first occurrence
-    in the list is kept; subsequent duplicates are discarded.
+    Transactions with trade_date=None are always kept (not deduplicated).
+    The first occurrence in the list is kept; subsequent duplicates are discarded.
     """
     seen: set = set()
     result: List[InsiderTransaction] = []
     for t in transactions:
+        if t.trade_date is None:
+            result.append(t)
+            continue
         key = (t.ticker, t.insider_name, t.trade_date)
         if key not in seen:
             seen.add(key)
