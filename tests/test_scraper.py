@@ -1,10 +1,10 @@
 """
-Tests for the EDGAR-based scraper module.
+Tests for the EDGAR EFTS-based scraper module.
 
 Data flow under test:
-  EDGAR Atom feed → _parse_atom_entries
-  Filing index HTML → _find_xml_in_index
-  Form 4 XML → _parse_form4_xml
+  EDGAR EFTS search  → _fetch_efts_filings
+  EDGAR archive URL  → _xml_urls
+  Form 4 XML         → _parse_form4_xml
   Integration: fetch_all_edgar_transactions (fully mocked HTTP)
 """
 
@@ -16,10 +16,10 @@ import requests
 
 from scraper import (
     InsiderTransaction,
-    _find_xml_in_index,
-    _parse_atom_entries,
+    _fetch_efts_filings,
     _parse_form4_xml,
     _parse_value,
+    _xml_urls,
     deduplicate,
     fetch_all_edgar_transactions,
 )
@@ -27,34 +27,57 @@ from scraper import (
 # ── Shared constants ──────────────────────────────────────────────────────
 
 _RECENT = (date.today() - timedelta(days=1)).isoformat()
-_CIK = "320193"
+_ISSUER_CIK = "0000320193"
+_OWNER_CIK = "0000987654"
 _ACCESSION = "0001234567-26-123456"
+_DOC_FILENAME = "form4.xml"
 
 
 # ── Sample data builders ──────────────────────────────────────────────────
 
-def _make_atom_feed(cik: str, accession: str, filing_date: str) -> bytes:
-    return f"""<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>EDGAR Form 4 Feed</title>
-  <entry>
-    <title type="html">4 - APPLE INC (0000320193) (Subject)</title>
-    <link rel="alternate" type="text/html"
-          href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK={cik}&amp;type=4"/>
-    <id>urn:tag:sec.gov,2008:accession-number={accession}</id>
-    <updated>{filing_date}T10:00:00-04:00</updated>
-    <summary type="html">Filed: {filing_date}</summary>
-  </entry>
-</feed>""".encode()
+def _make_efts_data(
+    accession: str = _ACCESSION,
+    ciks: list | None = None,
+    doc_filename: str = _DOC_FILENAME,
+    file_date: str = _RECENT,
+) -> dict:
+    """Build a realistic EDGAR EFTS response dict with a single hit."""
+    if ciks is None:
+        ciks = [_ISSUER_CIK]
+    return {
+        "hits": {
+            "hits": [
+                {
+                    "_id": f"{accession}:{doc_filename}",
+                    "_source": {
+                        "adsh": accession,
+                        "ciks": ciks,
+                        "file_date": file_date,
+                    },
+                }
+            ]
+        }
+    }
 
 
-def _make_index_html(xml_filename: str) -> str:
-    acc_path = _ACCESSION.replace("-", "")
-    return f"""<html><body>
-<table>
-  <tr><td><a href="/Archives/edgar/data/{_CIK}/{acc_path}/{xml_filename}">{xml_filename}</a></td></tr>
-</table>
-</body></html>"""
+def _make_efts_data_multi(*entries: tuple) -> dict:
+    """Build EFTS response with multiple hits.
+
+    Each entry is a (accession, ciks, doc_filename, file_date) tuple.
+    """
+    hits = []
+    for accession, ciks, doc_filename, file_date in entries:
+        hits.append(
+            {
+                "_id": f"{accession}:{doc_filename}",
+                "_source": {
+                    "adsh": accession,
+                    "ciks": ciks,
+                    "file_date": file_date,
+                },
+            }
+        )
+    return {"hits": {"hits": hits}}
 
 
 def _make_form4_xml(
@@ -99,15 +122,20 @@ def _make_form4_xml(
 </ownershipDocument>"""
 
 
-def _make_mock_resp(content, status_code=200):
+def _make_json_resp(data: dict, status_code: int = 200) -> MagicMock:
+    """Mock a requests.Response for JSON endpoints (EFTS)."""
     mock = MagicMock()
     mock.status_code = status_code
-    if isinstance(content, bytes):
-        mock.content = content
-        mock.text = content.decode("utf-8", errors="replace")
-    else:
-        mock.content = content.encode()
-        mock.text = content
+    mock.json.return_value = data
+    mock.raise_for_status = MagicMock()
+    return mock
+
+
+def _make_xml_resp(content, status_code: int = 200) -> MagicMock:
+    """Mock a requests.Response for XML endpoints (EDGAR archive)."""
+    mock = MagicMock()
+    mock.status_code = status_code
+    mock.content = content.encode() if isinstance(content, str) else content
     mock.raise_for_status = MagicMock()
     return mock
 
@@ -135,79 +163,182 @@ def test_parse_value_parenthesis_notation():
     assert _parse_value("(50,000)") == 50_000.0
 
 
-# ── _parse_atom_entries ───────────────────────────────────────────────────
+# ── _fetch_efts_filings ───────────────────────────────────────────────────
 
-def test_parse_atom_extracts_cik():
-    entries = _parse_atom_entries(_make_atom_feed(_CIK, _ACCESSION, _RECENT))
-    assert len(entries) == 1
-    assert entries[0]["cik"] == _CIK
+def test_fetch_efts_filings_returns_filing_metadata():
+    session = MagicMock()
+    session.get.return_value = _make_json_resp(_make_efts_data())
 
+    result = _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
 
-def test_parse_atom_extracts_accession():
-    entries = _parse_atom_entries(_make_atom_feed(_CIK, _ACCESSION, _RECENT))
-    assert entries[0]["accession_no"] == _ACCESSION
-
-
-def test_parse_atom_extracts_filing_date():
-    entries = _parse_atom_entries(_make_atom_feed(_CIK, _ACCESSION, _RECENT))
-    assert entries[0]["filing_date"] == _RECENT
+    assert len(result) == 1
+    assert result[0]["adsh"] == _ACCESSION
+    assert result[0]["ciks"] == [_ISSUER_CIK]
+    assert result[0]["doc_filename"] == _DOC_FILENAME
+    assert result[0]["file_date"] == _RECENT
 
 
-def test_parse_atom_strips_leading_zeros_from_cik():
-    # CIK "0000320193" in href → stripped to "320193"
-    entries = _parse_atom_entries(_make_atom_feed("0000320193", _ACCESSION, _RECENT))
-    assert entries[0]["cik"] == "320193"
+def test_fetch_efts_filings_skips_non_xml_documents():
+    session = MagicMock()
+    session.get.return_value = _make_json_resp(
+        _make_efts_data(doc_filename="form4.htm")
+    )
+
+    result = _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
+
+    assert result == []
 
 
-def test_parse_atom_skips_entry_without_cik():
-    atom_xml = b"""<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <entry>
-    <link rel="alternate" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;type=4"/>
-    <id>urn:tag:sec.gov,2008:accession-number=0001234567-26-999999</id>
-    <updated>2026-05-27T10:00:00-04:00</updated>
-  </entry>
-</feed>"""
-    assert _parse_atom_entries(atom_xml) == []
+def test_fetch_efts_filings_skips_id_without_colon():
+    session = MagicMock()
+    data = {
+        "hits": {
+            "hits": [
+                {
+                    "_id": "0001234567-26-123456_form4.xml",  # underscore, no colon
+                    "_source": {
+                        "adsh": _ACCESSION,
+                        "ciks": [_ISSUER_CIK],
+                        "file_date": _RECENT,
+                    },
+                }
+            ]
+        }
+    }
+    session.get.return_value = _make_json_resp(data)
+
+    result = _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
+
+    assert result == []
 
 
-def test_parse_atom_returns_empty_on_empty_feed():
-    atom_xml = b"""<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"></feed>"""
-    assert _parse_atom_entries(atom_xml) == []
+def test_fetch_efts_filings_skips_entry_with_empty_adsh():
+    session = MagicMock()
+    data = {
+        "hits": {
+            "hits": [
+                {
+                    "_id": f"{_ACCESSION}:{_DOC_FILENAME}",
+                    "_source": {
+                        "adsh": "",  # empty
+                        "ciks": [_ISSUER_CIK],
+                        "file_date": _RECENT,
+                    },
+                }
+            ]
+        }
+    }
+    session.get.return_value = _make_json_resp(data)
+
+    result = _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
+
+    assert result == []
 
 
-def test_parse_atom_raises_on_malformed_xml():
-    with pytest.raises(RuntimeError, match="Atom"):
-        _parse_atom_entries(b"this is not xml at all <<<")
+def test_fetch_efts_filings_skips_entry_with_no_ciks():
+    session = MagicMock()
+    data = {
+        "hits": {
+            "hits": [
+                {
+                    "_id": f"{_ACCESSION}:{_DOC_FILENAME}",
+                    "_source": {
+                        "adsh": _ACCESSION,
+                        "ciks": [],  # empty list
+                        "file_date": _RECENT,
+                    },
+                }
+            ]
+        }
+    }
+    session.get.return_value = _make_json_resp(data)
+
+    result = _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
+
+    assert result == []
 
 
-# ── _find_xml_in_index ────────────────────────────────────────────────────
+def test_fetch_efts_filings_returns_empty_on_no_hits():
+    session = MagicMock()
+    session.get.return_value = _make_json_resp({"hits": {"hits": []}})
 
-def test_find_xml_finds_named_xml():
-    html = _make_index_html("wf-form4_12345.xml")
-    result = _find_xml_in_index(html)
-    assert result is not None
-    assert result.endswith("wf-form4_12345.xml")
+    result = _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
 
-
-def test_find_xml_returns_none_when_no_xml_link():
-    html = "<html><body><a href='doc.htm'>Document</a></body></html>"
-    assert _find_xml_in_index(html) is None
+    assert result == []
 
 
-def test_find_xml_skips_index_xml_files():
-    # Files with "index" in their name should be skipped
-    html = "<html><body><a href='/Archives/edgar/data/1/000/0001-26-001-index.xml'>idx</a></body></html>"
-    assert _find_xml_in_index(html) is None
+def test_fetch_efts_filings_raises_on_network_error():
+    session = MagicMock()
+    session.get.side_effect = requests.RequestException("connection refused")
+
+    with pytest.raises(RuntimeError, match="EDGAR EFTS"):
+        _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
 
 
-def test_find_xml_returns_absolute_or_relative_path():
-    html = _make_index_html("form4.xml")
-    result = _find_xml_in_index(html)
-    # Must be either an absolute URL or a /path
-    assert result is not None
-    assert "form4.xml" in result
+def test_fetch_efts_filings_raises_on_parse_error():
+    session = MagicMock()
+    mock = MagicMock()
+    mock.raise_for_status = MagicMock()
+    mock.status_code = 200
+    mock.json.side_effect = ValueError("not JSON")
+    session.get.return_value = mock
+
+    with pytest.raises(RuntimeError, match="EDGAR EFTS"):
+        _fetch_efts_filings(date.today() - timedelta(days=7), date.today(), session)
+
+
+# ── _xml_urls ─────────────────────────────────────────────────────────────
+
+def test_xml_urls_returns_issuer_cik_first():
+    """ciks[-1] is the issuer; its stripped CIK should appear in urls[0]."""
+    urls = _xml_urls(_ACCESSION, [_OWNER_CIK, _ISSUER_CIK], _DOC_FILENAME)
+
+    assert len(urls) >= 1
+    assert "/320193/" in urls[0]  # issuer CIK without leading zeros
+
+
+def test_xml_urls_strips_leading_zeros():
+    urls = _xml_urls(_ACCESSION, [_ISSUER_CIK], _DOC_FILENAME)
+
+    assert "/320193/" in urls[0]
+    assert "/0000320193/" not in urls[0]
+
+
+def test_xml_urls_removes_dashes_from_accession():
+    urls = _xml_urls(_ACCESSION, [_ISSUER_CIK], _DOC_FILENAME)
+
+    acc_nodash = _ACCESSION.replace("-", "")
+    assert acc_nodash in urls[0]
+
+
+def test_xml_urls_includes_fallback_for_reporting_owner():
+    """Two different CIKs produce two URLs: issuer first, reporting owner second."""
+    urls = _xml_urls(_ACCESSION, [_OWNER_CIK, _ISSUER_CIK], _DOC_FILENAME)
+
+    assert len(urls) == 2
+    assert "/320193/" in urls[0]   # issuer (ciks[-1])
+    assert "/987654/" in urls[1]   # reporting owner (ciks[0])
+
+
+def test_xml_urls_deduplicates_identical_ciks():
+    """Same CIK appearing twice produces only one URL."""
+    urls = _xml_urls(_ACCESSION, [_ISSUER_CIK, _ISSUER_CIK], _DOC_FILENAME)
+
+    assert len(urls) == 1
+
+
+def test_xml_urls_single_cik_returns_one_url():
+    urls = _xml_urls(_ACCESSION, [_ISSUER_CIK], _DOC_FILENAME)
+
+    assert len(urls) == 1
+    assert urls[0].endswith(f"/{_DOC_FILENAME}")
+
+
+def test_xml_urls_skips_all_zero_cik():
+    """A CIK of all zeros becomes empty after lstrip('0') and is skipped."""
+    urls = _xml_urls(_ACCESSION, ["0000"], _DOC_FILENAME)
+
+    assert urls == []
 
 
 # ── _parse_form4_xml ──────────────────────────────────────────────────────
@@ -327,12 +458,12 @@ def test_fetch_all_returns_purchase_above_min_value(mock_session_cls, mock_sleep
     mock_session_cls.return_value = session
 
     session.get.side_effect = [
-        _make_mock_resp(_make_atom_feed(_CIK, _ACCESSION, _RECENT)),
-        _make_mock_resp(_make_index_html("form4.xml")),
-        _make_mock_resp(_make_form4_xml(shares="13510", price="185.00")),
+        _make_json_resp(_make_efts_data()),                          # EFTS query
+        _make_xml_resp(_make_form4_xml(shares="13510", price="185.00")),  # XML
     ]
 
     txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
+
     assert len(txns) == 1
     assert txns[0].ticker == "AAPL"
     assert txns[0].insider_name == "Tim Cook"
@@ -346,75 +477,64 @@ def test_fetch_all_excludes_below_min_value(mock_session_cls, mock_sleep):
 
     # 10 shares × $100 = $1,000 < $50,000
     session.get.side_effect = [
-        _make_mock_resp(_make_atom_feed(_CIK, _ACCESSION, _RECENT)),
-        _make_mock_resp(_make_index_html("form4.xml")),
-        _make_mock_resp(_make_form4_xml(shares="10", price="100.00")),
+        _make_json_resp(_make_efts_data()),
+        _make_xml_resp(_make_form4_xml(shares="10", price="100.00")),
     ]
 
     txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
+
     assert txns == []
 
 
 @patch("scraper.time.sleep")
 @patch("scraper.requests.Session")
-def test_fetch_all_skips_old_filings_without_extra_requests(mock_session_cls, mock_sleep):
-    session = MagicMock()
-    mock_session_cls.return_value = session
-
-    old_date = (date.today() - timedelta(days=30)).isoformat()
-    session.get.return_value = _make_mock_resp(_make_atom_feed(_CIK, _ACCESSION, old_date))
-
-    txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
-    assert txns == []
-    # Only the Atom feed request was made; no index/XML requests for old filings
-    assert session.get.call_count == 1
-
-
-@patch("scraper.time.sleep")
-@patch("scraper.requests.Session")
-def test_fetch_all_raises_runtime_error_on_atom_failure(mock_session_cls, mock_sleep):
+def test_fetch_all_raises_on_efts_failure(mock_session_cls, mock_sleep):
     session = MagicMock()
     mock_session_cls.return_value = session
     session.get.side_effect = requests.RequestException("connection refused")
 
-    with pytest.raises(RuntimeError, match="EDGAR Atom feed"):
+    with pytest.raises(RuntimeError, match="EDGAR EFTS"):
         fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
 
 
 @patch("scraper.time.sleep")
 @patch("scraper.requests.Session")
-def test_fetch_all_skips_filing_gracefully_when_index_fails(mock_session_cls, mock_sleep):
+def test_fetch_all_skips_filing_gracefully_when_xml_fails(mock_session_cls, mock_sleep):
     session = MagicMock()
     mock_session_cls.return_value = session
 
     session.get.side_effect = [
-        _make_mock_resp(_make_atom_feed(_CIK, _ACCESSION, _RECENT)),
-        requests.RequestException("timeout"),  # filing index request fails
+        _make_json_resp(_make_efts_data()),          # EFTS succeeds
+        requests.RequestException("timeout"),         # XML fetch fails
     ]
 
     txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
+
     assert txns == []  # gracefully skipped, no exception raised
 
 
 @patch("scraper.time.sleep")
 @patch("scraper.requests.Session")
-def test_fetch_all_deduplicates_identical_transactions(mock_session_cls, mock_sleep):
+def test_fetch_all_deduplicates_transactions(mock_session_cls, mock_sleep):
+    """Two separate EFTS filings with the same (ticker, insider, date) → deduplicated to 1."""
     session = MagicMock()
     mock_session_cls.return_value = session
 
-    atom = _make_atom_feed(_CIK, _ACCESSION, _RECENT)
-    idx = _make_index_html("form4.xml")
-    xml = _make_form4_xml()
+    acc2 = "0009876543-26-111111"
+    efts_data = _make_efts_data_multi(
+        (_ACCESSION, [_ISSUER_CIK], _DOC_FILENAME, _RECENT),
+        (acc2, [_ISSUER_CIK], _DOC_FILENAME, _RECENT),
+    )
 
-    # Two identical filings (same ticker, insider, date)
     session.get.side_effect = [
-        _make_mock_resp(atom),
-        _make_mock_resp(idx),
-        _make_mock_resp(xml),
+        _make_json_resp(efts_data),        # EFTS: 2 hits
+        _make_xml_resp(_make_form4_xml()), # XML for filing 1
+        _make_xml_resp(_make_form4_xml()), # XML for filing 2 (same content)
     ]
 
     txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
-    assert len(txns) == 1
+
+    assert len(txns) == 1  # same ticker + insider + date → deduplicated
 
 
 @patch("scraper.time.sleep")
@@ -424,10 +544,33 @@ def test_fetch_all_excludes_sales_transactions(mock_session_cls, mock_sleep):
     mock_session_cls.return_value = session
 
     session.get.side_effect = [
-        _make_mock_resp(_make_atom_feed(_CIK, _ACCESSION, _RECENT)),
-        _make_mock_resp(_make_index_html("form4.xml")),
-        _make_mock_resp(_make_form4_xml(transaction_code="S")),
+        _make_json_resp(_make_efts_data()),
+        _make_xml_resp(_make_form4_xml(transaction_code="S")),
     ]
 
     txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
+
     assert txns == []
+
+
+@patch("scraper.time.sleep")
+@patch("scraper.requests.Session")
+def test_fetch_all_tries_fallback_cik_on_404(mock_session_cls, mock_sleep):
+    """When the issuer CIK URL returns 404, the reporting owner CIK is tried."""
+    session = MagicMock()
+    mock_session_cls.return_value = session
+
+    efts_data = _make_efts_data(ciks=[_OWNER_CIK, _ISSUER_CIK])  # two CIKs
+
+    xml_404 = MagicMock()
+    xml_404.status_code = 404
+
+    session.get.side_effect = [
+        _make_json_resp(efts_data),         # EFTS
+        xml_404,                             # issuer CIK → 404
+        _make_xml_resp(_make_form4_xml()),  # owner CIK → 200
+    ]
+
+    txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
+
+    assert len(txns) == 1

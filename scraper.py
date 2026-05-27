@@ -2,12 +2,21 @@
 Scraper module for InsiderTracker.
 
 Fetches and parses SEC Form 4 insider purchase data from EDGAR.
-Data source: https://www.sec.gov (official US government — no geo-blocks)
+Data source: https://www.sec.gov (official US government — globally accessible)
 
 Data flow:
-  1. EDGAR Atom feed  → list of (CIK, accession_no, filing_date)
-  2. Filing index HTML → XML document URL
-  3. Form 4 XML        → InsiderTransaction objects (purchases only)
+  1. EDGAR EFTS full-text search  → list of Form 4 filings with metadata
+  2. Direct XML fetch              → Form 4 raw XML per filing
+  3. Form 4 XML parsing            → InsiderTransaction objects (purchases only)
+
+EDGAR EFTS (https://efts.sec.gov/LATEST/search-index) supports date-range queries
+for all Form 4 filings. The ``_id`` field encodes the XML document path:
+  ``{accession_no}:{xml_filename}``
+
+The XML URL is built directly:
+  ``/Archives/edgar/data/{issuer_cik}/{acc_nodashes}/{xml_filename}``
+
+where ``issuer_cik`` = last element in the ``ciks`` array (EDGAR convention for Form 4).
 """
 
 from __future__ import annotations
@@ -21,29 +30,21 @@ from datetime import date, datetime, timedelta
 from typing import List, Optional
 
 import requests
-from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
 # ── EDGAR endpoints ───────────────────────────────────────────────────────
 
-# Atom feed for the 100 most recently accepted Form 4 filings
-_EDGAR_ATOM_URL = (
-    "https://www.sec.gov/cgi-bin/browse-edgar"
-    "?action=getcurrent&type=4&dateb=&owner=include&count=100&output=atom"
-)
+_EDGAR_EFTS_URL = "https://efts.sec.gov/LATEST/search-index"
 _EDGAR_ARCHIVES = "https://www.sec.gov/Archives/edgar/data"
-_EDGAR_BASE = "https://www.sec.gov"
 
-# EDGAR requires a User-Agent with contact info (rate limit: <10 req/s)
+# EDGAR requires a User-Agent header with contact info (policy: <10 req/s)
 _EDGAR_HEADERS = {
     "User-Agent": "InsiderTracker/1.0 corradocuri@gmail.com",
     "Accept-Encoding": "gzip, deflate",
 }
-_REQUEST_DELAY = 0.12  # seconds between requests (~8 req/s, within EDGAR policy)
-
-# Standard Atom XML namespace
-_ATOM_NS = "http://www.w3.org/2005/Atom"
+_REQUEST_DELAY = 0.12   # seconds between requests (~8 req/s, within EDGAR policy)
+_EDGAR_MAX_FILINGS = 200  # max Form 4 filings to process per run (~2 business days)
 
 
 # ── Data classes ──────────────────────────────────────────────────────────
@@ -111,78 +112,94 @@ def deduplicate(transactions: List[InsiderTransaction]) -> List[InsiderTransacti
     return result
 
 
-# ── EDGAR Atom feed parsing ───────────────────────────────────────────────
+# ── EDGAR EFTS filing list ────────────────────────────────────────────────
 
-def _parse_atom_entries(atom_xml: bytes) -> list[dict]:
-    """Parse EDGAR Atom feed XML into a list of filing metadata dicts.
+def _fetch_efts_filings(
+    start: date,
+    end: date,
+    session: requests.Session,
+    max_results: int = _EDGAR_MAX_FILINGS,
+) -> list[dict]:
+    """Query EDGAR EFTS for Form 4 filings in the given date range.
 
-    Each dict has keys: ``cik``, ``accession_no``, ``filing_date``.
-    Entries missing a CIK or accession number are silently skipped.
+    Returns a list of dicts with keys: ``adsh``, ``ciks``, ``doc_filename``,
+    ``file_date``.
 
-    Raises RuntimeError on malformed XML.
+    The EFTS ``_id`` field encodes both the accession number and XML filename:
+    ``"{adsh}:{doc_filename}"``
+
+    The ``ciks`` list follows the EDGAR convention for Form 4:
+    - ``ciks[-1]`` = issuer (company whose securities are being reported)
+    - ``ciks[0]``  = reporting owner (the insider)
+
+    Raises RuntimeError on network or parse failure.
     """
+    params = {
+        "forms": "4",
+        "dateRange": "custom",
+        "startdt": start.isoformat(),
+        "enddt": end.isoformat(),
+        "from": "0",
+        "size": str(min(max_results, 200)),  # EFTS page size cap
+    }
     try:
-        root = ET.fromstring(atom_xml)
-    except ET.ParseError as exc:
-        raise RuntimeError(f"Failed to parse EDGAR Atom feed XML: {exc}") from exc
+        resp = session.get(_EDGAR_EFTS_URL, params=params, timeout=30)
+        resp.raise_for_status()
+    except requests.RequestException as exc:
+        raise RuntimeError(f"Failed to fetch EDGAR EFTS filings: {exc}") from exc
 
-    entries = []
-    for entry in root.findall(f"{{{_ATOM_NS}}}entry"):
-        # ── Accession number from <id> ──────────────────────────────────
-        id_elem = entry.find(f"{{{_ATOM_NS}}}id")
-        id_text = (id_elem.text or "").strip() if id_elem is not None else ""
-        acc_match = re.search(r"accession-number=(\d{10}-\d{2}-\d{6})", id_text)
-        if not acc_match:
+    try:
+        data = resp.json()
+    except Exception as exc:
+        raise RuntimeError(f"Failed to parse EDGAR EFTS response: {exc}") from exc
+
+    results = []
+    for hit in data.get("hits", {}).get("hits", []):
+        _id = hit.get("_id", "")
+        source = hit.get("_source", {})
+
+        # _id format: "{adsh}:{doc_filename}"
+        if ":" not in _id:
             continue
-        accession_no = acc_match.group(1)
+        _, doc_filename = _id.rsplit(":", 1)
+        if not doc_filename.lower().endswith(".xml"):
+            continue  # skip non-XML documents
 
-        # ── CIK from <link href="...?...CIK=XXXXXXXXXX..."> ────────────
-        cik = ""
-        link_elem = entry.find(f"{{{_ATOM_NS}}}link")
-        if link_elem is not None:
-            href = link_elem.get("href", "")
-            cik_match = re.search(r"CIK=(\d+)", href, re.IGNORECASE)
-            if cik_match:
-                cik = cik_match.group(1).lstrip("0")
-
-        if not cik:
+        adsh = source.get("adsh", "").strip()
+        if not adsh:
             continue
 
-        # ── Filing date from <updated> ──────────────────────────────────
-        updated_elem = entry.find(f"{{{_ATOM_NS}}}updated")
-        updated_text = (updated_elem.text or "").strip() if updated_elem is not None else ""
-        filing_date = updated_text[:10]  # "YYYY-MM-DD" (trim time component)
+        ciks = source.get("ciks", [])
+        if not ciks:
+            continue
 
-        entries.append({
-            "cik": cik,
-            "accession_no": accession_no,
-            "filing_date": filing_date,
+        results.append({
+            "adsh": adsh,
+            "ciks": ciks,
+            "doc_filename": doc_filename,
+            "file_date": source.get("file_date", "").strip(),
         })
 
-    return entries
+    return results
 
 
-# ── Filing index parsing ──────────────────────────────────────────────────
+# ── Form 4 XML URL resolution ─────────────────────────────────────────────
 
-def _index_url(cik: str, accession_no: str) -> str:
-    """Build the EDGAR filing index URL from CIK and accession number."""
-    acc_path = accession_no.replace("-", "")
-    return f"{_EDGAR_ARCHIVES}/{cik}/{acc_path}/{accession_no}-index.htm"
+def _xml_urls(adsh: str, ciks: list[str], doc_filename: str) -> list[str]:
+    """Return candidate XML URLs in order of preference.
 
-
-def _find_xml_in_index(index_html: str) -> Optional[str]:
-    """Find the primary Form 4 XML document path from a filing index HTML page.
-
-    Returns the href string (absolute or relative) of the first link whose
-    name ends with ``.xml`` and does not contain "index".
-    Returns None if no matching link is found.
+    Tries the ISSUER's CIK first (``ciks[-1]``, EDGAR convention for Form 4),
+    then falls back to the reporting owner's CIK (``ciks[0]``).
     """
-    soup = BeautifulSoup(index_html, "html.parser")
-    for link in soup.find_all("a", href=True):
-        href = link["href"]
-        if href.lower().endswith(".xml") and "index" not in href.lower():
-            return href
-    return None
+    acc_path = adsh.replace("-", "")
+    seen: set = set()
+    urls = []
+    for cik in reversed(ciks):  # reversed: last = issuer, first = reporting owner
+        cik_str = cik.lstrip("0")
+        if cik_str and cik_str not in seen:
+            seen.add(cik_str)
+            urls.append(f"{_EDGAR_ARCHIVES}/{cik_str}/{acc_path}/{doc_filename}")
+    return urls
 
 
 # ── Form 4 XML parsing ────────────────────────────────────────────────────
@@ -288,68 +305,48 @@ def fetch_all_edgar_transactions(
     """Fetch recent insider purchase transactions from SEC EDGAR.
 
     Steps:
-      1. Fetch the EDGAR Atom feed for the 100 most recent Form 4 filings.
-      2. For each filing within the lookback window:
-         a. Fetch the filing index HTML to locate the Form 4 XML document.
-         b. Fetch and parse the Form 4 XML.
-         c. Filter for purchases (transactionCode='P') with value >= min_value.
-      3. Return a deduplicated list of InsiderTransaction objects.
+      1. Query EDGAR EFTS for all Form 4 filings in the lookback window.
+         Processes up to ``_EDGAR_MAX_FILINGS`` most recent filings.
+      2. For each filing, fetch the Form 4 raw XML directly using the
+         issuer CIK and document filename from the EFTS response.
+      3. Parse the XML for open-market purchases (transactionCode='P')
+         with value >= min_value.
+      4. Return a deduplicated list of InsiderTransaction objects.
 
-    Raises RuntimeError if the Atom feed cannot be fetched (after caller retry).
-    Individual filing failures are logged at DEBUG level and skipped gracefully.
+    Raises RuntimeError if the EFTS query fails (caller retries).
+    Individual filing failures are skipped gracefully (logged at DEBUG).
     """
     cutoff = date.today() - timedelta(days=lookback_days)
     session = requests.Session()
     session.headers.update(_EDGAR_HEADERS)
 
-    # Step 1: Atom feed
-    try:
-        resp = session.get(_EDGAR_ATOM_URL, timeout=30)
-        resp.raise_for_status()
-    except requests.RequestException as exc:
-        raise RuntimeError(f"Failed to fetch EDGAR Atom feed: {exc}") from exc
-
-    entries = _parse_atom_entries(resp.content)
+    # Step 1: EFTS filing list
+    filings = _fetch_efts_filings(cutoff, date.today(), session)
     all_txns: list[InsiderTransaction] = []
 
-    for entry in entries:
-        # Skip filings older than the lookback window
-        filing_date = _parse_date(entry.get("filing_date", ""))
-        if filing_date is not None and filing_date < cutoff:
-            continue
-
-        cik = entry["cik"]
-        accession_no = entry["accession_no"]
-
+    for filing in filings:
         time.sleep(_REQUEST_DELAY)
 
-        # Step 2a: Filing index → XML URL
-        try:
-            idx_resp = session.get(_index_url(cik, accession_no), timeout=20)
-            idx_resp.raise_for_status()
-        except requests.RequestException:
-            logger.debug("Skipping filing %s/%s — index fetch failed", cik, accession_no)
+        # Step 2: Fetch Form 4 XML (try issuer CIK first, then reporting owner)
+        xml_content: bytes | None = None
+        for url in _xml_urls(filing["adsh"], filing["ciks"], filing["doc_filename"]):
+            try:
+                xml_resp = session.get(url, timeout=20)
+                if xml_resp.status_code == 200:
+                    xml_content = xml_resp.content
+                    break
+                if xml_resp.status_code == 404:
+                    continue  # try next CIK
+                xml_resp.raise_for_status()
+            except requests.RequestException:
+                continue
+
+        if xml_content is None:
+            logger.debug("Could not fetch XML for %s", filing["adsh"])
             continue
 
-        xml_path = _find_xml_in_index(idx_resp.text)
-        if not xml_path:
-            logger.debug("No XML found in index for %s/%s", cik, accession_no)
-            continue
-
-        xml_url = xml_path if xml_path.startswith("http") else _EDGAR_BASE + xml_path
-
-        time.sleep(_REQUEST_DELAY)
-
-        # Step 2b: Fetch and parse Form 4 XML
-        try:
-            xml_resp = session.get(xml_url, timeout=20)
-            xml_resp.raise_for_status()
-        except requests.RequestException:
-            logger.debug("Skipping XML fetch failed: %s", xml_url)
-            continue
-
-        # Step 2c: Filter purchases by min_value
-        for t in _parse_form4_xml(xml_resp.content):
+        # Step 3: Parse and filter
+        for t in _parse_form4_xml(xml_content):
             if t["value"] >= min_value:
                 all_txns.append(InsiderTransaction(
                     ticker=t["ticker"],
