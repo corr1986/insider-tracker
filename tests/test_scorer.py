@@ -34,7 +34,7 @@ def test_chief_financial_officer_detected_as_cfo():
 
 def test_value_50k_to_100k_scores_1():
     s = score_ticker("AAPL", [make_tx(value=75_000)])
-    assert any("≥$50K" in item and "+1" in item for item in s.score_breakdown)
+    assert any("<$100K" in item and "+1" in item for item in s.score_breakdown)
 
 def test_value_100k_to_500k_scores_2():
     s = score_ticker("AAPL", [make_tx(value=200_000)])
@@ -42,6 +42,14 @@ def test_value_100k_to_500k_scores_2():
 
 def test_value_above_500k_scores_4():
     s = score_ticker("AAPL", [make_tx(value=600_000)])
+    assert any("≥$500K" in item and "+4" in item for item in s.score_breakdown)
+
+def test_value_exactly_100k_scores_2():
+    s = score_ticker("AAPL", [make_tx(value=100_000)])
+    assert any("≥$100K" in item and "+2" in item for item in s.score_breakdown)
+
+def test_value_exactly_500k_scores_4():
+    s = score_ticker("AAPL", [make_tx(value=500_000)])
     assert any("≥$500K" in item and "+4" in item for item in s.score_breakdown)
 
 

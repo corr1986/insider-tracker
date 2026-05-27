@@ -45,13 +45,13 @@ def _value_score(value: float) -> Tuple[int, str]:
     Thresholds (inclusive lower bound):
     - >= $500K  → SCORE_VALUE_LARGE
     - >= $100K  → SCORE_VALUE_MED
-    - >= $50K   → SCORE_VALUE_SMALL
+    - < $100K   → SCORE_VALUE_SMALL
     """
     if value >= 500_000:
         return config.SCORE_VALUE_LARGE, f"Importo ${value:,.0f} (≥$500K) +{config.SCORE_VALUE_LARGE}"
     if value >= 100_000:
         return config.SCORE_VALUE_MED, f"Importo ${value:,.0f} (≥$100K) +{config.SCORE_VALUE_MED}"
-    return config.SCORE_VALUE_SMALL, f"Importo ${value:,.0f} (≥$50K) +{config.SCORE_VALUE_SMALL}"
+    return config.SCORE_VALUE_SMALL, f"Importo ${value:,.0f} (<$100K) +{config.SCORE_VALUE_SMALL}"
 
 
 def score_ticker(ticker: str, transactions: List[InsiderTransaction]) -> TickerSignal:
@@ -79,7 +79,7 @@ def score_ticker(ticker: str, transactions: List[InsiderTransaction]) -> TickerS
     signal.score_breakdown.append(f"• {label}")
 
     # Cluster bonus: based on number of distinct insiders
-    n = len(transactions)
+    n = len({tx.insider_name for tx in transactions})
     if n >= 3:
         signal.score += config.SCORE_CLUSTER_3PLUS
         signal.score_breakdown.append(f"• Cluster {n} insider +{config.SCORE_CLUSTER_3PLUS}")
