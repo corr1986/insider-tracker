@@ -23,28 +23,28 @@ def make_signal():
 # ── _signal_label ─────────────────────────────────────────────────────────
 
 def test_signal_label_debole_for_score_5():
-    assert "Debole" in _signal_label(5)
+    assert _signal_label(5) == "🔴 Debole"
 
 def test_signal_label_debole_for_score_7():
-    assert "Debole" in _signal_label(7)
+    assert _signal_label(7) == "🔴 Debole"
 
 def test_signal_label_buono_for_score_8():
-    assert "Buono" in _signal_label(8)
+    assert _signal_label(8) == "🟡 Buono"
 
 def test_signal_label_buono_for_score_10():
-    assert "Buono" in _signal_label(10)
+    assert _signal_label(10) == "🟡 Buono"
 
 def test_signal_label_ottimo_for_score_11():
-    assert "Ottimo" in _signal_label(11)
+    assert _signal_label(11) == "🟢 Ottimo"
 
 def test_signal_label_ottimo_for_score_13():
-    assert "Ottimo" in _signal_label(13)
+    assert _signal_label(13) == "🟢 Ottimo"
 
 def test_signal_label_eccellente_for_score_14():
-    assert "Eccellente" in _signal_label(14)
+    assert _signal_label(14) == "🔥 Eccellente"
 
 def test_signal_label_eccellente_for_max_score():
-    assert "Eccellente" in _signal_label(17)
+    assert _signal_label(21) == "🔥 Eccellente"
 
 
 # ── _format_message ────────────────────────────────────────────────────────

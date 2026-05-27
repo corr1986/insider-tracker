@@ -20,18 +20,18 @@ def _signal_label(score: int) -> str:
     """Return a short quality label for a given score.
 
     Thresholds:
-      5–7  → 🟡 Debole
-      8–10 → 🟢 Buono
-      11–13→ 🔵 Ottimo
-      14+  → ⭐ Eccellente
+      5–7  → 🔴 Debole
+      8–10 → 🟡 Buono
+      11–13→ 🟢 Ottimo
+      14+  → 🔥 Eccellente
     """
     if score >= 14:
-        return "⭐ Eccellente"
+        return "🔥 Eccellente"
     if score >= 11:
-        return "🔵 Ottimo"
+        return "🟢 Ottimo"
     if score >= 8:
-        return "🟢 Buono"
-    return "🟡 Debole"
+        return "🟡 Buono"
+    return "🔴 Debole"
 
 
 def _format_message(signal: TickerSignal) -> str:
