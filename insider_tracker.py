@@ -104,8 +104,8 @@ def main() -> None:
     load_dotenv()
 
     try:
-        token = os.environ["TELEGRAM_TOKEN"]
-        chat_id = os.environ["TELEGRAM_CHAT_ID"]
+        token = os.environ["TELEGRAM_TOKEN"].strip()
+        chat_id = os.environ["TELEGRAM_CHAT_ID"].strip()
         last_seen = load_last_seen()
         transactions = _fetch_all()
         signals = score_all(transactions)
@@ -120,7 +120,7 @@ def main() -> None:
         logger.error("Fatal error: %s", exc, exc_info=True)
         # best-effort Telegram alert (may fail if token/chat_id are missing)
         try:
-            send_error(str(exc), os.environ.get("TELEGRAM_TOKEN", ""), os.environ.get("TELEGRAM_CHAT_ID", ""))
+            send_error(str(exc), os.environ.get("TELEGRAM_TOKEN", "").strip(), os.environ.get("TELEGRAM_CHAT_ID", "").strip())
         except Exception:
             pass
 
