@@ -22,8 +22,6 @@ from scraper import fetch_transactions, deduplicate
 from scorer import score_all, TickerSignal
 from notifier import send_signal, send_error
 
-load_dotenv()
-
 logging.basicConfig(
     filename="errors.log",
     level=logging.ERROR,
@@ -78,7 +76,7 @@ def _fetch_all() -> list:
     """Fetch transactions from all configured URLs with 3-attempt retry.
 
     Each URL is retried up to 3 times with exponential backoff (1s, 2s).
-    Raises requests.RequestException if all attempts fail for a URL.
+    Raises RuntimeError if all attempts fail for a URL.
     Returns deduplicated list of InsiderTransaction objects.
     """
     all_transactions = []
@@ -92,7 +90,7 @@ def _fetch_all() -> list:
                 break
             except requests.RequestException as exc:
                 if attempt == 2:
-                    raise
+                    raise RuntimeError(f"All 3 attempts failed for URL: {url}") from exc
                 time.sleep(2 ** attempt)
     return deduplicate(all_transactions)
 
@@ -103,11 +101,12 @@ def main() -> None:
     Reads TELEGRAM_TOKEN and TELEGRAM_CHAT_ID from environment (via .env).
     On fatal errors, sends an error alert to Telegram and logs to errors.log.
     """
-    token = os.environ["TELEGRAM_TOKEN"]
-    chat_id = os.environ["TELEGRAM_CHAT_ID"]
-    last_seen = load_last_seen()
+    load_dotenv()
 
     try:
+        token = os.environ["TELEGRAM_TOKEN"]
+        chat_id = os.environ["TELEGRAM_CHAT_ID"]
+        last_seen = load_last_seen()
         transactions = _fetch_all()
         signals = score_all(transactions)
         top = pick_top_signal(signals, last_seen)
@@ -115,9 +114,15 @@ def main() -> None:
         if sent and top is not None:
             mark_sent(top.ticker, last_seen)
             save_last_seen(last_seen)
+    except KeyError as exc:
+        logger.error("Missing environment variable: %s — check .env file", exc)
     except Exception as exc:
         logger.error("Fatal error: %s", exc, exc_info=True)
-        send_error(str(exc), token, chat_id)
+        # best-effort Telegram alert (may fail if token/chat_id are missing)
+        try:
+            send_error(str(exc), os.environ.get("TELEGRAM_TOKEN", ""), os.environ.get("TELEGRAM_CHAT_ID", ""))
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":
