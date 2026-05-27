@@ -1,21 +1,9 @@
 """
 Configuration constants for InsiderTracker.
 
-Contains URLs, thresholds, and scoring weights for insider trading analysis.
+Contains thresholds and scoring weights for insider trading analysis.
+Data source: SEC EDGAR Form 4 filings (globally accessible, no geo-blocks).
 """
-
-# OpenInsider URLs to scrape (all free, no auth required)
-OPENINSIDER_URLS = [
-    "https://openinsider.com/latest-cluster-buys",
-    "https://openinsider.com/latest-ceo-cfo-purchases-25k",
-    (
-        "https://openinsider.com/screener?s=0&o=&pl=&ph=&ll=&lh="
-        "&fd=3&fdr=&td=&tdr=&fdlyl=&fdlyh=&daysago=&xp=1&xs=1"
-        "&vl=50&vh=&ocl=&och=&sic1=-1&sicl=100&sich=9999"
-        "&grp=0&nfl=&nfh=&nil=&nih=&nol=&noh=&v2l=&v2h="
-        "&oc2l=&oc2h=&sortcol=0&cnt=40&Action=screener"
-    ),
-]
 
 # Minimum transaction value (USD) to include in scoring
 MIN_TRANSACTION_VALUE = 50_000

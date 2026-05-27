@@ -1,7 +1,7 @@
 """
 Orchestration entry point for InsiderTracker.
 
-Fetches insider transactions from OpenInsider, scores them, and sends the
+Fetches insider transactions from SEC EDGAR, scores them, and sends the
 top signal to Telegram (if any). Tracks which tickers were already sent today
 to avoid duplicate alerts.
 """
@@ -14,11 +14,10 @@ from datetime import date
 from pathlib import Path
 from typing import List, Optional
 
-import requests
 from dotenv import load_dotenv
 
 import config
-from scraper import fetch_transactions, deduplicate
+from scraper import fetch_all_edgar_transactions
 from scorer import score_all, TickerSignal
 from notifier import send_signal, send_error
 
@@ -73,26 +72,23 @@ def pick_top_signal(
 
 
 def _fetch_all() -> list:
-    """Fetch transactions from all configured URLs with 3-attempt retry.
+    """Fetch transactions from SEC EDGAR with 3-attempt retry.
 
-    Each URL is retried up to 3 times with exponential backoff (1s, 2s).
-    Raises RuntimeError if all attempts fail for a URL.
+    Retries up to 3 times with exponential backoff (1s, 2s) on failure.
+    Raises RuntimeError if all attempts fail.
     Returns deduplicated list of InsiderTransaction objects.
     """
-    all_transactions = []
-    for url in config.OPENINSIDER_URLS:
-        for attempt in range(3):
-            try:
-                txs = fetch_transactions(
-                    url, config.MIN_TRANSACTION_VALUE, config.LOOKBACK_CALENDAR_DAYS
-                )
-                all_transactions.extend(txs)
-                break
-            except requests.RequestException as exc:
-                if attempt == 2:
-                    raise RuntimeError(f"All 3 attempts failed for URL: {url}") from exc
-                time.sleep(2 ** attempt)
-    return deduplicate(all_transactions)
+    for attempt in range(3):
+        try:
+            return fetch_all_edgar_transactions(
+                config.MIN_TRANSACTION_VALUE, config.LOOKBACK_CALENDAR_DAYS
+            )
+        except RuntimeError as exc:
+            if attempt == 2:
+                raise
+            logger.warning("EDGAR fetch attempt %d failed: %s", attempt + 1, exc)
+            time.sleep(2 ** attempt)
+    return []  # unreachable — satisfies type checkers
 
 
 def main() -> None:
