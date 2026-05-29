@@ -3,7 +3,7 @@ from unittest.mock import patch, MagicMock
 import requests as req
 from scraper import InsiderTransaction
 from scorer import TickerSignal
-from notifier import _format_message, _no_signal_message, _signal_label, send_signal, send_error
+from notifier import _format_message, _no_signal_message, _signal_label, send_signal, send_error, send_analysis
 
 
 def make_signal():
@@ -96,3 +96,26 @@ def test_send_error_includes_error_text(mock_post):
     mock_post.return_value = MagicMock(status_code=200, raise_for_status=MagicMock())
     send_error("timeout error", token="TOKEN", chat_id="CHAT")
     assert "timeout error" in str(mock_post.call_args)
+
+
+@patch("notifier.requests.post")
+def test_send_analysis_calls_telegram_api(mock_post):
+    mock_post.return_value = MagicMock(status_code=200, raise_for_status=MagicMock())
+    result = send_analysis("📊 ANALISI — $AAPL\nTest message", token="TOKEN", chat_id="CHAT")
+    assert result is True
+    assert "api.telegram.org" in mock_post.call_args[0][0]
+
+
+@patch("notifier.requests.post")
+def test_send_analysis_sends_exact_message(mock_post):
+    mock_post.return_value = MagicMock(status_code=200, raise_for_status=MagicMock())
+    send_analysis("MY ANALYSIS TEXT", token="TOKEN", chat_id="CHAT")
+    call_json = mock_post.call_args[1]["json"]
+    assert call_json["text"] == "MY ANALYSIS TEXT"
+
+
+@patch("notifier.requests.post")
+def test_send_analysis_returns_false_on_network_error(mock_post):
+    import requests as req
+    mock_post.side_effect = req.RequestException("connection failed")
+    assert send_analysis("any message", token="TOKEN", chat_id="CHAT") is False

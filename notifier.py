@@ -2,7 +2,8 @@
 Notifier module for InsiderTracker.
 
 Formats TickerSignal objects as Telegram messages and sends them via the
-Telegram Bot API. Provides helpers for both signal messages and error alerts.
+Telegram Bot API. Provides helpers for signal messages, analysis messages,
+and error alerts.
 """
 
 import logging
@@ -95,3 +96,11 @@ def send_error(error: str, token: str, chat_id: str) -> bool:
     Returns True on success, False on network/HTTP error.
     """
     return _send_telegram(_error_message(error), token, chat_id)
+
+
+def send_analysis(message: str, token: str, chat_id: str) -> bool:
+    """Send a pre-formatted company analysis message to Telegram.
+
+    Returns True on success, False on network/HTTP error.
+    """
+    return _send_telegram(message, token, chat_id)
