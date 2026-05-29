@@ -111,3 +111,14 @@ def test_get_current_price_returns_zero_on_empty_history(mock_yf):
 def test_get_current_price_returns_zero_on_exception(mock_yf):
     mock_yf.Ticker.return_value.history.side_effect = Exception("network error")
     assert get_current_price("MIMI") == 0.0
+
+
+# ── config display constants ─────────────────────────────────────────────────
+
+def test_config_has_company_display_lookback_days():
+    import config
+    assert config.COMPANY_DISPLAY_LOOKBACK_DAYS == 365
+
+def test_config_has_max_display_purchases():
+    import config
+    assert config.MAX_DISPLAY_PURCHASES == 5
