@@ -578,8 +578,9 @@ def test_fetch_all_tries_fallback_cik_on_404(mock_session_cls, mock_sleep):
 
 # ── cik field ─────────────────────────────────────────────────────────────
 
+@patch("scraper.time.sleep")
 @patch("scraper.requests.Session")
-def test_fetch_all_populates_cik_from_issuer(mock_session_cls):
+def test_fetch_all_populates_cik_from_issuer(mock_session_cls, mock_sleep):
     """InsiderTransaction.cik is populated from the last element in ciks (issuer)."""
     mock_session = MagicMock()
     mock_session_cls.return_value = mock_session
@@ -596,6 +597,5 @@ def test_fetch_all_populates_cik_from_issuer(mock_session_cls):
 
 def test_insider_transaction_cik_defaults_to_empty_string():
     """InsiderTransaction can be created without cik (backward-compatible)."""
-    from datetime import date
     t = InsiderTransaction("AAPL", "Apple Inc", "Tim Cook", "CEO", 100_000, date(2026, 1, 1))
     assert t.cik == ""

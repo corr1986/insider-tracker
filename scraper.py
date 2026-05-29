@@ -59,7 +59,7 @@ class InsiderTransaction:
     title: str
     value: float          # USD (shares × price per share)
     trade_date: Optional[date]
-    cik: str = ""         # issuer CIK (company whose securities are being reported)
+    cik: str = ""         # issuer CIK, leading zeros stripped (e.g. "320193" not "0000320193")
 
 
 # ── Value / date helpers ──────────────────────────────────────────────────
