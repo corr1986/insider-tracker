@@ -347,6 +347,68 @@ def generate_recommendation(
     )
 
 
+# ── Format helpers ────────────────────────────────────────────────────────
+
+def _fmt_value(value: float) -> str:
+    """Format a dollar amount as compact string: $50K, $638K, $1.5M."""
+    if value >= 1_000_000:
+        return f"${value / 1_000_000:.1f}M"
+    return f"${round(value / 1_000):.0f}K"
+
+
+def _short_role(title: str) -> str:
+    """Return a short role label from an officer title string."""
+    t = title.upper()
+    if "CHIEF EXECUTIVE" in t or t == "CEO":
+        return "CEO"
+    if "CHIEF FINANCIAL" in t or t == "CFO":
+        return "CFO"
+    if "CHIEF OPERATING" in t or t == "COO":
+        return "COO"
+    if "PRESIDENT" in t:
+        return "Pres."
+    if "DIRECTOR" in t:
+        return "Dir."
+    if "CHAIRMAN" in t:
+        return "Chair."
+    return title[:6] if len(title) > 6 else title
+
+
+def _format_purchase_row(event: SignalEvent) -> str:
+    """Format a single SignalEvent as a Telegram purchase list row.
+
+    Format: "• DD/MM — ROLE F. Lastname $AMOUNT → T3% / T7% / T30%"
+    None pct values are shown as "—".
+    For cluster buys (multiple insiders), shows the most prominent one.
+    """
+    date_str = event.trade_date.strftime("%d/%m")
+
+    if event.insiders:
+        role_priority = {"CEO": 0, "CFO": 1, "COO": 2, "Pres.": 3, "Chair.": 4, "Dir.": 5}
+
+        def sort_key(insider: Tuple[str, str, float]) -> Tuple[int, float]:
+            _, title, value = insider
+            return (role_priority.get(_short_role(title), 9), -value)
+
+        top_name, top_title, top_value = sorted(event.insiders, key=sort_key)[0]
+        role = _short_role(top_title)
+        parts = top_name.strip().split()
+        short_name = f"{parts[0][0]}. {parts[-1]}" if len(parts) >= 2 else top_name
+        cluster_suffix = f" (+{len(event.insiders) - 1})" if len(event.insiders) > 1 else ""
+        who = f"{role} {short_name}{cluster_suffix} {_fmt_value(top_value)}"
+    else:
+        who = "Insider"
+
+    def fmt_pct(pct: Optional[float]) -> str:
+        if pct is None:
+            return "—"
+        sign = "+" if pct >= 0 else ""
+        return f"{sign}{pct:.1f}%"
+
+    results = f"{fmt_pct(event.t3_pct)} / {fmt_pct(event.t7_pct)} / {fmt_pct(event.t30_pct)}"
+    return f"• {date_str} — {who} → {results}"
+
+
 # ── Message builder ───────────────────────────────────────────────────────
 
 def build_message(

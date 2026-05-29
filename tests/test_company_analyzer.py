@@ -434,3 +434,78 @@ def test_analyze_returns_error_message_on_exception(mock_yf, mock_session_cls):
     msg = analyze(ticker="MIMI", cik="1998560", today_score=11, entry_price=3.21)
     assert "MIMI" in msg
     assert "N/D" in msg
+
+
+# -- format helpers -----------------------------------------------------------
+
+from company_analyzer import _fmt_value, _short_role, _format_purchase_row
+
+
+def test_fmt_value_thousands():
+    assert _fmt_value(637_756.0) == "$638K"
+
+
+def test_fmt_value_millions():
+    assert _fmt_value(1_500_000.0) == "$1.5M"
+
+
+def test_fmt_value_small():
+    assert _fmt_value(50_000.0) == "$50K"
+
+
+def test_short_role_ceo():
+    assert _short_role('Chief Executive Officer') == 'CEO'
+
+
+def test_short_role_cfo():
+    assert _short_role('Chief Financial Officer') == 'CFO'
+
+
+def test_format_purchase_row_basic():
+    event = SignalEvent(
+        trade_date=date(2026, 3, 15),
+        ticker='MIMI',
+        score=8,
+        insiders=[('Chan Hoi Lung', 'Chief Executive Officer', 637_756.0)],
+        t3_pct=5.2,
+        t7_pct=18.0,
+        t30_pct=22.3,
+    )
+    row = _format_purchase_row(event)
+    assert row.startswith("• 15/03")
+    assert "CEO" in row
+    assert "$638K" in row
+    assert "+5.2%" in row
+    assert "+18.0%" in row
+    assert "+22.3%" in row
+
+
+def test_format_purchase_row_none_pct_shows_dash():
+    event = SignalEvent(
+        trade_date=date(2026, 3, 15),
+        ticker='MIMI',
+        score=8,
+        insiders=[('John Smith', 'Chief Financial Officer', 150_000.0)],
+        t3_pct=5.2,
+        t7_pct=None,
+        t30_pct=None,
+    )
+    row = _format_purchase_row(event)
+    assert '+5.2%' in row
+    assert row.count("—") >= 2
+
+
+def test_format_purchase_row_negative_pct():
+    event = SignalEvent(
+        trade_date=date(2026, 1, 10),
+        ticker='MIMI',
+        score=5,
+        insiders=[('John Smith', 'Director', 150_000.0)],
+        t3_pct=-3.5,
+        t7_pct=-5.0,
+        t30_pct=8.0,
+    )
+    row = _format_purchase_row(event)
+    assert '-3.5%' in row
+    assert '-5.0%' in row
+    assert '+8.0%' in row
