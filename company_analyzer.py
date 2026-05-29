@@ -502,9 +502,11 @@ def analyze(
     try:
         transactions = fetch_company_history(cik=cik, ticker=ticker)
         signal_events = score_and_filter(transactions, min_score=config.MIN_SCORE)
-        # Exclude today's signal — outcome not yet available
+        # Exclude purchases in the current signal's lookback window —
+        # they triggered today's alert and their outcome is not yet available.
         today = date.today()
-        historical = [e for e in signal_events if e.trade_date < today]
+        signal_cutoff = today - timedelta(days=config.LOOKBACK_CALENDAR_DAYS)
+        historical = [e for e in signal_events if e.trade_date < signal_cutoff]
         stats = backtest(historical)
         rec = generate_recommendation(stats, entry_price)
         return build_message(

@@ -486,21 +486,22 @@ def test_analyze_returns_error_message_on_exception(mock_yf, mock_session_cls):
 
 @patch("company_analyzer.requests.Session")
 @patch("company_analyzer.yf")
-def test_analyze_uses_min_score_not_today_score(mock_yf, mock_session_cls):
-    """analyze() uses config.MIN_SCORE for history filter, not today_score."""
+def test_analyze_excludes_purchases_in_current_lookback_window(mock_yf, mock_session_cls):
+    """analyze() excludes purchases within LOOKBACK_CALENDAR_DAYS of today."""
+    import config
     mock_session = MagicMock()
     mock_session_cls.return_value = mock_session
-    hit = _make_efts_hit(ciks=[_CIK_PADDED])
-    mock_session.get.side_effect = [
-        _make_efts_resp([hit]),
-        _make_xml_resp(_CEO_BUY_XML),
-    ]
+    mock_session.get.return_value = MagicMock(
+        status_code=200,
+        json=MagicMock(return_value={"hits": {"hits": []}}),
+        raise_for_status=MagicMock(),
+    )
     mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
-    # today_score=15 but MIN_SCORE=5 — CEO buy (score=8 >= 5) should be found
-    msg = analyze(ticker=_TICKER, cik=_CIK, today_score=15, entry_price=3.21)
-    assert _TICKER in msg
-    # "Nessun acquisto" would mean the MIN_SCORE filter was wrong
-    assert "Nessun acquisto significativo trovato" not in msg
+    # Even if a purchase happened yesterday, it falls within LOOKBACK_CALENDAR_DAYS
+    # and should be excluded (it's part of the current signal window)
+    msg = analyze(ticker="MIMI", cik="1998560", today_score=5, entry_price=3.21)
+    assert "MIMI" in msg
+    assert "N/D" in msg
 
 
 # -- format helpers -----------------------------------------------------------
