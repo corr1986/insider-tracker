@@ -3,10 +3,11 @@
 from datetime import date, timedelta
 from unittest.mock import MagicMock, patch
 
+import pandas as pd
 import pytest
 
 from scraper import InsiderTransaction
-from company_analyzer import fetch_company_history, score_and_filter
+from company_analyzer import fetch_company_history, score_and_filter, backtest, BacktestResult
 
 
 # ── Shared helpers ────────────────────────────────────────────────────────
@@ -178,3 +179,80 @@ def test_score_and_filter_applies_cluster_bonus_for_same_date():
     assert len(result) == 1
     # Score: CEO+4 + CFO+3 + value≥$100K+2 + cluster2+3 = 12
     assert result[0][2] >= 10
+
+
+# ── backtest ──────────────────────────────────────────────────────────────
+
+def _make_hist(*date_price_pairs) -> pd.DataFrame:
+    """Build a mock yfinance history DataFrame."""
+    dates = [pd.Timestamp(d) for d, _ in date_price_pairs]
+    prices = [p for _, p in date_price_pairs]
+    return pd.DataFrame({"Close": prices}, index=pd.DatetimeIndex(dates))
+
+
+@patch("company_analyzer.yf")
+def test_backtest_returns_empty_results_for_no_signals(mock_yf):
+    result = backtest([])
+    for h in [3, 7, 30]:
+        assert result[h].count == 0
+
+
+@patch("company_analyzer.yf")
+def test_backtest_computes_correct_pct_at_each_horizon(mock_yf):
+    hist = _make_hist(
+        (date(2026, 1, 10), 10.0),   # entry (T+0)
+        (date(2026, 1, 13), 11.0),   # T+3
+        (date(2026, 1, 17), 12.0),   # T+7
+        (date(2026, 2, 9),  14.0),   # T+30
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    signals = [(date(2026, 1, 10), "MIMI", 8)]
+    result = backtest(signals)
+    assert result[3].avg_pct == pytest.approx(10.0, abs=0.1)   # +10%
+    assert result[7].avg_pct == pytest.approx(20.0, abs=0.1)   # +20%
+    assert result[30].avg_pct == pytest.approx(40.0, abs=0.1)  # +40%
+
+
+@patch("company_analyzer.yf")
+def test_backtest_counts_positives_correctly(mock_yf):
+    # Two signals: one positive (+10%), one negative (-5%) at T+7
+    hist1 = _make_hist(
+        (date(2026, 1, 10), 10.0),
+        (date(2026, 1, 17), 11.0),   # +10%
+    )
+    hist2 = _make_hist(
+        (date(2026, 3, 1), 20.0),
+        (date(2026, 3, 8), 19.0),    # -5%
+    )
+    mock_yf.Ticker.return_value.history.side_effect = [hist1, hist2]
+    signals = [
+        (date(2026, 1, 10), "MIMI", 8),
+        (date(2026, 3, 1),  "MIMI", 8),
+    ]
+    result = backtest(signals)
+    assert result[7].count == 2
+    assert result[7].positives == 1
+
+
+@patch("company_analyzer.yf")
+def test_backtest_skips_signal_when_yfinance_returns_empty(mock_yf):
+    mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
+    signals = [(date(2026, 1, 10), "MIMI", 8)]
+    result = backtest(signals)
+    for h in [3, 7, 30]:
+        assert result[h].count == 0
+
+
+@patch("company_analyzer.yf")
+def test_backtest_skips_horizon_when_price_unavailable(mock_yf):
+    # Only entry + T+3 available; T+7 and T+30 missing
+    hist = _make_hist(
+        (date(2026, 1, 10), 10.0),
+        (date(2026, 1, 13), 11.0),
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    signals = [(date(2026, 1, 10), "MIMI", 8)]
+    result = backtest(signals)
+    assert result[3].count == 1
+    assert result[7].count == 0
+    assert result[30].count == 0

@@ -204,3 +204,76 @@ def score_and_filter(
                 results.append((trade_date, sig.ticker, sig.score))
 
     return results
+
+
+# ── Price helper ──────────────────────────────────────────────────────────
+
+def _price_on_or_after(hist: "pd.DataFrame", target: date) -> Optional[float]:
+    """Return the first available Close price on or after target date.
+
+    Uses ts.date() for timezone-safe comparison (works regardless of whether
+    the yfinance index is timezone-aware or naive).
+    """
+    for ts in hist.index:
+        if ts.date() >= target:
+            return float(hist.loc[ts, "Close"])
+    return None
+
+
+# ── Backtest ──────────────────────────────────────────────────────────────
+
+def backtest(
+    signals: List[Tuple[date, str, int]],
+) -> Dict[int, BacktestResult]:
+    """Compute stock price performance at T+3, T+7, T+30 for each signal.
+
+    For each historical signal, fetches 45 days of price data via yfinance
+    (one API call per signal) and computes % return at each horizon.
+    Signals with missing yfinance data are skipped entirely.
+    Horizons where the exit price is unavailable are skipped per signal.
+
+    Returns a dict keyed by horizon (3, 7, 30) → BacktestResult.
+    """
+    horizons = [3, 7, 30]
+    accum: Dict[int, Dict] = {h: {"pos": 0, "total": 0, "sum_pct": 0.0} for h in horizons}
+
+    for trade_date, ticker, _score in signals:
+        end_fetch = trade_date + timedelta(days=45)
+        try:
+            hist = yf.Ticker(ticker).history(
+                start=trade_date.isoformat(),
+                end=end_fetch.isoformat(),
+                auto_adjust=True,
+            )
+        except Exception as exc:
+            logger.debug("yfinance error for %s on %s: %s", ticker, trade_date, exc)
+            continue
+
+        if hist.empty:
+            continue
+
+        entry = _price_on_or_after(hist, trade_date)
+        if entry is None or entry <= 0:
+            continue
+
+        for h in horizons:
+            exit_date = trade_date + timedelta(days=h)
+            exit_price = _price_on_or_after(hist, exit_date)
+            if exit_price is None:
+                continue
+            pct = (exit_price - entry) / entry * 100
+            accum[h]["total"] += 1
+            accum[h]["sum_pct"] += pct
+            if pct > 0:
+                accum[h]["pos"] += 1
+
+    result: Dict[int, BacktestResult] = {}
+    for h in horizons:
+        a = accum[h]
+        result[h] = BacktestResult(
+            horizon_days=h,
+            count=a["total"],
+            positives=a["pos"],
+            avg_pct=round(a["sum_pct"] / a["total"], 2) if a["total"] > 0 else 0.0,
+        )
+    return result
