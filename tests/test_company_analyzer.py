@@ -13,6 +13,7 @@ from company_analyzer import (
     backtest,
     BacktestResult,
     Recommendation,
+    SignalEvent,
     generate_recommendation,
     build_message,
     analyze,
@@ -43,6 +44,22 @@ def _make_tx(
         value=value,
         trade_date=trade_date,
         cik=cik,
+    )
+
+
+def _make_signal_event(
+    trade_date=date(2026, 1, 10),
+    ticker=_TICKER,
+    score=8,
+    insiders=None,
+) -> SignalEvent:
+    if insiders is None:
+        insiders = [("Chan Hoi Lung", "Chief Executive Officer", 637_756.0)]
+    return SignalEvent(
+        trade_date=trade_date,
+        ticker=ticker,
+        score=score,
+        insiders=insiders,
     )
 
 
@@ -141,31 +158,30 @@ def test_fetch_company_history_returns_empty_on_edgar_error(mock_session_cls):
 # ── score_and_filter ──────────────────────────────────────────────────────
 
 def test_score_and_filter_returns_signals_above_min_score():
-    # CEO buy $637K → score 4 (CEO) + 4 (≥$500K) = 8
     txs = [_make_tx(value=637_756.0, trade_date=date(2026, 1, 10))]
     result = score_and_filter(txs, min_score=8)
     assert len(result) == 1
-    assert result[0][0] == date(2026, 1, 10)
-    assert result[0][1] == _TICKER
-    assert result[0][2] >= 8
+    assert result[0].trade_date == date(2026, 1, 10)
+    assert result[0].ticker == _TICKER
+    assert result[0].score >= 8
+    assert len(result[0].insiders) == 1
+    assert result[0].insiders[0][0] == "Chan Hoi Lung"
 
 
 def test_score_and_filter_excludes_signals_below_min_score():
-    # Other officer buy $60K → score 1 (Other) + 1 (<$100K) = 2
     txs = [_make_tx(title="Director", value=60_000.0, trade_date=date(2026, 1, 10))]
     result = score_and_filter(txs, min_score=8)
     assert result == []
 
 
 def test_score_and_filter_groups_by_date():
-    # Two transactions on different dates — should produce 2 separate signals
     txs = [
         _make_tx(trade_date=date(2026, 1, 10), value=637_756.0),
         _make_tx(trade_date=date(2026, 3, 15), value=637_756.0),
     ]
     result = score_and_filter(txs, min_score=5)
     assert len(result) == 2
-    dates = {r[0] for r in result}
+    dates = {e.trade_date for e in result}
     assert date(2026, 1, 10) in dates
     assert date(2026, 3, 15) in dates
 
@@ -177,7 +193,6 @@ def test_score_and_filter_skips_transactions_without_trade_date():
 
 
 def test_score_and_filter_applies_cluster_bonus_for_same_date():
-    # Two different insiders on same date → cluster bonus → higher score
     txs = [
         _make_tx(insider="CEO Person", title="Chief Executive Officer",
                  value=200_000.0, trade_date=date(2026, 1, 10)),
@@ -186,8 +201,8 @@ def test_score_and_filter_applies_cluster_bonus_for_same_date():
     ]
     result = score_and_filter(txs, min_score=5)
     assert len(result) == 1
-    # Score: CEO+4 + CFO+3 + value≥$100K+2 + cluster2+3 = 12
-    assert result[0][2] >= 10
+    assert result[0].score >= 10
+    assert len(result[0].insiders) == 2
 
 
 # ── backtest ──────────────────────────────────────────────────────────────

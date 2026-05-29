@@ -64,6 +64,18 @@ class Recommendation:
     avg_pct: float          # average % return at best horizon
 
 
+@dataclass
+class SignalEvent:
+    """A scored insider buying event on a specific trade date."""
+    trade_date: date
+    ticker: str
+    score: int
+    insiders: List[Tuple[str, str, float]]  # (name, title, value_usd)
+    t3_pct: Optional[float] = None
+    t7_pct: Optional[float] = None
+    t30_pct: Optional[float] = None
+
+
 # ── EDGAR company history fetch ────────────────────────────────────────────
 
 def fetch_company_history(
@@ -177,12 +189,12 @@ def fetch_company_history(
 def score_and_filter(
     transactions: List[InsiderTransaction],
     min_score: int,
-) -> List[Tuple[date, str, int]]:
+) -> List[SignalEvent]:
     """Score historical transactions grouped by trade_date and filter by min_score.
 
     Groups transactions by trade_date (each date = one "event"), scores each
     group with score_all (applies cluster bonuses for same-day multi-insider buys),
-    and returns (trade_date, ticker, score) tuples where score >= min_score.
+    and returns SignalEvent objects where score >= min_score.
 
     Transactions without a trade_date are skipped.
 
@@ -196,12 +208,19 @@ def score_and_filter(
     for t in dated:
         by_date[t.trade_date].append(t)
 
-    results: List[Tuple[date, str, int]] = []
+    results: List[SignalEvent] = []
     for trade_date in sorted(by_date.keys()):
         signals = score_all(by_date[trade_date])
         for sig in signals:
             if sig.score >= min_score:
-                results.append((trade_date, sig.ticker, sig.score))
+                insiders = [(tx.insider_name, tx.title, tx.value)
+                            for tx in sig.transactions]
+                results.append(SignalEvent(
+                    trade_date=trade_date,
+                    ticker=sig.ticker,
+                    score=sig.score,
+                    insiders=insiders,
+                ))
 
     return results
 
