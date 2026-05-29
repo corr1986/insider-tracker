@@ -244,21 +244,22 @@ def _price_on_or_after(hist: "pd.DataFrame", target: date) -> Optional[float]:
 # ── Backtest ──────────────────────────────────────────────────────────────
 
 def backtest(
-    signals: List[Tuple[date, str, int]],
+    signal_events: List[SignalEvent],
 ) -> Dict[int, BacktestResult]:
-    """Compute stock price performance at T+3, T+7, T+30 for each signal.
+    """Compute stock price performance at T+3, T+7, T+30 for each signal event.
 
-    For each historical signal, fetches 45 days of price data via yfinance
-    (one API call per signal) and computes % return at each horizon.
-    Signals with missing yfinance data are skipped entirely.
-    Horizons where the exit price is unavailable are skipped per signal.
+    For each SignalEvent, fetches 45 days of price data via yfinance and computes
+    % return at each horizon. Populates t3_pct, t7_pct, t30_pct on each event
+    in-place (None if price data unavailable for that horizon).
 
-    Returns a dict keyed by horizon (3, 7, 30) → BacktestResult.
+    Returns aggregate BacktestResult per horizon keyed by 3, 7, 30.
     """
     horizons = [3, 7, 30]
     accum: Dict[int, Dict] = {h: {"pos": 0, "total": 0, "sum_pct": 0.0} for h in horizons}
 
-    for trade_date, ticker, _score in signals:
+    for event in signal_events:
+        trade_date = event.trade_date
+        ticker = event.ticker
         end_fetch = trade_date + timedelta(days=45)
         try:
             hist = yf.Ticker(ticker).history(
@@ -282,11 +283,17 @@ def backtest(
             exit_price = _price_on_or_after(hist, exit_date)
             if exit_price is None:
                 continue
-            pct = (exit_price - entry) / entry * 100
+            pct = round((exit_price - entry) / entry * 100, 1)
             accum[h]["total"] += 1
             accum[h]["sum_pct"] += pct
             if pct > 0:
                 accum[h]["pos"] += 1
+            if h == 3:
+                event.t3_pct = pct
+            elif h == 7:
+                event.t7_pct = pct
+            elif h == 30:
+                event.t30_pct = pct
 
     result: Dict[int, BacktestResult] = {}
     for h in horizons:

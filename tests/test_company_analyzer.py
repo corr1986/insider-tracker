@@ -224,22 +224,21 @@ def test_backtest_returns_empty_results_for_no_signals(mock_yf):
 @patch("company_analyzer.yf")
 def test_backtest_computes_correct_pct_at_each_horizon(mock_yf):
     hist = _make_hist(
-        (date(2026, 1, 10), 10.0),   # entry (T+0)
-        (date(2026, 1, 13), 11.0),   # T+3
-        (date(2026, 1, 17), 12.0),   # T+7
-        (date(2026, 2, 9),  14.0),   # T+30
+        (date(2026, 1, 10), 10.0),
+        (date(2026, 1, 13), 11.0),   # T+3 → +10%
+        (date(2026, 1, 17), 12.0),   # T+7 → +20%
+        (date(2026, 2, 9),  14.0),   # T+30 → +40%
     )
     mock_yf.Ticker.return_value.history.return_value = hist
-    signals = [(date(2026, 1, 10), "MIMI", 8)]
-    result = backtest(signals)
-    assert result[3].avg_pct == pytest.approx(10.0, abs=0.1)   # +10%
-    assert result[7].avg_pct == pytest.approx(20.0, abs=0.1)   # +20%
-    assert result[30].avg_pct == pytest.approx(40.0, abs=0.1)  # +40%
+    events = [_make_signal_event(trade_date=date(2026, 1, 10))]
+    result = backtest(events)
+    assert result[3].avg_pct == pytest.approx(10.0, abs=0.1)
+    assert result[7].avg_pct == pytest.approx(20.0, abs=0.1)
+    assert result[30].avg_pct == pytest.approx(40.0, abs=0.1)
 
 
 @patch("company_analyzer.yf")
 def test_backtest_counts_positives_correctly(mock_yf):
-    # Two signals: one positive (+10%), one negative (-5%) at T+7
     hist1 = _make_hist(
         (date(2026, 1, 10), 10.0),
         (date(2026, 1, 17), 11.0),   # +10%
@@ -249,11 +248,11 @@ def test_backtest_counts_positives_correctly(mock_yf):
         (date(2026, 3, 8), 19.0),    # -5%
     )
     mock_yf.Ticker.return_value.history.side_effect = [hist1, hist2]
-    signals = [
-        (date(2026, 1, 10), "MIMI", 8),
-        (date(2026, 3, 1),  "MIMI", 8),
+    events = [
+        _make_signal_event(trade_date=date(2026, 1, 10)),
+        _make_signal_event(trade_date=date(2026, 3, 1)),
     ]
-    result = backtest(signals)
+    result = backtest(events)
     assert result[7].count == 2
     assert result[7].positives == 1
 
@@ -261,25 +260,54 @@ def test_backtest_counts_positives_correctly(mock_yf):
 @patch("company_analyzer.yf")
 def test_backtest_skips_signal_when_yfinance_returns_empty(mock_yf):
     mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
-    signals = [(date(2026, 1, 10), "MIMI", 8)]
-    result = backtest(signals)
+    events = [_make_signal_event()]
+    result = backtest(events)
     for h in [3, 7, 30]:
         assert result[h].count == 0
 
 
 @patch("company_analyzer.yf")
 def test_backtest_skips_horizon_when_price_unavailable(mock_yf):
-    # Only entry + T+3 available; T+7 and T+30 missing
     hist = _make_hist(
         (date(2026, 1, 10), 10.0),
         (date(2026, 1, 13), 11.0),
     )
     mock_yf.Ticker.return_value.history.return_value = hist
-    signals = [(date(2026, 1, 10), "MIMI", 8)]
-    result = backtest(signals)
+    events = [_make_signal_event()]
+    result = backtest(events)
     assert result[3].count == 1
     assert result[7].count == 0
     assert result[30].count == 0
+
+
+@patch("company_analyzer.yf")
+def test_backtest_populates_per_event_pcts(mock_yf):
+    hist = _make_hist(
+        (date(2026, 1, 10), 10.0),
+        (date(2026, 1, 13), 11.0),   # T+3 → +10%
+        (date(2026, 1, 17), 12.0),   # T+7 → +20%
+        (date(2026, 2, 9),  14.0),   # T+30 → +40%
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    event = _make_signal_event(trade_date=date(2026, 1, 10))
+    backtest([event])
+    assert event.t3_pct == pytest.approx(10.0, abs=0.1)
+    assert event.t7_pct == pytest.approx(20.0, abs=0.1)
+    assert event.t30_pct == pytest.approx(40.0, abs=0.1)
+
+
+@patch("company_analyzer.yf")
+def test_backtest_leaves_pct_none_when_price_unavailable(mock_yf):
+    hist = _make_hist(
+        (date(2026, 1, 10), 10.0),
+        (date(2026, 1, 13), 11.0),   # only T+3 available
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    event = _make_signal_event(trade_date=date(2026, 1, 10))
+    backtest([event])
+    assert event.t3_pct == pytest.approx(10.0, abs=0.1)
+    assert event.t7_pct is None
+    assert event.t30_pct is None
 
 
 # ── _make_stats helper ────────────────────────────────────────────────────
