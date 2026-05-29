@@ -131,3 +131,28 @@ def test_config_has_portfolio_min_score():
 def test_config_has_portfolio_capital():
     import config
     assert config.PORTFOLIO_CAPITAL == 20_000.0
+
+
+# ── portfolio integration ─────────────────────────────────────────────────
+
+@patch("insider_tracker.portfolio_tracker.open_position")
+@patch("insider_tracker.company_analyzer.analyze", return_value="msg")
+@patch("insider_tracker.send_analysis", return_value=True)
+@patch("insider_tracker.get_current_price", return_value=5.0)
+@patch("insider_tracker.send_signal", return_value=True)
+@patch("insider_tracker.score_all")
+@patch("insider_tracker._fetch_all", return_value=[])
+@patch("insider_tracker.is_weekday", return_value=True)
+@patch("insider_tracker.load_last_seen", return_value={})
+@patch("insider_tracker.save_last_seen")
+def test_main_calls_open_position_when_signal_sent(
+    mock_save, mock_last_seen, mock_weekday, mock_fetch,
+    mock_score, mock_send, mock_curr, mock_send_analysis,
+    mock_analyze, mock_open_pos
+):
+    import config
+    mock_score.return_value = [make_signal("NAKA", config.PORTFOLIO_MIN_SCORE + 1)]
+    with patch.dict("os.environ", {"TELEGRAM_TOKEN": "T", "TELEGRAM_CHAT_ID": "C"}):
+        from insider_tracker import main
+        main()
+    mock_open_pos.assert_called_once()

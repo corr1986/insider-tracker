@@ -23,6 +23,7 @@ from notifier import send_signal, send_error, send_analysis
 
 import yfinance as yf
 import company_analyzer
+import portfolio_tracker
 
 logging.basicConfig(
     filename="errors.log",
@@ -137,6 +138,10 @@ def main() -> None:
         if sent and top is not None:
             mark_sent(top.ticker, last_seen)
             save_last_seen(last_seen)
+            try:
+                portfolio_tracker.open_position(top.ticker, top.score, date.today())
+            except Exception as exc:
+                logger.error("portfolio_tracker failed for %s: %s", top.ticker, exc, exc_info=True)
             try:
                 cik = top.transactions[0].cik if top.transactions else ""
                 entry_price = get_current_price(top.ticker)
