@@ -29,3 +29,7 @@ SCORE_CLUSTER_2 = 3      # 2 insiders, same ticker, within lookback window
 SCORE_CLUSTER_3PLUS = 6  # 3+ insiders, same ticker, within lookback window
 SCORE_CLUSTER_TOTAL = 3  # bonus when total cluster value ≥ threshold
 CLUSTER_TOTAL_THRESHOLD = 500_000
+
+# Company analyzer — historical backtest settings
+COMPANY_HISTORY_LOOKBACK_DAYS = 730   # 2 years of company history
+SL_PERCENT = 0.08                      # fixed 8% stop-loss

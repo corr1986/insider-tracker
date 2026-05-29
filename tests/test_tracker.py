@@ -74,3 +74,12 @@ def test_is_weekday_false_on_sunday():
 def test_main_does_not_fetch_on_weekend(mock_fetch, mock_is_weekday):
     main()
     mock_fetch.assert_not_called()
+
+
+def test_config_has_company_history_lookback_days():
+    import config
+    assert config.COMPANY_HISTORY_LOOKBACK_DAYS == 730
+
+def test_config_has_sl_percent():
+    import config
+    assert config.SL_PERCENT == 0.08
