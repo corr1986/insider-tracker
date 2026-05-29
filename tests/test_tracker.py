@@ -122,3 +122,12 @@ def test_config_has_company_display_lookback_days():
 def test_config_has_max_display_purchases():
     import config
     assert config.MAX_DISPLAY_PURCHASES == 5
+
+
+def test_config_has_portfolio_min_score():
+    import config
+    assert config.PORTFOLIO_MIN_SCORE == 8
+
+def test_config_has_portfolio_capital():
+    import config
+    assert config.PORTFOLIO_CAPITAL == 20_000.0

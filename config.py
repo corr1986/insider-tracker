@@ -5,6 +5,8 @@ Contains thresholds and scoring weights for insider trading analysis.
 Data source: SEC EDGAR Form 4 filings (globally accessible, no geo-blocks).
 """
 
+from pathlib import Path
+
 # Minimum transaction value (USD) to include in scoring
 MIN_TRANSACTION_VALUE = 50_000
 
@@ -37,3 +39,9 @@ SL_PERCENT = 0.08                      # fixed 8% stop-loss
 # Display settings for company analyzer UI
 COMPANY_DISPLAY_LOOKBACK_DAYS = 365   # 12 months shown in purchase list
 MAX_DISPLAY_PURCHASES = 5             # max rows in the individual purchase list
+
+# Portfolio simulator settings
+PORTFOLIO_MIN_SCORE = 8
+PORTFOLIO_CAPITAL = 20_000.0
+PORTFOLIO_FILE = Path("portfolio.json")
+PORTFOLIO_MD = Path(r"C:\Users\corr8\Desktop\obsidian-vault\Insider Project\Portfolio Simulato.md")
