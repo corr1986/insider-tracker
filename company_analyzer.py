@@ -489,8 +489,9 @@ def analyze(
 ) -> str:
     """Fetch history, backtest, and return a formatted Telegram message.
 
-    On any error, returns a message indicating no data is available.
-    Excludes today's signals (outcome not yet available).
+    Uses config.MIN_SCORE (not today_score) for the history filter, so all
+    significant historical buys are included regardless of today's score.
+    On any error, returns a graceful N/D message.
     """
     if entry_price <= 0:
         return (
@@ -500,19 +501,18 @@ def analyze(
         )
     try:
         transactions = fetch_company_history(cik=cik, ticker=ticker)
-        filtered = score_and_filter(transactions, min_score=today_score)
+        signal_events = score_and_filter(transactions, min_score=config.MIN_SCORE)
         # Exclude today's signal — outcome not yet available
         today = date.today()
-        historical = [(d, t, s) for d, t, s in filtered if d < today]
+        historical = [e for e in signal_events if e.trade_date < today]
         stats = backtest(historical)
         rec = generate_recommendation(stats, entry_price)
         return build_message(
             ticker=ticker,
             entry_price=entry_price,
+            signal_events=historical,
             stats=stats,
             rec=rec,
-            today_score=today_score,
-            signal_count=len(historical),
         )
     except Exception as exc:
         logger.error("company_analyzer.analyze failed for %s: %s", ticker, exc, exc_info=True)

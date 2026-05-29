@@ -484,6 +484,25 @@ def test_analyze_returns_error_message_on_exception(mock_yf, mock_session_cls):
     assert "N/D" in msg
 
 
+@patch("company_analyzer.requests.Session")
+@patch("company_analyzer.yf")
+def test_analyze_uses_min_score_not_today_score(mock_yf, mock_session_cls):
+    """analyze() uses config.MIN_SCORE for history filter, not today_score."""
+    mock_session = MagicMock()
+    mock_session_cls.return_value = mock_session
+    hit = _make_efts_hit(ciks=[_CIK_PADDED])
+    mock_session.get.side_effect = [
+        _make_efts_resp([hit]),
+        _make_xml_resp(_CEO_BUY_XML),
+    ]
+    mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
+    # today_score=15 but MIN_SCORE=5 — CEO buy (score=8 >= 5) should be found
+    msg = analyze(ticker=_TICKER, cik=_CIK, today_score=15, entry_price=3.21)
+    assert _TICKER in msg
+    # "Nessun acquisto" would mean the MIN_SCORE filter was wrong
+    assert "Nessun acquisto significativo trovato" not in msg
+
+
 # -- format helpers -----------------------------------------------------------
 
 from company_analyzer import _fmt_value, _short_role, _format_purchase_row
