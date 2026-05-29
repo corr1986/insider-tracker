@@ -186,7 +186,7 @@ PORTFOLIO_MD = Path(r"C:\Users\corr8\Desktop\obsidian-vault\Insider Project\Port
 | Job | Comando | Orario |
 |---|---|---|
 | InsiderTracker (esistente) | `python insider_tracker.py` | Lun–Ven 08:00 IT |
-| PortfolioUpdate | `python portfolio_tracker.py` | Lun–Ven 16:00 IT + ogni ora 09:00–23:00 IT |
+| PortfolioUpdate | `python portfolio_tracker.py` | Ogni ora 09:00–23:00 IT lun–ven (il run delle 16:00 è il primo dopo l'apertura US alle 15:30 IT) |
 
 ---
 
