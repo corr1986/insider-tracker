@@ -414,24 +414,47 @@ def _format_purchase_row(event: SignalEvent) -> str:
 def build_message(
     ticker: str,
     entry_price: float,
+    signal_events: List[SignalEvent],
     stats: Dict[int, BacktestResult],
     rec: Recommendation,
-    today_score: int,
-    signal_count: int,
 ) -> str:
-    """Format the second Telegram message with historical analysis."""
+    """Format the second Telegram message with historical analysis.
+
+    Shows individual purchases from the last 12 months (sorted most recent first,
+    capped at MAX_DISPLAY_PURCHASES), then aggregate stats over 2 years.
+    """
     lines = [f"📊 ANALISI STORICA — ${ticker}", ""]
 
-    if signal_count == 0:
-        lines.append(f"🔍 Acquisti passati con score ≥ {today_score}: nessuno trovato")
-        lines.append("→ Primo acquisto rilevante per questa azienda")
+    # ── Purchase list (last 12 months) ────────────────────────────────────
+    lines.append("📋 Acquisti significativi (ultimi 12 mesi):")
+
+    if not signal_events:
+        lines.append("→ Nessun acquisto significativo trovato")
         lines.append("")
         lines.append("🎯 Raccomandazione: N/D — nessun dato storico")
         return "\n".join(lines)
 
-    lines.append(f"🔍 Acquisti passati con score ≥ {today_score}: {signal_count} trovati")
+    cutoff = date.today() - timedelta(days=config.COMPANY_DISPLAY_LOOKBACK_DAYS)
+    recent = sorted(
+        [e for e in signal_events if e.trade_date >= cutoff],
+        key=lambda e: e.trade_date,
+        reverse=True,
+    )
+
+    if recent:
+        for event in recent[:config.MAX_DISPLAY_PURCHASES]:
+            lines.append(_format_purchase_row(event))
+        remaining = len(recent) - config.MAX_DISPLAY_PURCHASES
+        if remaining > 0:
+            lines.append(f"… e altri {remaining}")
+    else:
+        lines.append("→ Nessuno nell'ultimo anno (vedi stats 2 anni sotto)")
+
     lines.append("")
-    lines.append("📈 Performance media post-acquisto:")
+
+    # ── Aggregate stats (2 years) ──────────────────────────────────────────
+    total_signals = len(signal_events)
+    lines.append(f"📈 Performance media ({total_signals} segnali, 2 anni):")
 
     for h in [3, 7, 30]:
         r = stats.get(h)
@@ -439,8 +462,7 @@ def build_message(
             marker = " ← migliore" if h == rec.best_horizon else ""
             sign = "+" if r.avg_pct >= 0 else ""
             lines.append(
-                f"• a {h} giorni:  {sign}{r.avg_pct:.1f}%"
-                f"  ({r.positives}/{r.count} positivi){marker}"
+                f"• T+{h}:  {sign}{r.avg_pct:.1f}%  ({r.positives}/{r.count} positivi){marker}"
             )
 
     lines.append("")
@@ -449,8 +471,7 @@ def build_message(
     if rec.tp is not None:
         sign = "+" if rec.avg_pct >= 0 else ""
         lines.append(
-            f"• TP: ${rec.tp:.2f}  ({sign}{rec.avg_pct:.0f}%,"
-            f" basato su media {rec.best_horizon}gg)"
+            f"• TP: ${rec.tp:.2f}  ({sign}{rec.avg_pct:.0f}%, media {rec.best_horizon}gg)"
         )
     lines.append(f"• SL: ${rec.sl:.2f}  (-{config.SL_PERCENT * 100:.0f}%)")
     lines.append(f"• Holding: ~{rec.best_horizon} giorni")

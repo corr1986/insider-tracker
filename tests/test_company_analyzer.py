@@ -379,35 +379,83 @@ def test_generate_recommendation_tiebreaks_by_avg_pct():
 
 # ── build_message ─────────────────────────────────────────────────────────
 
-def test_build_message_no_history_contains_nd():
-    stats = _make_stats(t3=(0, 0, 0.0), t7=(0, 0, 0.0), t30=(0, 0, 0.0))
+def test_build_message_no_events_shows_nessuno_trovato():
+    stats = _make_stats()
     rec = Recommendation(action="N/D", best_horizon=7, tp=None, sl=2.95, avg_pct=0.0)
-    msg = build_message(ticker="MIMI", entry_price=3.21, stats=stats, rec=rec,
-                        today_score=11, signal_count=0)
+    msg = build_message(ticker="MIMI", entry_price=3.21, signal_events=[], stats=stats, rec=rec)
     assert "MIMI" in msg
-    assert "nessuno trovato" in msg
+    assert "Nessun" in msg
     assert "N/D" in msg
 
 
-def test_build_message_with_history_contains_key_fields():
-    stats = _make_stats(t7=(3, 3, 15.0))
-    rec = Recommendation(action="COMPRA", best_horizon=7, tp=3.69, sl=2.95, avg_pct=15.0)
-    msg = build_message(ticker="MIMI", entry_price=3.21, stats=stats, rec=rec,
-                        today_score=11, signal_count=3)
+def test_build_message_shows_purchase_list_and_stats():
+    stats = _make_stats(t7=(1, 1, 18.0))
+    rec = Recommendation(action="COMPRA", best_horizon=7, tp=3.79, sl=2.95, avg_pct=18.0)
+    events = [
+        SignalEvent(
+            trade_date=date.today() - timedelta(days=30),
+            ticker="MIMI", score=8,
+            insiders=[("Chan Hoi Lung", "Chief Executive Officer", 637_756.0)],
+            t3_pct=5.0, t7_pct=18.0, t30_pct=22.0,
+        )
+    ]
+    msg = build_message("MIMI", 3.21, events, stats, rec)
     assert "$MIMI" in msg
-    assert "3 trovati" in msg
+    assert "CEO" in msg
     assert "COMPRA" in msg
-    assert "3.69" in msg   # TP
-    assert "2.95" in msg   # SL
+    assert "3.79" in msg
+    assert "2.95" in msg
     assert "7 giorni" in msg
-
-
-def test_build_message_marks_best_horizon():
-    stats = _make_stats(t7=(3, 3, 15.0))
-    rec = Recommendation(action="COMPRA", best_horizon=7, tp=3.69, sl=2.95, avg_pct=15.0)
-    msg = build_message(ticker="MIMI", entry_price=3.21, stats=stats, rec=rec,
-                        today_score=11, signal_count=3)
     assert "migliore" in msg
+
+
+def test_build_message_truncates_to_max_display():
+    stats = _make_stats(t7=(7, 6, 12.0))
+    rec = Recommendation(action="COMPRA", best_horizon=7, tp=3.60, sl=2.95, avg_pct=12.0)
+    events = [
+        SignalEvent(
+            trade_date=date.today() - timedelta(days=i + 10),
+            ticker="MIMI", score=8,
+            insiders=[("A Person", "Chief Executive Officer", 100_000.0)],
+            t7_pct=5.0,
+        )
+        for i in range(7)
+    ]
+    msg = build_message("MIMI", 3.21, events, stats, rec)
+    assert "e altri 2" in msg
+
+
+def test_build_message_orders_most_recent_first():
+    stats = _make_stats(t7=(2, 2, 10.0))
+    rec = Recommendation(action="COMPRA", best_horizon=7, tp=3.53, sl=2.95, avg_pct=10.0)
+    old_date = date.today() - timedelta(days=180)
+    new_date = date.today() - timedelta(days=30)
+    events = [
+        SignalEvent(trade_date=old_date, ticker="MIMI", score=8,
+                    insiders=[("Old Buyer", "Chief Executive Officer", 100_000.0)], t7_pct=5.0),
+        SignalEvent(trade_date=new_date, ticker="MIMI", score=8,
+                    insiders=[("New Buyer", "Chief Executive Officer", 100_000.0)], t7_pct=8.0),
+    ]
+    msg = build_message("MIMI", 3.21, events, stats, rec)
+    new_str = new_date.strftime("%d/%m")
+    old_str = old_date.strftime("%d/%m")
+    assert msg.index(new_str) < msg.index(old_str)
+
+
+def test_build_message_attenzione_no_tp():
+    stats = _make_stats(t7=(2, 0, -5.0))
+    rec = Recommendation(action="ATTENZIONE", best_horizon=7, tp=None, sl=2.95, avg_pct=-5.0)
+    events = [
+        SignalEvent(
+            trade_date=date.today() - timedelta(days=30),
+            ticker="MIMI", score=8,
+            insiders=[("John Smith", "Chief Executive Officer", 100_000.0)],
+            t7_pct=-5.0,
+        )
+    ]
+    msg = build_message("MIMI", 3.21, events, stats, rec)
+    assert "ATTENZIONE" in msg
+    assert "TP" not in msg
 
 
 # ── analyze (orchestrator) ────────────────────────────────────────────────
