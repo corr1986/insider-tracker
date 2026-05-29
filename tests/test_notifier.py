@@ -116,6 +116,5 @@ def test_send_analysis_sends_exact_message(mock_post):
 
 @patch("notifier.requests.post")
 def test_send_analysis_returns_false_on_network_error(mock_post):
-    import requests as req
     mock_post.side_effect = req.RequestException("connection failed")
     assert send_analysis("any message", token="TOKEN", chat_id="CHAT") is False
