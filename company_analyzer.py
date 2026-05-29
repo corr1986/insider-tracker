@@ -278,3 +278,136 @@ def backtest(
             avg_pct=round(a["sum_pct"] / a["total"], 2) if a["total"] > 0 else 0.0,
         )
     return result
+
+
+# ── Recommendation ────────────────────────────────────────────────────────
+
+def generate_recommendation(
+    stats: Dict[int, BacktestResult],
+    entry_price: float,
+) -> Recommendation:
+    """Generate a trading recommendation from backtest results.
+
+    Selects the best horizon by success rate (positives/count);
+    tie-breaks on avg_pct. Returns N/D if no horizon has any data.
+    """
+    sl = round(entry_price * (1 - config.SL_PERCENT), 2)
+    valid = {h: r for h, r in stats.items() if r.count > 0}
+
+    if not valid:
+        return Recommendation(action="N/D", best_horizon=7, tp=None,
+                               sl=sl, avg_pct=0.0)
+
+    best_h = max(
+        valid.keys(),
+        key=lambda h: (valid[h].positives / valid[h].count, valid[h].avg_pct),
+    )
+    best = valid[best_h]
+
+    if best.avg_pct > 0:
+        action = "COMPRA"
+        tp = round(entry_price * (1 + best.avg_pct / 100), 2)
+    else:
+        action = "ATTENZIONE"
+        tp = None
+
+    return Recommendation(
+        action=action,
+        best_horizon=best_h,
+        tp=tp,
+        sl=sl,
+        avg_pct=best.avg_pct,
+    )
+
+
+# ── Message builder ───────────────────────────────────────────────────────
+
+def build_message(
+    ticker: str,
+    entry_price: float,
+    stats: Dict[int, BacktestResult],
+    rec: Recommendation,
+    today_score: int,
+    signal_count: int,
+) -> str:
+    """Format the second Telegram message with historical analysis."""
+    lines = [f"📊 ANALISI STORICA — ${ticker}", ""]
+
+    if signal_count == 0:
+        lines.append(f"🔍 Acquisti passati con score ≥ {today_score}: nessuno trovato")
+        lines.append("→ Primo acquisto rilevante per questa azienda")
+        lines.append("")
+        lines.append("🎯 Raccomandazione: N/D — nessun dato storico")
+        return "\n".join(lines)
+
+    lines.append(f"🔍 Acquisti passati con score ≥ {today_score}: {signal_count} trovati")
+    lines.append("")
+    lines.append("📈 Performance media post-acquisto:")
+
+    for h in [3, 7, 30]:
+        r = stats.get(h)
+        if r and r.count > 0:
+            marker = " ← migliore" if h == rec.best_horizon else ""
+            sign = "+" if r.avg_pct >= 0 else ""
+            lines.append(
+                f"• a {h} giorni:  {sign}{r.avg_pct:.1f}%"
+                f"  ({r.positives}/{r.count} positivi){marker}"
+            )
+
+    lines.append("")
+    lines.append(f"🎯 Raccomandazione: {rec.action}")
+    lines.append(f"• Entry: ${entry_price:.2f}")
+    if rec.tp is not None:
+        sign = "+" if rec.avg_pct >= 0 else ""
+        lines.append(
+            f"• TP: ${rec.tp:.2f}  ({sign}{rec.avg_pct:.0f}%,"
+            f" basato su media {rec.best_horizon}gg)"
+        )
+    lines.append(f"• SL: ${rec.sl:.2f}  (-{config.SL_PERCENT * 100:.0f}%)")
+    lines.append(f"• Holding: ~{rec.best_horizon} giorni")
+
+    return "\n".join(lines)
+
+
+# ── Top-level orchestrator ────────────────────────────────────────────────
+
+def analyze(
+    ticker: str,
+    cik: str,
+    today_score: int,
+    entry_price: float,
+) -> str:
+    """Fetch history, backtest, and return a formatted Telegram message.
+
+    On any error, returns a message indicating no data is available.
+    Excludes today's signals (outcome not yet available).
+    """
+    if entry_price <= 0:
+        return (
+            f"📊 ANALISI STORICA — ${ticker}\n\n"
+            "⚠️ Prezzo entry non disponibile.\n"
+            "🎯 Raccomandazione: N/D"
+        )
+    try:
+        transactions = fetch_company_history(cik=cik, ticker=ticker)
+        filtered = score_and_filter(transactions, min_score=today_score)
+        # Exclude today's signal — outcome not yet available
+        today = date.today()
+        historical = [(d, t, s) for d, t, s in filtered if d < today]
+        stats = backtest(historical)
+        rec = generate_recommendation(stats, entry_price)
+        return build_message(
+            ticker=ticker,
+            entry_price=entry_price,
+            stats=stats,
+            rec=rec,
+            today_score=today_score,
+            signal_count=len(historical),
+        )
+    except Exception as exc:
+        logger.error("company_analyzer.analyze failed for %s: %s", ticker, exc, exc_info=True)
+        return (
+            f"📊 ANALISI STORICA — ${ticker}\n\n"
+            "⚠️ Analisi non disponibile (errore tecnico).\n"
+            "🎯 Raccomandazione: N/D"
+        )
