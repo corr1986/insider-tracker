@@ -127,6 +127,13 @@ def fetch_company_history(
             "doc_filename": doc_filename,
         })
 
+    if len(filings) == 200:
+        logger.warning(
+            "EDGAR returned max 200 results for %s (CIK %s) — "
+            "oldest filings may be missing",
+            ticker, cik,
+        )
+
     # Fetch and parse each filing's XML
     transactions: List[InsiderTransaction] = []
     for filing in filings:
@@ -147,16 +154,20 @@ def fetch_company_history(
             continue
 
         for t in _parse_form4_xml(xml_content):
-            if t["value"] >= config.MIN_TRANSACTION_VALUE:
-                transactions.append(InsiderTransaction(
-                    ticker=t["ticker"],
-                    company=t["company"],
-                    insider_name=t["insider_name"],
-                    title=t["title"],
-                    value=t["value"],
-                    trade_date=t["trade_date"],
-                    cik=cik,
-                ))
+            try:
+                if t["value"] >= config.MIN_TRANSACTION_VALUE:
+                    transactions.append(InsiderTransaction(
+                        ticker=t["ticker"],
+                        company=t["company"],
+                        insider_name=t["insider_name"],
+                        title=t["title"],
+                        value=t["value"],
+                        trade_date=t["trade_date"],
+                        cik=cik,
+                    ))
+            except KeyError as exc:
+                logger.debug("Skipping malformed transaction dict: missing key %s", exc)
+                continue
 
     return transactions
 
@@ -174,6 +185,10 @@ def score_and_filter(
     and returns (trade_date, ticker, score) tuples where score >= min_score.
 
     Transactions without a trade_date are skipped.
+
+    Note: groups by ``trade_date`` (execution date), not ``filing_date``. Same-day
+    buys by multiple insiders form a single identifiable cluster event — this is the
+    correct basis for backtesting.
     """
     dated = [t for t in transactions if t.trade_date is not None]
 
