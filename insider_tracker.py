@@ -26,7 +26,7 @@ import company_analyzer
 
 logging.basicConfig(
     filename="errors.log",
-    level=logging.ERROR,
+    level=logging.WARNING,
     format="%(asctime)s %(levelname)s %(message)s",
 )
 logger = logging.getLogger(__name__)
