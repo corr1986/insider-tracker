@@ -59,6 +59,7 @@ class InsiderTransaction:
     title: str
     value: float          # USD (shares × price per share)
     trade_date: Optional[date]
+    cik: str = ""         # issuer CIK (company whose securities are being reported)
 
 
 # ── Value / date helpers ──────────────────────────────────────────────────
@@ -355,6 +356,7 @@ def fetch_all_edgar_transactions(
                     title=t["title"],
                     value=t["value"],
                     trade_date=t["trade_date"],
+                    cik=filing["ciks"][-1].lstrip("0") if filing["ciks"] else "",
                 ))
 
     return deduplicate(all_txns)

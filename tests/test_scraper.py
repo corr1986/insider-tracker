@@ -574,3 +574,28 @@ def test_fetch_all_tries_fallback_cik_on_404(mock_session_cls, mock_sleep):
     txns = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
 
     assert len(txns) == 1
+
+
+# ── cik field ─────────────────────────────────────────────────────────────
+
+@patch("scraper.requests.Session")
+def test_fetch_all_populates_cik_from_issuer(mock_session_cls):
+    """InsiderTransaction.cik is populated from the last element in ciks (issuer)."""
+    mock_session = MagicMock()
+    mock_session_cls.return_value = mock_session
+    efts_data = _make_efts_data(ciks=[_OWNER_CIK, _ISSUER_CIK])
+    xml = _make_form4_xml(ticker="AAPL", shares="100", price="500.00")
+    mock_session.get.side_effect = [
+        _make_json_resp(efts_data),
+        _make_xml_resp(xml),
+    ]
+    results = fetch_all_edgar_transactions(min_value=50_000, lookback_days=7)
+    assert len(results) == 1
+    assert results[0].cik == _ISSUER_CIK.lstrip("0")
+
+
+def test_insider_transaction_cik_defaults_to_empty_string():
+    """InsiderTransaction can be created without cik (backward-compatible)."""
+    from datetime import date
+    t = InsiderTransaction("AAPL", "Apple Inc", "Tim Cook", "CEO", 100_000, date(2026, 1, 1))
+    assert t.cik == ""
