@@ -3,8 +3,11 @@ from scraper import InsiderTransaction
 from scorer import TickerSignal
 from unittest.mock import patch
 
+import pytest
+import pandas as pd
 from insider_tracker import (
     already_sent_today,
+    get_current_price,
     is_weekday,
     main,
     mark_sent,
@@ -83,3 +86,28 @@ def test_config_has_company_history_lookback_days():
 def test_config_has_sl_percent():
     import config
     assert config.SL_PERCENT == 0.08
+
+
+# ── get_current_price ─────────────────────────────────────────────────────
+
+@patch("insider_tracker.yf")
+def test_get_current_price_returns_close_price(mock_yf):
+    mock_df = pd.DataFrame(
+        {"Close": [3.21]},
+        index=[pd.Timestamp("2026-05-28")]
+    )
+    mock_yf.Ticker.return_value.history.return_value = mock_df
+    price = get_current_price("MIMI")
+    assert price == pytest.approx(3.21)
+
+
+@patch("insider_tracker.yf")
+def test_get_current_price_returns_zero_on_empty_history(mock_yf):
+    mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
+    assert get_current_price("MIMI") == 0.0
+
+
+@patch("insider_tracker.yf")
+def test_get_current_price_returns_zero_on_exception(mock_yf):
+    mock_yf.Ticker.return_value.history.side_effect = Exception("network error")
+    assert get_current_price("MIMI") == 0.0

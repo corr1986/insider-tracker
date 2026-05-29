@@ -19,7 +19,10 @@ from dotenv import load_dotenv
 import config
 from scraper import fetch_all_edgar_transactions
 from scorer import score_all, TickerSignal
-from notifier import send_signal, send_error
+from notifier import send_signal, send_error, send_analysis
+
+import yfinance as yf
+import company_analyzer
 
 logging.basicConfig(
     filename="errors.log",
@@ -97,6 +100,20 @@ def _fetch_all() -> list:
     return []  # unreachable — satisfies type checkers
 
 
+def get_current_price(ticker: str) -> float:
+    """Fetch the most recent closing price via yfinance.
+
+    Returns 0.0 if the ticker has no data or yfinance raises an exception.
+    """
+    try:
+        hist = yf.Ticker(ticker).history(period="1d", auto_adjust=True)
+        if not hist.empty:
+            return float(hist["Close"].iloc[-1])
+    except Exception:
+        pass
+    return 0.0
+
+
 def main() -> None:
     """Main orchestration loop: fetch, score, pick top signal, send to Telegram.
 
@@ -120,6 +137,18 @@ def main() -> None:
         if sent and top is not None:
             mark_sent(top.ticker, last_seen)
             save_last_seen(last_seen)
+            try:
+                cik = top.transactions[0].cik if top.transactions else ""
+                entry_price = get_current_price(top.ticker)
+                analysis = company_analyzer.analyze(
+                    ticker=top.ticker,
+                    cik=cik,
+                    today_score=top.score,
+                    entry_price=entry_price,
+                )
+                send_analysis(analysis, token, chat_id)
+            except Exception as exc:
+                logger.error("company_analyzer failed for %s: %s", top.ticker, exc, exc_info=True)
     except KeyError as exc:
         logger.error("Missing environment variable: %s — check .env file", exc)
     except Exception as exc:
