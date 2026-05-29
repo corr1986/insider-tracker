@@ -213,8 +213,9 @@ def _price_on_or_after(hist: "pd.DataFrame", target: date) -> Optional[float]:
 
     Uses ts.date() for timezone-safe comparison (works regardless of whether
     the yfinance index is timezone-aware or naive).
+    Assumes hist.index is sorted ascending (yfinance always returns sorted data).
     """
-    for ts in hist.index:
+    for ts in hist.sort_index().index:
         if ts.date() >= target:
             return float(hist.loc[ts, "Close"])
     return None
@@ -246,7 +247,7 @@ def backtest(
                 auto_adjust=True,
             )
         except Exception as exc:
-            logger.debug("yfinance error for %s on %s: %s", ticker, trade_date, exc)
+            logger.warning("yfinance error for %s on %s: %s", ticker, trade_date, exc)
             continue
 
         if hist.empty:
