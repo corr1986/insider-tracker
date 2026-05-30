@@ -1,8 +1,9 @@
 venv/
 .env
-last_seen.json
 errors.log
 run.log
 __pycache__/
 *.pyc
 .pytest_cache/
+run.bat
+run_portfolio.bat

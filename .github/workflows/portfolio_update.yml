@@ -1,0 +1,36 @@
+name: Portfolio Update
+
+on:
+  schedule:
+    - cron: '0 7-20 * * 1-5'  # Ogni ora 07:00-20:00 UTC = 09:00-22:00 IT, Mon-Fri
+  workflow_dispatch:
+
+jobs:
+  update-portfolio:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install yfinance python-dotenv
+
+      - name: Update portfolio
+        env:
+          PORTFOLIO_MD_PATH: "Portfolio Simulato.md"
+        run: python portfolio_tracker.py
+
+      - name: Commit updated portfolio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add portfolio.json "Portfolio Simulato.md"
+          git diff --cached --quiet || git commit -m "chore: update portfolio [$(date +'%Y-%m-%d %H:%M')]"
+          git push

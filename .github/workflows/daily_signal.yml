@@ -1,0 +1,37 @@
+name: Daily Signal
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'  # 06:00 UTC = 08:00 IT, Mon-Fri
+  workflow_dispatch:
+
+jobs:
+  run-signal:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 python-dotenv yfinance
+
+      - name: Run insider tracker
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python insider_tracker.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add last_seen.json portfolio.json
+          git diff --cached --quiet || git commit -m "chore: daily signal [$(date +'%Y-%m-%d')]"
+          git push

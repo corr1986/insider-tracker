@@ -245,9 +245,11 @@ def generate_markdown(
         sign = "+" if v >= 0 else ""
         return f"{sign}${abs(v):,.0f}"
 
+    github_url = "https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md"
+
     lines = [
         "# Portfolio Simulato — Insider Tracker",
-        f"*Aggiornato: {now_str}*",
+        f"*Aggiornato: {now_str} — [📊 Vedi su GitHub]({github_url})*",
         "",
         "## Riepilogo",
         "| Voce | Valore |",
@@ -303,5 +305,9 @@ def generate_markdown(
 
 
 if __name__ == "__main__":
+    import os
     logging.basicConfig(level=logging.WARNING)
-    update()
+    # On GitHub Actions use a relative path; locally use config.PORTFOLIO_MD
+    md_override = os.environ.get("PORTFOLIO_MD_PATH")
+    md_path = Path(md_override) if md_override else None
+    update(md_path=md_path)
