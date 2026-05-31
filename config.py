@@ -43,5 +43,5 @@ MAX_DISPLAY_PURCHASES = 5             # max rows in the individual purchase list
 # Portfolio simulator settings
 PORTFOLIO_MIN_SCORE = 8
 PORTFOLIO_CAPITAL = 20_000.0
-PORTFOLIO_FILE = Path("portfolio.json")
+PORTFOLIO_FILE = Path("portfolio_insider.json")
 PORTFOLIO_MD = Path(r"C:\Users\corr8\Desktop\obsidian-vault\Insider Project\Portfolio Simulato.md")
