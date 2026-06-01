@@ -1,6 +1,18 @@
 {
   "capital_initial": 20000.0,
-  "cash": 20000.0,
-  "positions": [],
+  "cash": 18000.0,
+  "positions": [
+    {
+      "ticker": "COE",
+      "score": 23,
+      "signal_date": "2026-06-01",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-06-08",
+      "current_price": null,
+      "unrealized_pnl": null
+    }
+  ],
   "closed": []
 }
