@@ -70,11 +70,14 @@ def open_position(
     score: int,
     signal_date: date,
     portfolio_file: Optional[Path] = None,
+    holding_days: int = 7,
 ) -> None:
     """Record a new position when a signal fires.
 
     Does nothing if score < PORTFOLIO_MIN_SCORE.
     entry_price is None until update() fills it after US market opens (15:30 IT).
+    holding_days: calendar days to hold before closing (default 7, overridden by
+    company_analyzer.Recommendation.best_horizon when available).
     """
     size = position_size(score)
     if size == 0:
@@ -87,7 +90,7 @@ def open_position(
         "entry_price": None,
         "shares": None,
         "invested": size,
-        "exit_date_target": (signal_date + timedelta(days=7)).isoformat(),
+        "exit_date_target": (signal_date + timedelta(days=holding_days)).isoformat(),
         "current_price": None,
         "unrealized_pnl": None,
     })

@@ -72,8 +72,16 @@ def test_open_position_adds_position_and_deducts_cash(tmp_path):
     assert data["positions"][0]["ticker"] == "NAKA"
     assert data["positions"][0]["invested"] == 2000.0
     assert data["positions"][0]["entry_price"] is None
-    assert data["positions"][0]["exit_date_target"] == "2026-06-05"
+    assert data["positions"][0]["exit_date_target"] == "2026-06-05"  # +7 giorni default
     assert data["cash"] == 18000.0
+
+
+def test_open_position_respects_custom_holding_days(tmp_path):
+    pf = _default_portfolio(tmp_path)
+    open_position("COE", 23, date(2026, 6, 1), portfolio_file=pf, holding_days=30)
+    data = json.loads(pf.read_text())
+    assert data["positions"][0]["exit_date_target"] == "2026-07-01"  # +30 giorni
+    assert data["positions"][0]["ticker"] == "COE"
 
 
 def test_open_position_ignores_low_score(tmp_path):

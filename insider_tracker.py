@@ -138,22 +138,29 @@ def main() -> None:
         if sent and top is not None:
             mark_sent(top.ticker, last_seen)
             save_last_seen(last_seen)
-            try:
-                portfolio_tracker.open_position(top.ticker, top.score, date.today())
-            except Exception as exc:
-                logger.error("portfolio_tracker failed for %s: %s", top.ticker, exc, exc_info=True)
+            # Run analysis first to get recommended holding period
+            holding_days = 7  # default
             try:
                 cik = top.transactions[0].cik if top.transactions else ""
                 entry_price = get_current_price(top.ticker)
-                analysis = company_analyzer.analyze(
+                analysis, rec = company_analyzer.analyze_full(
                     ticker=top.ticker,
                     cik=cik,
                     today_score=top.score,
                     entry_price=entry_price,
                 )
+                holding_days = rec.best_horizon
                 send_analysis(analysis, token, chat_id)
             except Exception as exc:
                 logger.error("company_analyzer failed for %s: %s", top.ticker, exc, exc_info=True)
+            # Open position with data-driven holding period
+            try:
+                portfolio_tracker.open_position(
+                    top.ticker, top.score, date.today(),
+                    holding_days=holding_days,
+                )
+            except Exception as exc:
+                logger.error("portfolio_tracker failed for %s: %s", top.ticker, exc, exc_info=True)
     except KeyError as exc:
         logger.error("Missing environment variable: %s — check .env file", exc)
     except Exception as exc:

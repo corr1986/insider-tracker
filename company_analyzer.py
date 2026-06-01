@@ -481,24 +481,28 @@ def build_message(
 
 # ── Top-level orchestrator ────────────────────────────────────────────────
 
-def analyze(
+def analyze_full(
     ticker: str,
     cik: str,
     today_score: int,
     entry_price: float,
-) -> str:
-    """Fetch history, backtest, and return a formatted Telegram message.
+) -> tuple:
+    """Fetch history, backtest, and return (formatted_message, Recommendation).
 
-    Uses config.MIN_SCORE (not today_score) for the history filter, so all
-    significant historical buys are included regardless of today's score.
-    On any error, returns a graceful N/D message.
+    The Recommendation carries best_horizon (3, 7, or 30 days) which callers
+    can use to set the portfolio holding period.
+    On any error, returns (error_message, Recommendation(N/D, best_horizon=7)).
     """
+    _nd_rec = Recommendation(action="N/D", best_horizon=7, tp=None, sl=0.0, avg_pct=0.0)
+
     if entry_price <= 0:
-        return (
+        msg = (
             f"📊 ANALISI STORICA — ${ticker}\n\n"
             "⚠️ Prezzo entry non disponibile.\n"
             "🎯 Raccomandazione: N/D"
         )
+        return msg, _nd_rec
+
     try:
         transactions = fetch_company_history(cik=cik, ticker=ticker)
         signal_events = score_and_filter(transactions, min_score=config.MIN_SCORE)
@@ -509,17 +513,30 @@ def analyze(
         historical = [e for e in signal_events if e.trade_date < signal_cutoff]
         stats = backtest(historical)
         rec = generate_recommendation(stats, entry_price)
-        return build_message(
+        msg = build_message(
             ticker=ticker,
             entry_price=entry_price,
             signal_events=historical,
             stats=stats,
             rec=rec,
         )
+        return msg, rec
     except Exception as exc:
         logger.error("company_analyzer.analyze failed for %s: %s", ticker, exc, exc_info=True)
-        return (
+        msg = (
             f"📊 ANALISI STORICA — ${ticker}\n\n"
             "⚠️ Analisi non disponibile (errore tecnico).\n"
             "🎯 Raccomandazione: N/D"
         )
+        return msg, _nd_rec
+
+
+def analyze(
+    ticker: str,
+    cik: str,
+    today_score: int,
+    entry_price: float,
+) -> str:
+    """Backward-compatible wrapper — returns only the formatted message string."""
+    msg, _ = analyze_full(ticker, cik, today_score, entry_price)
+    return msg
