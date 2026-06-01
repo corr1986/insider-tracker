@@ -272,17 +272,27 @@ def generate_markdown(
     if not positions:
         lines.append("*Nessuna posizione aperta.*")
     else:
-        lines.append("| Ticker | Score | Label | Entry | Prezzo | Investito | P&L | Scadenza |")
-        lines.append("|---|---|---|---|---|---|---|---|")
+        lines.append("| Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |")
+        lines.append("|---|---|---|---|---|---|---|---|---|")
         for p in sorted(positions, key=lambda x: x["signal_date"], reverse=True):
-            entry = f"${p['entry_price']:.2f}" if p["entry_price"] else "—"
-            curr = f"${p['current_price']:.2f}" if p.get("current_price") else "—"
-            upnl = p.get("unrealized_pnl")
-            upnl_str = signed(upnl) if upnl is not None else "—"
+            entry_px = p.get("entry_price")
+            curr_px  = p.get("current_price")
+            shares   = p.get("shares")
+            upnl     = p.get("unrealized_pnl")
+            entry_s  = f"${entry_px:.2f}" if entry_px else "—"
+            curr_s   = f"${curr_px:.2f}"  if curr_px  else "—"
+            qty_s    = f"{shares:.1f}"     if shares   else "—"
+            upnl_s   = signed(upnl)        if upnl is not None else "—"
+            if entry_px and curr_px:
+                pct = (curr_px - entry_px) / entry_px * 100
+                pct_s = f"{pct:+.2f}%"
+            else:
+                pct_s = "—"
             exit_dt = date.fromisoformat(p["exit_date_target"]).strftime("%d/%m")
             lines.append(
-                f"| {p['ticker']} | {p['score']} | {_score_label(p['score'])} | "
-                f"{entry} | {curr} | ${p['invested']:,.0f} | {upnl_str} | {exit_dt} |"
+                f"| **{p['ticker']}** | {_score_label(p['score'])} {p['score']} | "
+                f"{entry_s} | {qty_s} | {curr_s} | {pct_s} | {upnl_s} | "
+                f"${p['invested']:,.0f} | {exit_dt} |"
             )
 
     lines += ["", "## Storico trade chiusi"]
