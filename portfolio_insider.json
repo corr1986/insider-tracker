@@ -17,12 +17,12 @@
       "ticker": "PRIM",
       "score": 11,
       "signal_date": "2026-06-02",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 123.2,
+      "shares": 8.1169,
       "invested": 1000.0,
       "exit_date_target": "2026-06-09",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 121.44,
+      "unrealized_pnl": -14.29
     }
   ],
   "closed": []
