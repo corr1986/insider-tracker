@@ -131,10 +131,19 @@ def main() -> None:
         token = os.environ["TELEGRAM_TOKEN"].strip()
         chat_id = os.environ["TELEGRAM_CHAT_ID"].strip()
         last_seen = load_last_seen()
+        # Idempotency guard: at most ONE Telegram message per calendar day,
+        # regardless of how many times the workflow runs (cron + any retries).
+        today_str = str(date.today())
+        if last_seen.get("_last_message_date") == today_str:
+            logger.info("Messaggio giornaliero gia inviato oggi — skip.")
+            return
         transactions = _fetch_all()
         signals = score_all(transactions)
         top = pick_top_signal(signals, last_seen)
         sent = send_signal(top, token, chat_id)
+        if sent:
+            last_seen["_last_message_date"] = today_str
+            save_last_seen(last_seen)
         if sent and top is not None:
             mark_sent(top.ticker, last_seen)
             save_last_seen(last_seen)
