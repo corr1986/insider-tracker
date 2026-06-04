@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 22.95,
-      "unrealized_pnl": -202.82
+      "current_price": 23.3103,
+      "unrealized_pnl": -174.6
     },
     {
       "ticker": "PRIM",
@@ -21,8 +21,8 @@
       "shares": 8.1169,
       "invested": 1000.0,
       "exit_date_target": "2026-06-09",
-      "current_price": 127.395,
-      "unrealized_pnl": 34.05
+      "current_price": 127.63,
+      "unrealized_pnl": 35.96
     }
   ],
   "closed": []
