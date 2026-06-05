@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 17000.0,
+  "cash": 15000.0,
   "positions": [
     {
       "ticker": "COE",
@@ -23,6 +23,17 @@
       "exit_date_target": "2026-06-09",
       "current_price": 127.63,
       "unrealized_pnl": 35.96
+    },
+    {
+      "ticker": "NVRI",
+      "score": 15,
+      "signal_date": "2026-06-05",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-06-12",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": []
