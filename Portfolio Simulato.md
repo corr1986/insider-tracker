@@ -1,5 +1,5 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 06/06/2026 04:48 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 08/06/2026 18:12 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
