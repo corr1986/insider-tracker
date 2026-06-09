@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15000.0,
+  "cash": 16004.95,
   "positions": [
     {
       "ticker": "COE",
@@ -10,19 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 21.5101,
+      "current_price": 21.51,
       "unrealized_pnl": -315.58
-    },
-    {
-      "ticker": "PRIM",
-      "score": 11,
-      "signal_date": "2026-06-02",
-      "entry_price": 123.2,
-      "shares": 8.1169,
-      "invested": 1000.0,
-      "exit_date_target": "2026-06-09",
-      "current_price": 122.82,
-      "unrealized_pnl": -3.08
     },
     {
       "ticker": "NVRI",
@@ -36,5 +25,18 @@
       "unrealized_pnl": 206.44
     }
   ],
-  "closed": []
+  "closed": [
+    {
+      "ticker": "PRIM",
+      "score": 11,
+      "signal_date": "2026-06-02",
+      "entry_price": 123.2,
+      "shares": 8.1169,
+      "invested": 1000.0,
+      "exit_price": 123.81,
+      "exit_date": "2026-06-09",
+      "pnl": 4.95,
+      "pnl_pct": 0.5
+    }
+  ]
 }
