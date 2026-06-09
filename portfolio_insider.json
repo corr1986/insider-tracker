@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 21.1784,
-      "unrealized_pnl": -341.55
+      "current_price": 21.87,
+      "unrealized_pnl": -287.39
     },
     {
       "ticker": "NVRI",
@@ -21,8 +21,8 @@
       "shares": 110.9878,
       "invested": 2000.0,
       "exit_date_target": "2026-06-12",
-      "current_price": 20.605,
-      "unrealized_pnl": 286.9
+      "current_price": 21.08,
+      "unrealized_pnl": 339.62
     }
   ],
   "closed": [
