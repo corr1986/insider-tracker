@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 16004.95,
+  "cash": 15504.95,
   "positions": [
     {
       "ticker": "COE",
@@ -23,6 +23,17 @@
       "exit_date_target": "2026-06-12",
       "current_price": 20.49,
       "unrealized_pnl": 274.14
+    },
+    {
+      "ticker": "MP",
+      "score": 8,
+      "signal_date": "2026-06-11",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-06-14",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
