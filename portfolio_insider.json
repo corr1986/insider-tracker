@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 22.0,
-      "unrealized_pnl": -277.21
+      "current_price": 22.41,
+      "unrealized_pnl": -245.11
     },
     {
       "ticker": "NVRI",
@@ -21,8 +21,8 @@
       "shares": 110.9878,
       "invested": 2000.0,
       "exit_date_target": "2026-06-12",
-      "current_price": 20.49,
-      "unrealized_pnl": 274.14
+      "current_price": 20.99,
+      "unrealized_pnl": 329.63
     },
     {
       "ticker": "MP",
@@ -32,8 +32,8 @@
       "shares": 9.2558,
       "invested": 500.0,
       "exit_date_target": "2026-06-14",
-      "current_price": 53.45,
-      "unrealized_pnl": -5.28
+      "current_price": 55.105,
+      "unrealized_pnl": 10.04
     }
   ],
   "closed": [
