@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 22.0,
-      "unrealized_pnl": -277.21
+      "current_price": 21.175,
+      "unrealized_pnl": -341.82
     },
     {
       "ticker": "MP",
@@ -21,8 +21,8 @@
       "shares": 9.2558,
       "invested": 500.0,
       "exit_date_target": "2026-06-14",
-      "current_price": 57.18,
-      "unrealized_pnl": 29.25
+      "current_price": 57.77,
+      "unrealized_pnl": 34.71
     },
     {
       "ticker": "BRC",
@@ -32,8 +32,8 @@
       "shares": 12.7453,
       "invested": 1000.0,
       "exit_date_target": "2026-06-19",
-      "current_price": 81.17,
-      "unrealized_pnl": 34.54
+      "current_price": 81.87,
+      "unrealized_pnl": 43.46
     }
   ],
   "closed": [
