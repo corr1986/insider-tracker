@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 16342.35,
+  "cash": 16875.02,
   "positions": [
     {
       "ticker": "COE",
@@ -14,17 +14,6 @@
       "unrealized_pnl": -422.87
     },
     {
-      "ticker": "MP",
-      "score": 8,
-      "signal_date": "2026-06-11",
-      "entry_price": 54.02,
-      "shares": 9.2558,
-      "invested": 500.0,
-      "exit_date_target": "2026-06-14",
-      "current_price": 57.575,
-      "unrealized_pnl": 32.9
-    },
-    {
       "ticker": "BRC",
       "score": 11,
       "signal_date": "2026-06-12",
@@ -32,8 +21,8 @@
       "shares": 12.7453,
       "invested": 1000.0,
       "exit_date_target": "2026-06-19",
-      "current_price": 82.51,
-      "unrealized_pnl": 51.62
+      "current_price": 82.63,
+      "unrealized_pnl": 53.15
     },
     {
       "ticker": "GPGI",
@@ -43,7 +32,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-06-22",
-      "current_price": null,
+      "current_price": 12.8,
       "unrealized_pnl": null
     }
   ],
@@ -71,6 +60,18 @@
       "exit_date": "2026-06-12",
       "pnl": 337.4,
       "pnl_pct": 16.87
+    },
+    {
+      "ticker": "MP",
+      "score": 8,
+      "signal_date": "2026-06-11",
+      "entry_price": 54.02,
+      "shares": 9.2558,
+      "invested": 500.0,
+      "exit_price": 57.55,
+      "exit_date": "2026-06-15",
+      "pnl": 32.67,
+      "pnl_pct": 6.53
     }
   ]
 }
