@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 19.24,
-      "unrealized_pnl": -493.34
+      "current_price": 19.6449,
+      "unrealized_pnl": -461.64
     },
     {
       "ticker": "BRC",
@@ -21,8 +21,8 @@
       "shares": 12.7453,
       "invested": 1000.0,
       "exit_date_target": "2026-06-19",
-      "current_price": 84.8,
-      "unrealized_pnl": 80.81
+      "current_price": 84.57,
+      "unrealized_pnl": 77.87
     },
     {
       "ticker": "GPGI",
@@ -32,8 +32,8 @@
       "shares": 36.1011,
       "invested": 500.0,
       "exit_date_target": "2026-06-22",
-      "current_price": 14.17,
-      "unrealized_pnl": 11.55
+      "current_price": 14.57,
+      "unrealized_pnl": 25.99
     }
   ],
   "closed": [
