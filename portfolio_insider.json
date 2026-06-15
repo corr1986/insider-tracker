@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 16842.35,
+  "cash": 16342.35,
   "positions": [
     {
       "ticker": "COE",
@@ -34,6 +34,17 @@
       "exit_date_target": "2026-06-19",
       "current_price": 82.51,
       "unrealized_pnl": 51.62
+    },
+    {
+      "ticker": "GPGI",
+      "score": 8,
+      "signal_date": "2026-06-15",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-06-22",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
