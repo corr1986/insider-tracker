@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 19.6449,
-      "unrealized_pnl": -461.64
+      "current_price": 19.645,
+      "unrealized_pnl": -461.63
     },
     {
       "ticker": "BRC",
@@ -39,12 +39,12 @@
       "ticker": "GGB",
       "score": 11,
       "signal_date": "2026-06-16",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 4.88,
+      "shares": 204.918,
       "invested": 1000.0,
       "exit_date_target": "2026-06-23",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 4.67,
+      "unrealized_pnl": -43.03
     }
   ],
   "closed": [
