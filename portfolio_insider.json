@@ -50,12 +50,12 @@
       "ticker": "CXT",
       "score": 11,
       "signal_date": "2026-06-17",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 42.77,
+      "shares": 23.3809,
       "invested": 1000.0,
       "exit_date_target": "2026-06-24",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 42.88,
+      "unrealized_pnl": 2.57
     }
   ],
   "closed": [
