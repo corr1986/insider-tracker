@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 17.521,
-      "unrealized_pnl": -627.96
+      "current_price": 15.42,
+      "unrealized_pnl": -792.48
     },
     {
       "ticker": "BRC",
@@ -21,8 +21,8 @@
       "shares": 12.7453,
       "invested": 1000.0,
       "exit_date_target": "2026-06-19",
-      "current_price": 83.34,
-      "unrealized_pnl": 62.2
+      "current_price": 83.45,
+      "unrealized_pnl": 63.6
     },
     {
       "ticker": "GPGI",
@@ -32,8 +32,8 @@
       "shares": 36.1011,
       "invested": 500.0,
       "exit_date_target": "2026-06-22",
-      "current_price": 14.41,
-      "unrealized_pnl": 20.22
+      "current_price": 14.12,
+      "unrealized_pnl": 9.75
     },
     {
       "ticker": "GGB",
@@ -43,8 +43,8 @@
       "shares": 204.918,
       "invested": 1000.0,
       "exit_date_target": "2026-06-23",
-      "current_price": 4.5699,
-      "unrealized_pnl": -63.55
+      "current_price": 4.49,
+      "unrealized_pnl": -79.92
     },
     {
       "ticker": "CXT",
@@ -54,8 +54,8 @@
       "shares": 23.3809,
       "invested": 1000.0,
       "exit_date_target": "2026-06-24",
-      "current_price": 45.57,
-      "unrealized_pnl": 65.47
+      "current_price": 45.35,
+      "unrealized_pnl": 60.32
     }
   ],
   "closed": [
