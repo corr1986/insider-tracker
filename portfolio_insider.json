@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 14375.02,
+  "cash": 15441.42,
   "positions": [
     {
       "ticker": "COE",
@@ -12,17 +12,6 @@
       "exit_date_target": "2026-07-01",
       "current_price": 15.62,
       "unrealized_pnl": -776.82
-    },
-    {
-      "ticker": "BRC",
-      "score": 11,
-      "signal_date": "2026-06-12",
-      "entry_price": 78.46,
-      "shares": 12.7453,
-      "invested": 1000.0,
-      "exit_date_target": "2026-06-19",
-      "current_price": 85.31,
-      "unrealized_pnl": 87.31
     },
     {
       "ticker": "GPGI",
@@ -105,6 +94,18 @@
       "exit_date": "2026-06-15",
       "pnl": 32.67,
       "pnl_pct": 6.53
+    },
+    {
+      "ticker": "BRC",
+      "score": 11,
+      "signal_date": "2026-06-12",
+      "entry_price": 78.46,
+      "shares": 12.7453,
+      "invested": 1000.0,
+      "exit_price": 83.67,
+      "exit_date": "2026-06-19",
+      "pnl": 66.4,
+      "pnl_pct": 6.64
     }
   ]
 }
