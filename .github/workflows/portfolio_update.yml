@@ -2,7 +2,8 @@ name: Portfolio Update
 
 on:
   schedule:
-    - cron: '0 7-20 * * 1-5'  # Ogni ora 07:00-20:00 UTC = 09:00-22:00 IT, Mon-Fri
+    - cron: '0 7-20 * * 1-5'  # Ogni ora 07:00-20:00 UTC, Mon-Fri
+    - cron: '0 10 * * 6,0'    # Keepalive weekend: sab+dom 10:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -14,23 +15,51 @@ jobs:
         with:
           token: ${{ secrets.GH_PAT }}
 
+      - name: Check if weekday (skip Python on weekend keepalive)
+        id: check_day
+        run: |
+          DAY=$(date +%u)
+          TRIGGER="${{ github.event_name }}"
+          if [ "$DAY" -le "5" ] || [ "$TRIGGER" = "workflow_dispatch" ]; then
+            echo "run_tracker=true" >> $GITHUB_OUTPUT
+          else
+            echo "run_tracker=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ── KEEPALIVE WEEKEND ───────────────────────────────────────────────
+      - name: Keepalive commit
+        if: steps.check_day.outputs.run_tracker == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > .keepalive
+          git add .keepalive
+          git commit -m "chore: keepalive [$(date +'%Y-%m-%d')]"
+          git push
+
+      # ── AGGIORNAMENTO PORTFOLIO (giorni lavorativi) ─────────────────────
       - name: Set up Python
+        if: steps.check_day.outputs.run_tracker == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
+        if: steps.check_day.outputs.run_tracker == 'true'
         run: pip install yfinance python-dotenv
 
       - name: Update portfolio
+        if: steps.check_day.outputs.run_tracker == 'true'
         env:
           PORTFOLIO_MD_PATH: "Portfolio Simulato.md"
         run: python portfolio_tracker.py
 
       - name: Commit updated portfolio
+        if: steps.check_day.outputs.run_tracker == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add portfolio_insider.json "Portfolio Simulato.md"
           git diff --cached --quiet || git commit -m "chore: update portfolio [$(date +'%Y-%m-%d %H:%M')]"
+          git pull --rebase origin main
           git push
