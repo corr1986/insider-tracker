@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 15.3,
-      "unrealized_pnl": -801.88
+      "current_price": 15.955,
+      "unrealized_pnl": -750.59
     },
     {
       "ticker": "GGB",
@@ -21,8 +21,8 @@
       "shares": 204.918,
       "invested": 1000.0,
       "exit_date_target": "2026-06-23",
-      "current_price": 4.23,
-      "unrealized_pnl": -133.2
+      "current_price": 4.2603,
+      "unrealized_pnl": -126.99
     },
     {
       "ticker": "CXT",
@@ -32,8 +32,8 @@
       "shares": 23.3809,
       "invested": 1000.0,
       "exit_date_target": "2026-06-24",
-      "current_price": 46.73,
-      "unrealized_pnl": 92.59
+      "current_price": 47.02,
+      "unrealized_pnl": 99.37
     },
     {
       "ticker": "N/A",
@@ -54,8 +54,8 @@
       "shares": 42.4809,
       "invested": 500.0,
       "exit_date_target": "2026-06-29",
-      "current_price": 11.77,
-      "unrealized_pnl": 0.0
+      "current_price": 11.755,
+      "unrealized_pnl": -0.64
     }
   ],
   "closed": [
