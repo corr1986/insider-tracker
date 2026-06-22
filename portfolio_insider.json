@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 15.62,
-      "unrealized_pnl": -776.82
+      "current_price": 15.64,
+      "unrealized_pnl": -775.25
     },
     {
       "ticker": "GGB",
@@ -21,8 +21,8 @@
       "shares": 204.918,
       "invested": 1000.0,
       "exit_date_target": "2026-06-23",
-      "current_price": 4.17,
-      "unrealized_pnl": -145.49
+      "current_price": 4.195,
+      "unrealized_pnl": -140.37
     },
     {
       "ticker": "CXT",
@@ -32,8 +32,8 @@
       "shares": 23.3809,
       "invested": 1000.0,
       "exit_date_target": "2026-06-24",
-      "current_price": 46.93,
-      "unrealized_pnl": 97.26
+      "current_price": 47.38,
+      "unrealized_pnl": 107.79
     },
     {
       "ticker": "N/A",
@@ -50,12 +50,12 @@
       "ticker": "AVO",
       "score": 8,
       "signal_date": "2026-06-22",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 11.77,
+      "shares": 42.4809,
       "invested": 500.0,
       "exit_date_target": "2026-06-29",
-      "current_price": 11.49,
-      "unrealized_pnl": null
+      "current_price": 11.865,
+      "unrealized_pnl": 4.04
     }
   ],
   "closed": [
