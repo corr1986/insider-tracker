@@ -1,5 +1,5 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 24/06/2026 01:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 24/06/2026 02:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
@@ -16,9 +16,9 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **AVO** | 🟡 8 | $11.77 | 42.5 | $11.56 | -1.78% | $9 | $500 | 29/06 |
+| **AVO** | 🟡 8 | $11.77 | 42.5 | $11.62 | -1.32% | $7 | $500 | 29/06 |
 | **N/A** | 🟡 8 | — | — | — | — | — | $500 | 25/06 |
-| **CXT** | 🟢 11 | $42.77 | 23.4 | $45.42 | +6.20% | +$62 | $1,000 | 24/06 |
+| **CXT** | 🟢 11 | $42.77 | 23.4 | $45.31 | +5.94% | +$59 | $1,000 | 24/06 |
 | **COE** | 🔥 23 | $25.54 | 78.3 | $16.50 | -35.40% | $708 | $2,000 | 01/07 |
 
 ## Storico trade chiusi
