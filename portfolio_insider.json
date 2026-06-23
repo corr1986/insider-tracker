@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15462.0,
+  "cash": 16324.7,
   "positions": [
     {
       "ticker": "COE",
@@ -12,17 +12,6 @@
       "exit_date_target": "2026-07-01",
       "current_price": 15.61,
       "unrealized_pnl": -777.6
-    },
-    {
-      "ticker": "GGB",
-      "score": 11,
-      "signal_date": "2026-06-16",
-      "entry_price": 4.88,
-      "shares": 204.918,
-      "invested": 1000.0,
-      "exit_date_target": "2026-06-23",
-      "current_price": 4.25,
-      "unrealized_pnl": -129.1
     },
     {
       "ticker": "CXT",
@@ -118,6 +107,18 @@
       "exit_date": "2026-06-22",
       "pnl": 20.58,
       "pnl_pct": 4.12
+    },
+    {
+      "ticker": "GGB",
+      "score": 11,
+      "signal_date": "2026-06-16",
+      "entry_price": 4.88,
+      "shares": 204.918,
+      "invested": 1000.0,
+      "exit_price": 4.21,
+      "exit_date": "2026-06-23",
+      "pnl": -137.3,
+      "pnl_pct": -13.73
     }
   ]
 }
