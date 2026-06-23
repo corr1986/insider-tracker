@@ -10,8 +10,8 @@
       "shares": 78.3085,
       "invested": 2000.0,
       "exit_date_target": "2026-07-01",
-      "current_price": 16.06,
-      "unrealized_pnl": -742.36
+      "current_price": 16.5,
+      "unrealized_pnl": -707.91
     },
     {
       "ticker": "CXT",
@@ -21,8 +21,8 @@
       "shares": 23.3809,
       "invested": 1000.0,
       "exit_date_target": "2026-06-24",
-      "current_price": 45.51,
-      "unrealized_pnl": 64.06
+      "current_price": 45.42,
+      "unrealized_pnl": 61.96
     },
     {
       "ticker": "N/A",
@@ -43,8 +43,8 @@
       "shares": 42.4809,
       "invested": 500.0,
       "exit_date_target": "2026-06-29",
-      "current_price": 11.615,
-      "unrealized_pnl": -6.58
+      "current_price": 11.56,
+      "unrealized_pnl": -8.92
     }
   ],
   "closed": [
