@@ -21,8 +21,8 @@
       "shares": 23.3809,
       "invested": 1000.0,
       "exit_date_target": "2026-06-24",
-      "current_price": 45.31,
-      "unrealized_pnl": 59.39
+      "current_price": 45.28,
+      "unrealized_pnl": 58.69
     },
     {
       "ticker": "N/A",
@@ -43,8 +43,8 @@
       "shares": 42.4809,
       "invested": 500.0,
       "exit_date_target": "2026-06-29",
-      "current_price": 11.615,
-      "unrealized_pnl": -6.58
+      "current_price": 11.64,
+      "unrealized_pnl": -5.52
     }
   ],
   "closed": [
