@@ -1,8 +1,9 @@
 name: Daily Signal
 
 on:
-  schedule:
-    - cron: '0 6 * * 1-5'  # 06:00 UTC = 08:00 IT, Mon-Fri
+  # Trigger esclusivo via cron-job.org (workflow_dispatch). Cron interno GitHub
+  # rimosso: inaffidabile e si sovrapponeva a cron-job.org causando run duplicati
+  # che collidevano sul git push. cron-job.org: Lun-Ven 06:00 UTC.
   workflow_dispatch:
 
 jobs:

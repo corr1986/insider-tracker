@@ -1,9 +1,9 @@
 name: Portfolio Update
 
 on:
-  schedule:
-    - cron: '0 7-20 * * 1-5'  # Ogni ora 07:00-20:00 UTC, Mon-Fri
-    - cron: '0 10 * * 6,0'    # Keepalive weekend: sab+dom 10:00 UTC
+  # Trigger esclusivo via cron-job.org (workflow_dispatch). Cron interni GitHub
+  # (orario + keepalive weekend) rimossi: inaffidabili e causa di run duplicati
+  # che collidevano sul git push. cron-job.org: ogni ora 07:20-20:20 UTC, Lun-Ven.
   workflow_dispatch:
 
 jobs:
