@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 16897.89,
+  "cash": 16397.89,
   "positions": [
     {
       "ticker": "COE",
@@ -32,6 +32,17 @@
       "shares": null,
       "invested": 1000.0,
       "exit_date_target": "2026-07-06",
+      "current_price": null,
+      "unrealized_pnl": null
+    },
+    {
+      "ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-06-30",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-07-03",
       "current_price": null,
       "unrealized_pnl": null
     }
