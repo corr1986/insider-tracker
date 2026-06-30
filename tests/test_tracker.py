@@ -54,6 +54,15 @@ def test_pick_top_signal_returns_none_when_all_sent_today():
     signals = [make_signal("AAPL", 15), make_signal("MSFT", 8)]
     assert pick_top_signal(signals, last_seen=last_seen) is None
 
+def test_pick_top_signal_skips_invalid_ticker():
+    # Il top ha ticker non risolto dallo scraper (N/A): scartato, passa al valido
+    signals = [make_signal("N/A", 20), make_signal("AAPL", 12)]
+    assert pick_top_signal(signals, last_seen={}).ticker == "AAPL"
+
+def test_pick_top_signal_returns_none_when_only_invalid_tickers():
+    signals = [make_signal("N/A", 20), make_signal("", 15), make_signal(None, 14)]
+    assert pick_top_signal(signals, last_seen={}) is None
+
 
 # ── is_weekday ────────────────────────────────────────────────────────────
 

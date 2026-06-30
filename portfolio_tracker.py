@@ -25,6 +25,17 @@ logger = logging.getLogger(__name__)
 _BALI_TZ = timezone(timedelta(hours=8))  # WITA = UTC+8
 
 
+# ── Validazione ───────────────────────────────────────────────────────────
+
+def is_valid_ticker(ticker) -> bool:
+    """True se il ticker è stato risolto dallo scraper (non N/A, vuoto o None).
+
+    Usata sia in pick_top_signal (scarta il segnale a monte) sia in
+    open_position (impedisce posizioni zombie non prezzabili da yfinance).
+    """
+    return bool(ticker) and str(ticker).strip().upper() not in ("N/A", "NONE", "")
+
+
 # ── Sizing ────────────────────────────────────────────────────────────────
 
 def position_size(score: int) -> float:
@@ -81,7 +92,7 @@ def open_position(
     """
     # Ticker non risolto dallo scraper (N/A, vuoto, None): non aprire posizioni
     # zombie che yfinance non potrà mai prezzare né chiudere.
-    if not ticker or str(ticker).strip().upper() in ("N/A", "NONE", ""):
+    if not is_valid_ticker(ticker):
         logger.warning("open_position: ticker non valido (%r) — posizione ignorata", ticker)
         return
     size = position_size(score)

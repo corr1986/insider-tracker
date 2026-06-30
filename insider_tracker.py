@@ -70,13 +70,16 @@ def pick_top_signal(
 
     A signal is eligible if:
     - Its score is >= config.MIN_SCORE
+    - Its ticker was resolved by the scraper (not N/A/empty/None)
     - It has not already been sent today (checked via last_seen)
 
     Signals are assumed to be pre-sorted descending by score (as returned by
     score_all). The first eligible signal is returned.
     """
     for signal in signals:
-        if signal.score >= config.MIN_SCORE and not already_sent_today(signal.ticker, last_seen):
+        if (signal.score >= config.MIN_SCORE
+                and portfolio_tracker.is_valid_ticker(signal.ticker)
+                and not already_sent_today(signal.ticker, last_seen)):
             return signal
     return None
 
