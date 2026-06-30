@@ -79,6 +79,11 @@ def open_position(
     holding_days: calendar days to hold before closing (default 7, overridden by
     company_analyzer.Recommendation.best_horizon when available).
     """
+    # Ticker non risolto dallo scraper (N/A, vuoto, None): non aprire posizioni
+    # zombie che yfinance non potrà mai prezzare né chiudere.
+    if not ticker or str(ticker).strip().upper() in ("N/A", "NONE", ""):
+        logger.warning("open_position: ticker non valido (%r) — posizione ignorata", ticker)
+        return
     size = position_size(score)
     if size == 0:
         return

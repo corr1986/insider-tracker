@@ -92,6 +92,17 @@ def test_open_position_ignores_low_score(tmp_path):
     assert data["cash"] == 20000.0
 
 
+def test_open_position_ignores_invalid_ticker(tmp_path):
+    # Ticker non risolto dallo scraper (N/A, vuoto, None): niente posizione
+    # zombie, cash intatto. Il segnale Telegram resta comunque informativo.
+    pf = _default_portfolio(tmp_path)
+    for bad in ("N/A", "n/a", "", "   ", None):
+        open_position(bad, 17, date(2026, 5, 29), portfolio_file=pf)
+    data = json.loads(pf.read_text())
+    assert data["positions"] == []
+    assert data["cash"] == 20000.0
+
+
 # ── get_open_price ────────────────────────────────────────────────────────
 
 @patch("portfolio_tracker.yf")
