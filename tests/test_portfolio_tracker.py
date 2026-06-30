@@ -128,13 +128,16 @@ def test_get_open_price_returns_none_on_empty(mock_yf):
 @patch("portfolio_tracker.get_open_price")
 def test_update_fills_entry_price(mock_open, mock_curr, tmp_path):
     pf = tmp_path / "portfolio.json"
+    # Date relative a oggi: la posizione deve restare APERTA (scadenza nel futuro),
+    # altrimenti update() la chiude e il test diventa fragile col passare del tempo.
     data = {
         "capital_initial": 20000.0, "cash": 18000.0,
         "positions": [{
             "ticker": "NAKA", "score": 17,
-            "signal_date": "2026-05-29",
+            "signal_date": str(date.today() - timedelta(days=2)),
             "entry_price": None, "shares": None,
-            "invested": 2000.0, "exit_date_target": "2026-06-05",
+            "invested": 2000.0,
+            "exit_date_target": str(date.today() + timedelta(days=5)),
             "current_price": None, "unrealized_pnl": None,
         }],
         "closed": [],
