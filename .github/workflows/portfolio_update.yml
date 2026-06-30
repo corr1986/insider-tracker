@@ -61,5 +61,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add portfolio_insider.json "Portfolio Simulato.md"
           git diff --cached --quiet || git commit -m "chore: update portfolio [$(date +'%Y-%m-%d %H:%M')]"
-          git pull --rebase origin main
-          git push
+          # push diretto (checkout è già su main aggiornato); il pull --rebase
+          # scatta solo nel raro caso di conflitto, evitando il fetch autenticato
+          # che falliva con "could not read Username"
+          git push || (git pull --rebase origin main && git push)
