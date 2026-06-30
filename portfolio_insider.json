@@ -39,12 +39,12 @@
       "ticker": "PAM",
       "score": 8,
       "signal_date": "2026-06-30",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 81.86,
+      "shares": 6.108,
       "invested": 500.0,
       "exit_date_target": "2026-07-03",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 81.9,
+      "unrealized_pnl": 0.24
     }
   ],
   "closed": [
