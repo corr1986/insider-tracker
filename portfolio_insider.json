@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 19150.04,
-  "positions": [
-    {
-      "ticker": "PAM",
-      "score": 8,
-      "signal_date": "2026-06-30",
-      "entry_price": 81.86,
-      "shares": 6.108,
-      "invested": 500.0,
-      "exit_date_target": "2026-07-03",
-      "current_price": 80.58,
-      "unrealized_pnl": -7.82
-    }
-  ],
+  "cash": 19637.95,
+  "positions": [],
   "closed": [
     {
       "ticker": "PRIM",
@@ -122,6 +110,18 @@
       "exit_date": "2026-07-01",
       "pnl": -747.85,
       "pnl_pct": -37.39
+    },
+    {
+      "ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-06-30",
+      "entry_price": 81.86,
+      "shares": 6.108,
+      "invested": 500.0,
+      "exit_price": 79.88,
+      "exit_date": "2026-07-03",
+      "pnl": -12.09,
+      "pnl_pct": -2.42
     }
   ]
 }
