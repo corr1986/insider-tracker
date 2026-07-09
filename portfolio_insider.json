@@ -1,7 +1,19 @@
 {
   "capital_initial": 20000.0,
-  "cash": 19637.95,
-  "positions": [],
+  "cash": 18637.95,
+  "positions": [
+    {
+      "ticker": "VII",
+      "score": 11,
+      "signal_date": "2026-07-09",
+      "entry_price": null,
+      "shares": null,
+      "invested": 1000.0,
+      "exit_date_target": "2026-07-16",
+      "current_price": null,
+      "unrealized_pnl": null
+    }
+  ],
   "closed": [
     {
       "ticker": "PRIM",
