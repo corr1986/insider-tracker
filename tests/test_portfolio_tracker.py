@@ -16,6 +16,7 @@ from portfolio_tracker import (
     open_position,
     get_open_price,
     get_current_price,
+    resolve_yf_ticker,
     update,
     generate_markdown,
 )
@@ -101,6 +102,75 @@ def test_open_position_ignores_invalid_ticker(tmp_path):
     data = json.loads(pf.read_text())
     assert data["positions"] == []
     assert data["cash"] == 20000.0
+
+
+def test_open_position_stores_yf_ticker(tmp_path):
+    pf = _default_portfolio(tmp_path)
+    open_position("VII", 11, date(2026, 7, 9), portfolio_file=pf, yf_ticker="VII-UN")
+    data = json.loads(pf.read_text())
+    assert data["positions"][0]["ticker"] == "VII"        # display: ticker base
+    assert data["positions"][0]["yf_ticker"] == "VII-UN"  # pricing: units
+
+
+def test_open_position_yf_ticker_defaults_to_ticker(tmp_path):
+    pf = _default_portfolio(tmp_path)
+    open_position("COE", 23, date(2026, 7, 9), portfolio_file=pf)
+    data = json.loads(pf.read_text())
+    assert data["positions"][0]["yf_ticker"] == "COE"
+
+
+# ── resolve_yf_ticker ──────────────────────────────────────────────────────
+
+@patch("portfolio_tracker.get_current_price")
+def test_resolve_yf_ticker_returns_base_when_priceable(mock_price):
+    mock_price.return_value = 25.0
+    assert resolve_yf_ticker("COE") == "COE"
+
+
+@patch("portfolio_tracker.get_current_price")
+def test_resolve_yf_ticker_tries_spac_units_suffix(mock_price):
+    # Ticker base non prezzabile ma la variante units "-UN" sì (caso SPAC VII)
+    mock_price.side_effect = lambda t: 10.0 if t == "VII-UN" else None
+    assert resolve_yf_ticker("VII") == "VII-UN"
+
+
+@patch("portfolio_tracker.get_current_price")
+def test_resolve_yf_ticker_returns_none_when_nothing_priceable(mock_price):
+    mock_price.return_value = None
+    assert resolve_yf_ticker("NOPE") is None
+
+
+@patch("portfolio_tracker.get_current_price")
+def test_resolve_yf_ticker_none_for_invalid_ticker(mock_price):
+    assert resolve_yf_ticker("N/A") is None
+    mock_price.assert_not_called()
+
+
+@patch("portfolio_tracker.get_current_price")
+@patch("portfolio_tracker.get_open_price")
+def test_update_uses_yf_ticker_for_pricing(mock_open, mock_curr, tmp_path):
+    # La posizione VII deve essere prezzata usando yf_ticker (VII-UN), non "VII"
+    pf = tmp_path / "portfolio.json"
+    data = {
+        "capital_initial": 20000.0, "cash": 19000.0,
+        "positions": [{
+            "ticker": "VII", "yf_ticker": "VII-UN", "score": 11,
+            "signal_date": str(date.today() - timedelta(days=1)),
+            "entry_price": None, "shares": None, "invested": 1000.0,
+            "exit_date_target": str(date.today() + timedelta(days=5)),
+            "current_price": None, "unrealized_pnl": None,
+        }],
+        "closed": [],
+    }
+    pf.write_text(json.dumps(data), encoding="utf-8")
+    mock_open.return_value = 10.0
+    mock_curr.return_value = 10.02
+    update(portfolio_file=pf, md_path=tmp_path / "out.md")
+    # il pricing deve usare VII-UN
+    assert mock_open.call_args[0][0] == "VII-UN"
+    result = json.loads(pf.read_text())
+    assert result["positions"][0]["entry_price"] == pytest.approx(10.0, abs=0.001)
+    assert result["positions"][0]["ticker"] == "VII"  # display resta VII
 
 
 # ── get_open_price ────────────────────────────────────────────────────────

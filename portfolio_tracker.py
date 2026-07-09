@@ -82,6 +82,7 @@ def open_position(
     signal_date: date,
     portfolio_file: Optional[Path] = None,
     holding_days: int = 7,
+    yf_ticker: Optional[str] = None,
 ) -> None:
     """Record a new position when a signal fires.
 
@@ -101,6 +102,7 @@ def open_position(
     data = load_portfolio(portfolio_file)
     data["positions"].append({
         "ticker": ticker,
+        "yf_ticker": yf_ticker or ticker,  # ticker prezzabile da yfinance
         "score": score,
         "signal_date": signal_date.isoformat(),
         "entry_price": None,
@@ -148,6 +150,32 @@ def get_current_price(ticker: str) -> Optional[float]:
     return None
 
 
+# Varianti comuni per titoli quotati come SPAC: units ("-UN" su NYSE, "U" su
+# NASDAQ) e warrant ("W"). SEC/openinsider usano il ticker base (es. "VII"),
+# Yahoo quota le units (es. "VII-UN").
+_SPAC_SUFFIXES = ("-UN", "U", "W")
+
+
+def resolve_yf_ticker(base) -> Optional[str]:
+    """Return a yfinance-priceable ticker for `base`, or None if none exists.
+
+    Tries the ticker as-is first, then the common SPAC unit/warrant variants.
+    Used so that a SPAC signalled under its base ticker (VII) can still be
+    priced and tracked via its quoted units (VII-UN).
+    """
+    if not is_valid_ticker(base):
+        return None
+    base = str(base).strip().upper()
+    if get_current_price(base) is not None:
+        return base
+    for suffix in _SPAC_SUFFIXES:
+        candidate = f"{base}{suffix}"
+        if get_current_price(candidate) is not None:
+            logger.info("resolve_yf_ticker: %s non prezzabile, uso variante %s", base, candidate)
+            return candidate
+    return None
+
+
 def _score_label(score: int) -> str:
     """Return emoji label for a score."""
     if score >= 14:
@@ -175,19 +203,20 @@ def update(
 
     for pos in data["positions"]:
         ticker = pos["ticker"]
+        yft = pos.get("yf_ticker") or ticker  # ticker prezzabile (SPAC: units)
         signal_date = date.fromisoformat(pos["signal_date"])
         exit_target = date.fromisoformat(pos["exit_date_target"])
 
         # Fill entry price when US market has opened (after 15:30 IT)
         if pos["entry_price"] is None:
-            open_px = get_open_price(ticker, signal_date)
+            open_px = get_open_price(yft, signal_date)
             if open_px is not None:
                 pos["entry_price"] = round(open_px, 4)
                 pos["shares"] = round(pos["invested"] / open_px, 4)
 
         # Close expired positions (exit_date_target <= today)
         if exit_target <= today:
-            exit_px = get_open_price(ticker, exit_target) or get_current_price(ticker)
+            exit_px = get_open_price(yft, exit_target) or get_current_price(yft)
             if exit_px is not None and pos["entry_price"] is not None:
                 pnl = round((exit_px - pos["entry_price"]) * pos["shares"], 2)
                 pnl_pct = round(
@@ -212,7 +241,7 @@ def update(
                 continue
 
         # Update current price + unrealized P&L
-        curr = get_current_price(ticker)
+        curr = get_current_price(yft)
         if curr is not None:
             pos["current_price"] = round(curr, 4)
             if pos["entry_price"] is not None and pos["shares"] is not None:

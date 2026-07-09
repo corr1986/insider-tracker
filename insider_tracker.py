@@ -152,9 +152,12 @@ def main() -> None:
             save_last_seen(last_seen)
             # Run analysis first to get recommended holding period
             holding_days = 7  # default
+            yf_ticker = None
             try:
                 cik = top.transactions[0].cik if top.transactions else ""
-                entry_price = get_current_price(top.ticker)
+                # Risolve il ticker prezzabile da yfinance (SPAC: units, es. VII -> VII-UN)
+                yf_ticker = portfolio_tracker.resolve_yf_ticker(top.ticker)
+                entry_price = get_current_price(yf_ticker) if yf_ticker else 0.0
                 analysis, rec = company_analyzer.analyze_full(
                     ticker=top.ticker,
                     cik=cik,
@@ -165,12 +168,18 @@ def main() -> None:
                 send_analysis(analysis, token, chat_id)
             except Exception as exc:
                 logger.error("company_analyzer failed for %s: %s", top.ticker, exc, exc_info=True)
-            # Open position with data-driven holding period
+            # Open position only if the ticker is priceable by yfinance
             try:
-                portfolio_tracker.open_position(
-                    top.ticker, top.score, date.today(),
-                    holding_days=holding_days,
-                )
+                if yf_ticker:
+                    portfolio_tracker.open_position(
+                        top.ticker, top.score, date.today(),
+                        holding_days=holding_days, yf_ticker=yf_ticker,
+                    )
+                else:
+                    logger.warning(
+                        "Nessun ticker yfinance prezzabile per %s — posizione non aperta",
+                        top.ticker,
+                    )
             except Exception as exc:
                 logger.error("portfolio_tracker failed for %s: %s", top.ticker, exc, exc_info=True)
     except KeyError as exc:

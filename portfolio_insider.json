@@ -11,7 +11,8 @@
       "invested": 1000.0,
       "exit_date_target": "2026-07-16",
       "current_price": null,
-      "unrealized_pnl": null
+      "unrealized_pnl": null,
+      "yf_ticker": "VII-UN"
     }
   ],
   "closed": [
