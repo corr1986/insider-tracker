@@ -19,12 +19,12 @@
       "yf_ticker": "GLOO",
       "score": 15,
       "signal_date": "2026-07-13",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 3.05,
+      "shares": 655.7377,
       "invested": 2000.0,
       "exit_date_target": "2026-07-16",
-      "current_price": 2.95,
-      "unrealized_pnl": null
+      "current_price": 3.09,
+      "unrealized_pnl": 26.23
     }
   ],
   "closed": [
