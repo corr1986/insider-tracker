@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 14/07/2026 04:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 14/07/2026 15:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $16,638 |
-| Valore posizioni | $3,072 |
-| **Equity totale** | **$19,710** |
-| P&L non realizzato | +$72 |
+| Cash disponibile | $14,638 |
+| Valore posizioni | $5,002 |
+| **Equity totale** | **$19,640** |
+| P&L non realizzato | +$2 |
 | P&L realizzato | $362 |
 | Trade chiusi | 10 (7W / 3L) |
 | Win Rate | 70% |
@@ -16,6 +16,7 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
+| **IPX** | 🔥 16 | $25.56 | 78.2 | $24.67 | -3.48% | $70 | $2,000 | 13/08 |
 | **GLOO** | 🔥 15 | $3.05 | 655.7 | $3.16 | +3.61% | +$72 | $2,000 | 16/07 |
 | **VII** | 🟢 11 | $10.01 | 99.9 | $10.01 | +0.00% | +$0 | $1,000 | 16/07 |
 

@@ -31,12 +31,12 @@
       "yf_ticker": "IPX",
       "score": 16,
       "signal_date": "2026-07-14",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 25.56,
+      "shares": 78.2473,
       "invested": 2000.0,
       "exit_date_target": "2026-08-13",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 24.67,
+      "unrealized_pnl": -69.64
     }
   ],
   "closed": [
