@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 16637.95,
+  "cash": 14637.95,
   "positions": [
     {
       "ticker": "VII",
@@ -25,6 +25,18 @@
       "exit_date_target": "2026-07-16",
       "current_price": 3.16,
       "unrealized_pnl": 72.13
+    },
+    {
+      "ticker": "IPX",
+      "yf_ticker": "IPX",
+      "score": 16,
+      "signal_date": "2026-07-14",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-08-13",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
