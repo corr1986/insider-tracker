@@ -23,8 +23,8 @@
       "shares": 655.7377,
       "invested": 2000.0,
       "exit_date_target": "2026-07-16",
-      "current_price": 3.415,
-      "unrealized_pnl": 239.34
+      "current_price": 3.3692,
+      "unrealized_pnl": 209.31
     },
     {
       "ticker": "IPX",
@@ -35,8 +35,8 @@
       "shares": 78.2473,
       "invested": 2000.0,
       "exit_date_target": "2026-08-13",
-      "current_price": 25.65,
-      "unrealized_pnl": 7.04
+      "current_price": 25.46,
+      "unrealized_pnl": -7.82
     }
   ],
   "closed": [
