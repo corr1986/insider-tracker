@@ -10,8 +10,8 @@
       "shares": 99.9001,
       "invested": 1000.0,
       "exit_date_target": "2026-07-16",
-      "current_price": 10.02,
-      "unrealized_pnl": 1.0,
+      "current_price": 10.021,
+      "unrealized_pnl": 1.1,
       "yf_ticker": "VII-UN"
     },
     {
@@ -23,8 +23,8 @@
       "shares": 655.7377,
       "invested": 2000.0,
       "exit_date_target": "2026-07-16",
-      "current_price": 3.57,
-      "unrealized_pnl": 340.98
+      "current_price": 3.565,
+      "unrealized_pnl": 337.7
     },
     {
       "ticker": "IPX",
@@ -35,8 +35,8 @@
       "shares": 78.2473,
       "invested": 2000.0,
       "exit_date_target": "2026-08-13",
-      "current_price": 24.75,
-      "unrealized_pnl": -63.38
+      "current_price": 24.52,
+      "unrealized_pnl": -81.38
     }
   ],
   "closed": [
