@@ -53,11 +53,14 @@ Schedulazione: task settimanale nel weekend (a settimana di filing SEC chiusa), 
 
 ## 4. Crescita (100% organica, budget zero)
 
+**Decisione 17/07/2026 (sera):** X (XybridFX) e IG (ReelFactory) restano dedicati ai progetti forex/GridMartingala/TRFX (Copy Funnel) e NON promuovono la newsletter, almeno per ora.
+
 1. **Rete di raccomandazioni reciproche beehiiv** (gratuita) per l'edizione EN
-2. **Account X esistente (XybridFX, progetto Copy Funnel)** — la pipeline pubblica 1-2 post/settimana con segnale gratuito + track record + link iscrizione. La pipeline X è già parzialmente costruita in `ctrader-portfolio/copyfunnel/`. Dipendenza: chiavi API X ancora da configurare dall'utente
-3. **Canale IG esistente (ReelFactory)** — promuove l'**edizione IT** ("link in bio") quando ReelFactory sarà live; qualche Reel del batch punterà alla newsletter
-4. **SEO** — le versioni web dei numeri beehiiv sono pagine indicizzate (query tipo "insider buying this week")
-5. **Reddit** (r/stocks, r/ValueInvesting…) — opzionale, solo manuale, solo se l'utente vorrà: non automatizzabile in sicurezza
+2. **SEO** — le versioni web dei numeri beehiiv sono pagine indicizzate (query tipo "insider buying this week")
+3. **Reddit** (r/stocks, r/ValueInvesting…) — opzionale, solo manuale, solo se l'utente vorrà: non automatizzabile in sicurezza
+4. **Boosts a pagamento** — valutazione futura, solo dopo la validazione del segnale
+
+**Gate di lancio:** la newsletter non viene lanciata pubblicamente finché il track record del portfolio simulato non è credibile (indicativamente ≥25-30 trade chiusi con aspettativa positiva netta). Prerequisito tecnico: allineare la simulazione live al backtest aggiungendo lo stop-loss 8% (`SL_PERCENT`) in `portfolio_tracker.update()` — oggi le posizioni chiudono solo a scadenza temporale, mentre gli holding period consigliati dal company analyzer assumono lo SL 8%.
 
 **Aspettative dichiarate:** con solo organico, i primi 1.000 iscritti richiedono realisticamente 6-12 mesi. Il progetto si giudica a 6 mesi, non a 6 settimane. Riferimenti di mercato: conversione mediana free→paid ~0,6%; ad network beehiiv redditizio da ~3.000 iscritti (richiederebbe comunque piano Scale — valutazione futura).
 
