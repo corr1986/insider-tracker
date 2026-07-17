@@ -94,7 +94,7 @@ def test_config_has_company_history_lookback_days():
 
 def test_config_has_sl_percent():
     import config
-    assert config.SL_PERCENT == 0.08
+    assert config.SL_PERCENT == 0.10
 
 
 # ── get_current_price ─────────────────────────────────────────────────────

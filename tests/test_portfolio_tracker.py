@@ -273,6 +273,115 @@ def test_update_keeps_position_open_if_no_exit_price(mock_open, mock_curr, tmp_p
     assert result["closed"] == []
 
 
+# ── stop-loss ─────────────────────────────────────────────────────────────
+
+@patch("portfolio_tracker.get_current_price")
+@patch("portfolio_tracker.get_open_price")
+def test_update_closes_position_on_stop_loss(mock_open, mock_curr, tmp_path):
+    """Prezzo sotto entry*(1-SL_PERCENT) → chiusura anticipata closed_by=stop_loss."""
+    pf = tmp_path / "portfolio.json"
+    data = {
+        "capital_initial": 20000.0, "cash": 18000.0,
+        "positions": [{
+            "ticker": "NAKA", "score": 17,
+            "signal_date": str(date.today() - timedelta(days=2)),
+            "entry_price": 10.0, "shares": 200.0,
+            "invested": 2000.0,
+            "exit_date_target": str(date.today() + timedelta(days=5)),
+            "current_price": 10.0, "unrealized_pnl": 0.0,
+        }],
+        "closed": [],
+    }
+    pf.write_text(json.dumps(data), encoding="utf-8")
+    mock_open.return_value = 10.0
+    mock_curr.return_value = 8.9  # -11% < -10% SL
+    update(portfolio_file=pf, md_path=tmp_path / "out.md")
+    result = json.loads(pf.read_text())
+    assert result["positions"] == []
+    assert len(result["closed"]) == 1
+    trade = result["closed"][0]
+    assert trade["closed_by"] == "stop_loss"
+    assert trade["exit_price"] == pytest.approx(8.9, abs=0.001)
+    assert trade["pnl"] == pytest.approx((8.9 - 10.0) * 200.0, abs=0.01)
+    assert result["cash"] == pytest.approx(18000.0 + 2000.0 + trade["pnl"], abs=0.01)
+
+
+@patch("portfolio_tracker.get_current_price")
+@patch("portfolio_tracker.get_open_price")
+def test_update_no_stop_loss_above_threshold(mock_open, mock_curr, tmp_path):
+    """Prezzo sopra la soglia SL (-9% con SL 10%) → posizione resta aperta."""
+    pf = tmp_path / "portfolio.json"
+    data = {
+        "capital_initial": 20000.0, "cash": 18000.0,
+        "positions": [{
+            "ticker": "NAKA", "score": 17,
+            "signal_date": str(date.today() - timedelta(days=2)),
+            "entry_price": 10.0, "shares": 200.0,
+            "invested": 2000.0,
+            "exit_date_target": str(date.today() + timedelta(days=5)),
+            "current_price": 10.0, "unrealized_pnl": 0.0,
+        }],
+        "closed": [],
+    }
+    pf.write_text(json.dumps(data), encoding="utf-8")
+    mock_open.return_value = 10.0
+    mock_curr.return_value = 9.1  # -9% > soglia -10%
+    update(portfolio_file=pf, md_path=tmp_path / "out.md")
+    result = json.loads(pf.read_text())
+    assert len(result["positions"]) == 1
+    assert result["closed"] == []
+
+
+@patch("portfolio_tracker.get_current_price")
+@patch("portfolio_tracker.get_open_price")
+def test_update_stop_loss_skipped_without_entry_price(mock_open, mock_curr, tmp_path):
+    """Senza entry_price (mercato non ancora aperto) lo SL non può scattare."""
+    pf = tmp_path / "portfolio.json"
+    data = {
+        "capital_initial": 20000.0, "cash": 18000.0,
+        "positions": [{
+            "ticker": "NAKA", "score": 17,
+            "signal_date": str(date.today()),
+            "entry_price": None, "shares": None,
+            "invested": 2000.0,
+            "exit_date_target": str(date.today() + timedelta(days=7)),
+            "current_price": None, "unrealized_pnl": None,
+        }],
+        "closed": [],
+    }
+    pf.write_text(json.dumps(data), encoding="utf-8")
+    mock_open.return_value = None  # entry non ancora disponibile
+    mock_curr.return_value = 1.0
+    update(portfolio_file=pf, md_path=tmp_path / "out.md")
+    result = json.loads(pf.read_text())
+    assert len(result["positions"]) == 1
+    assert result["closed"] == []
+
+
+@patch("portfolio_tracker.get_current_price")
+@patch("portfolio_tracker.get_open_price")
+def test_update_expired_close_marked_as_expiry(mock_open, mock_curr, tmp_path):
+    """Le chiusure a scadenza vengono marcate closed_by=expiry."""
+    pf = tmp_path / "portfolio.json"
+    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    data = {
+        "capital_initial": 20000.0, "cash": 18000.0,
+        "positions": [{
+            "ticker": "NAKA", "score": 17,
+            "signal_date": "2026-05-22", "entry_price": 5.42, "shares": 369.0,
+            "invested": 2000.0, "exit_date_target": yesterday,
+            "current_price": 5.60, "unrealized_pnl": 66.42,
+        }],
+        "closed": [],
+    }
+    pf.write_text(json.dumps(data), encoding="utf-8")
+    mock_open.return_value = 5.80
+    mock_curr.return_value = 5.80
+    update(portfolio_file=pf, md_path=tmp_path / "out.md")
+    result = json.loads(pf.read_text())
+    assert result["closed"][0]["closed_by"] == "expiry"
+
+
 # ── generate_markdown ─────────────────────────────────────────────────────
 
 def test_generate_markdown_creates_file(tmp_path):

@@ -233,6 +233,7 @@ def update(
                     "exit_date": today.isoformat(),
                     "pnl": pnl,
                     "pnl_pct": pnl_pct,
+                    "closed_by": "expiry",
                 })
                 data["cash"] = round(data["cash"] + pos["invested"] + pnl, 2)
                 continue
@@ -248,6 +249,29 @@ def update(
                 pos["unrealized_pnl"] = round(
                     (curr - pos["entry_price"]) * pos["shares"], 2
                 )
+                # Stop-loss: chiusura anticipata se il prezzo scende sotto
+                # entry * (1 - SL_PERCENT). Stessa costante del backtest del
+                # company analyzer, così simulazione e backtest sono allineati.
+                if curr <= pos["entry_price"] * (1 - config.SL_PERCENT):
+                    pnl = round((curr - pos["entry_price"]) * pos["shares"], 2)
+                    pnl_pct = round(
+                        (curr - pos["entry_price"]) / pos["entry_price"] * 100, 2
+                    )
+                    data["closed"].append({
+                        "ticker": ticker,
+                        "score": pos["score"],
+                        "signal_date": pos["signal_date"],
+                        "entry_price": pos["entry_price"],
+                        "shares": pos["shares"],
+                        "invested": pos["invested"],
+                        "exit_price": round(curr, 4),
+                        "exit_date": today.isoformat(),
+                        "pnl": pnl,
+                        "pnl_pct": pnl_pct,
+                        "closed_by": "stop_loss",
+                    })
+                    data["cash"] = round(data["cash"] + pos["invested"] + pnl, 2)
+                    continue
         still_open.append(pos)
 
     data["positions"] = still_open

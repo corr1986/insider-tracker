@@ -34,7 +34,7 @@ CLUSTER_TOTAL_THRESHOLD = 500_000
 
 # Company analyzer — historical backtest settings
 COMPANY_HISTORY_LOOKBACK_DAYS = 730   # 2 years of company history
-SL_PERCENT = 0.08                      # fixed 8% stop-loss
+SL_PERCENT = 0.10                      # fixed 10% stop-loss (backtest + simulazione live)
 
 # Display settings for company analyzer UI
 COMPANY_DISPLAY_LOOKBACK_DAYS = 365   # 12 months shown in purchase list
