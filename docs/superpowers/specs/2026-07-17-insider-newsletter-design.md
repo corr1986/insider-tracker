@@ -37,7 +37,7 @@ Nuovo modulo `newsletter/` dentro il repo InsiderTracker. **Non modifica nessun 
 ### Pipeline settimanale (tier gratuito)
 1. **Estrazione** — legge i segnali della settimana dall'output esistente di InsiderTracker
 2. **Arricchimento** — per i top segnali: storico acquisti del dirigente e performance passate (dati già disponibili nel company analyzer v2), track record dal portfolio simulator
-3. **Generazione** — Claude API trasforma il report strutturato nella newsletter EN, poi genera l'edizione IT (adattamento, non traduzione letterale)
+3. **Generazione** — Claude Code in modalità headless (`claude -p`) trasforma il report strutturato nella newsletter EN, poi genera l'edizione IT (adattamento, non traduzione letterale). Usa l'abbonamento Claude esistente dell'utente → costo zero. Vincolo: gira sul PC dove l'utente è loggato, non sul VPS. Piano B documentato: Claude API con Haiku (`claude-haiku-4-5`, $1/$5 per MTok → centesimi/mese)
 4. **Caricamento bozze** — via API ufficiale beehiiv, nelle due pubblicazioni
 5. **Notifica** — messaggio Telegram all'utente con i link alle bozze; review di 10-15 minuti e pubblicazione dal telefono (stesso flusso manuale-finale di ReelFactory)
 
@@ -45,7 +45,7 @@ Schedulazione: task settimanale nel weekend (a settimana di filing SEC chiusa), 
 
 ### Pipeline giornaliera (tier premium)
 1. Stesso trigger giornaliero di InsiderTracker (i segnali arrivano per lo più dopo la chiusura USA)
-2. Composizione del digest pre-market: formato rigido e formulaico (tabella segnali + testo breve generato)
+2. Composizione del digest pre-market: formato rigido e formulaico (tabella segnali + testo breve) generato con **template Python puro, nessuna chiamata LLM** — costo zero e output deterministico
 3. Pubblicazione sul canale Telegram premium via bot (stack Telegram già padroneggiato)
 4. Alert immediati sui segnali forti, inoltrati appena il segnale scatta
 
@@ -87,7 +87,9 @@ Sito web dedicato, social nuovi, logo elaborato, referral program, sponsor, ad n
 | beehiiv Launch (2 pubblicazioni) | $0 |
 | Whop | ~3% a transazione, zero fisso |
 | Telegram bot + canale | $0 |
-| Claude API | centesimi a numero |
+| Generazione newsletter (Claude Code headless, abbonamento esistente) | $0 |
+| Generazione digest giornaliero (template Python, no LLM) | $0 |
+| Piano B: Claude API Haiku | centesimi/mese, solo se serve |
 | X API (tier free) | $0 |
 | VPS / scheduling | già esistente |
 
