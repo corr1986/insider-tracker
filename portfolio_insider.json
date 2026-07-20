@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 17421.02,
+  "cash": 17863.97,
   "positions": [
     {
       "ticker": "IPX",
@@ -13,18 +13,6 @@
       "exit_date_target": "2026-08-13",
       "current_price": 22.94,
       "unrealized_pnl": -205.01
-    },
-    {
-      "ticker": "VANI",
-      "yf_ticker": "VANI",
-      "score": 8,
-      "signal_date": "2026-07-17",
-      "entry_price": 1.49,
-      "shares": 335.5705,
-      "invested": 500.0,
-      "exit_date_target": "2026-07-20",
-      "current_price": 1.32,
-      "unrealized_pnl": -57.05
     }
   ],
   "closed": [
@@ -171,6 +159,18 @@
       "exit_date": "2026-07-16",
       "pnl": 281.97,
       "pnl_pct": 14.1
+    },
+    {
+      "ticker": "VANI",
+      "score": 8,
+      "signal_date": "2026-07-17",
+      "entry_price": 1.49,
+      "shares": 335.5705,
+      "invested": 500.0,
+      "exit_price": 1.32,
+      "exit_date": "2026-07-20",
+      "pnl": -57.05,
+      "pnl_pct": -11.41
     }
   ]
 }
