@@ -31,12 +31,12 @@
       "yf_ticker": "CLBK",
       "score": 28,
       "signal_date": "2026-07-23",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 11.0,
+      "shares": 181.8182,
       "invested": 2000.0,
       "exit_date_target": "2026-07-30",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 10.94,
+      "unrealized_pnl": -10.91
     }
   ],
   "closed": [
