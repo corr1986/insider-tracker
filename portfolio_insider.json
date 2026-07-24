@@ -43,12 +43,12 @@
       "yf_ticker": "COE",
       "score": 27,
       "signal_date": "2026-07-24",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 15.98,
+      "shares": 125.1564,
       "invested": 2000.0,
       "exit_date_target": "2026-07-27",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 15.6,
+      "unrealized_pnl": -47.56
     }
   ],
   "closed": [
