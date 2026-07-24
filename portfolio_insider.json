@@ -11,8 +11,8 @@
       "shares": 78.2473,
       "invested": 2000.0,
       "exit_date_target": "2026-08-13",
-      "current_price": 21.94,
-      "unrealized_pnl": -283.26
+      "current_price": 21.1,
+      "unrealized_pnl": -348.98
     },
     {
       "ticker": "CAG",
@@ -23,8 +23,8 @@
       "shares": 69.3001,
       "invested": 1000.0,
       "exit_date_target": "2026-07-29",
-      "current_price": 14.37,
-      "unrealized_pnl": -4.16
+      "current_price": 14.58,
+      "unrealized_pnl": 10.4
     },
     {
       "ticker": "CLBK",
@@ -35,8 +35,8 @@
       "shares": 181.8182,
       "invested": 2000.0,
       "exit_date_target": "2026-07-30",
-      "current_price": 11.01,
-      "unrealized_pnl": 1.82
+      "current_price": 10.815,
+      "unrealized_pnl": -33.64
     },
     {
       "ticker": "COE",
