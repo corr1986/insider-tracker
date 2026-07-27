@@ -11,8 +11,8 @@
       "shares": 69.3001,
       "invested": 1000.0,
       "exit_date_target": "2026-07-29",
-      "current_price": 15.135,
-      "unrealized_pnl": 48.86
+      "current_price": 15.225,
+      "unrealized_pnl": 55.09
     },
     {
       "ticker": "CLBK",
@@ -23,8 +23,8 @@
       "shares": 181.8182,
       "invested": 2000.0,
       "exit_date_target": "2026-07-30",
-      "current_price": 10.845,
-      "unrealized_pnl": -28.18
+      "current_price": 10.805,
+      "unrealized_pnl": -35.45
     },
     {
       "ticker": "FSBC",
@@ -35,8 +35,8 @@
       "shares": 41.6753,
       "invested": 2000.0,
       "exit_date_target": "2026-08-03",
-      "current_price": 46.9,
-      "unrealized_pnl": -45.43
+      "current_price": 47.16,
+      "unrealized_pnl": -34.59
     }
   ],
   "closed": [
