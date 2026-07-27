@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12876.49,
+  "cash": 14563.5,
   "positions": [
-    {
-      "ticker": "IPX",
-      "yf_ticker": "IPX",
-      "score": 16,
-      "signal_date": "2026-07-14",
-      "entry_price": 25.56,
-      "shares": 78.2473,
-      "invested": 2000.0,
-      "exit_date_target": "2026-08-13",
-      "current_price": 21.56,
-      "unrealized_pnl": -312.99
-    },
     {
       "ticker": "CAG",
       "yf_ticker": "CAG",
@@ -219,6 +207,19 @@
       "exit_date": "2026-07-27",
       "pnl": 12.52,
       "pnl_pct": 0.63
+    },
+    {
+      "ticker": "IPX",
+      "score": 16,
+      "signal_date": "2026-07-14",
+      "entry_price": 25.56,
+      "shares": 78.2473,
+      "invested": 2000.0,
+      "exit_price": 21.56,
+      "exit_date": "2026-07-27",
+      "pnl": -312.99,
+      "pnl_pct": -15.65,
+      "closed_by": "stop_loss"
     }
   ]
 }

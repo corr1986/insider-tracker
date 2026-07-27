@@ -1,17 +1,17 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 27/07/2026 17:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 27/07/2026 18:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $12,876 |
-| Valore posizioni | $4,689 |
+| Cash disponibile | $14,564 |
+| Valore posizioni | $3,002 |
 | **Equity totale** | **$17,565** |
-| P&L non realizzato | $311 |
-| P&L realizzato | $124 |
-| Trade chiusi | 14 (10W / 4L) |
-| Win Rate | 71% |
+| P&L non realizzato | +$2 |
+| P&L realizzato | $437 |
+| Trade chiusi | 15 (10W / 5L) |
+| Win Rate | 67% |
 
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
@@ -19,11 +19,11 @@
 | **FSBC** | 🔥 18 | — | — | $46.81 | — | — | $2,000 | 03/08 |
 | **CLBK** | 🔥 28 | $11.00 | 181.8 | $10.88 | -1.09% | $22 | $2,000 | 30/07 |
 | **CAG** | 🟢 11 | $14.43 | 69.3 | $14.77 | +2.36% | +$24 | $1,000 | 29/07 |
-| **IPX** | 🔥 16 | $25.56 | 78.2 | $21.56 | -15.65% | $313 | $2,000 | 13/08 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 27/07 | IPX | 16 | $25.56 | $21.56 | $2,000 | $313 | -15.7% |
 | 27/07 | COE | 27 | $15.98 | $16.08 | $2,000 | +$13 | +0.6% |
 | 20/07 | VANI | 8 | $1.49 | $1.32 | $500 | $57 | -11.4% |
 | 16/07 | GLOO | 15 | $3.05 | $3.48 | $2,000 | +$282 | +14.1% |
