@@ -187,6 +187,30 @@ def test_get_open_price_returns_open(mock_yf):
 
 
 @patch("portfolio_tracker.yf")
+def test_get_open_price_falls_back_to_next_trading_day(mock_yf):
+    # Segnale in un giorno di festività USA (mercati chiusi): la prima barra
+    # disponibile è quella del giorno di mercato successivo.
+    hist = pd.DataFrame(
+        {"Open": [12.30], "Close": [12.50]},
+        index=[pd.Timestamp("2026-07-06")]   # 2026-07-03 era festivo
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    price = get_open_price("ACME", date(2026, 7, 3))
+    assert price == pytest.approx(12.30)
+
+
+@patch("portfolio_tracker.yf")
+def test_get_open_price_searches_a_window_after_target_date(mock_yf):
+    mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
+    get_open_price("ACME", date(2026, 7, 3))
+    kwargs = mock_yf.Ticker.return_value.history.call_args.kwargs
+    # la finestra deve estendersi oltre il giorno successivo per scavalcare
+    # weekend e festività consecutive
+    assert kwargs["start"] == "2026-07-03"
+    assert kwargs["end"] > "2026-07-04"
+
+
+@patch("portfolio_tracker.yf")
 def test_get_open_price_returns_none_on_empty(mock_yf):
     mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
     assert get_open_price("NAKA", date(2026, 5, 29)) is None

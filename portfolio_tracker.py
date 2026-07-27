@@ -118,14 +118,25 @@ def open_position(
 
 # ── Price fetching ────────────────────────────────────────────────────────
 
-def get_open_price(ticker: str, target_date: date) -> Optional[float]:
-    """Return the US market opening price for ticker on target_date.
+# Giorni di calendario in cui cercare la prima seduta utile a partire dalla
+# data del segnale: copre weekend + festività consecutive (es. Natale).
+_OPEN_PRICE_SEARCH_DAYS = 7
 
-    Returns None if data not yet available (market not yet open)
-    or if target_date is a non-trading day.
+
+def get_open_price(ticker: str, target_date: date) -> Optional[float]:
+    """Return the US market opening price for ticker on target_date, falling
+    back to the first trading day after it.
+
+    The fallback covers signals fired on a US market holiday: without it the
+    opening price for that date would never exist and the position would stay
+    unpriced forever (never filled, never closed).
+
+    Returns None if no bar is available yet — e.g. the signal is from today and
+    the US market has not opened (future dates have no data, so the window is
+    empty and the price gets filled on a later run).
     """
     try:
-        end = target_date + timedelta(days=1)
+        end = target_date + timedelta(days=_OPEN_PRICE_SEARCH_DAYS)
         hist = yf.Ticker(ticker).history(
             start=target_date.isoformat(),
             end=end.isoformat(),
