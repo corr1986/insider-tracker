@@ -11,8 +11,8 @@
       "shares": 181.8182,
       "invested": 2000.0,
       "exit_date_target": "2026-07-30",
-      "current_price": 10.905,
-      "unrealized_pnl": -17.27
+      "current_price": 10.9,
+      "unrealized_pnl": -18.18
     },
     {
       "ticker": "FSBC",
@@ -23,8 +23,8 @@
       "shares": 41.6753,
       "invested": 2000.0,
       "exit_date_target": "2026-08-03",
-      "current_price": 47.7,
-      "unrealized_pnl": -12.09
+      "current_price": 47.805,
+      "unrealized_pnl": -7.71
     },
     {
       "ticker": "COE",
@@ -35,8 +35,8 @@
       "shares": 120.6273,
       "invested": 2000.0,
       "exit_date_target": "2026-07-31",
-      "current_price": 16.94,
-      "unrealized_pnl": 43.43
+      "current_price": 16.885,
+      "unrealized_pnl": 36.79
     },
     {
       "ticker": "AVR",
@@ -47,8 +47,8 @@
       "shares": 61.3497,
       "invested": 500.0,
       "exit_date_target": "2026-08-01",
-      "current_price": 7.995,
-      "unrealized_pnl": -9.51
+      "current_price": 8.04,
+      "unrealized_pnl": -6.75
     }
   ],
   "closed": [
