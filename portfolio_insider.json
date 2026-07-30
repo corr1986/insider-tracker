@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13131.41,
+  "cash": 15121.41,
   "positions": [
-    {
-      "ticker": "CLBK",
-      "yf_ticker": "CLBK",
-      "score": 28,
-      "signal_date": "2026-07-23",
-      "entry_price": 11.0,
-      "shares": 181.8182,
-      "invested": 2000.0,
-      "exit_date_target": "2026-07-30",
-      "current_price": 10.91,
-      "unrealized_pnl": -16.36
-    },
     {
       "ticker": "FSBC",
       "yf_ticker": "FSBC",
@@ -244,6 +232,19 @@
       "exit_date": "2026-07-29",
       "pnl": 67.91,
       "pnl_pct": 6.79,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "CLBK",
+      "score": 28,
+      "signal_date": "2026-07-23",
+      "entry_price": 11.0,
+      "shares": 181.8182,
+      "invested": 2000.0,
+      "exit_price": 10.945,
+      "exit_date": "2026-07-30",
+      "pnl": -10.0,
+      "pnl_pct": -0.5,
       "closed_by": "expiry"
     }
   ]
