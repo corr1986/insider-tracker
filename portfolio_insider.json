@@ -11,8 +11,8 @@
       "shares": 41.6753,
       "invested": 2000.0,
       "exit_date_target": "2026-08-03",
-      "current_price": 47.45,
-      "unrealized_pnl": -22.5
+      "current_price": 47.44,
+      "unrealized_pnl": -22.92
     },
     {
       "ticker": "COE",
@@ -35,8 +35,8 @@
       "shares": 61.3497,
       "invested": 500.0,
       "exit_date_target": "2026-08-01",
-      "current_price": 8.15,
-      "unrealized_pnl": -0.0
+      "current_price": 8.205,
+      "unrealized_pnl": 3.37
     }
   ],
   "closed": [
