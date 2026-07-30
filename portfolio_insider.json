@@ -11,8 +11,8 @@
       "shares": 41.6753,
       "invested": 2000.0,
       "exit_date_target": "2026-08-03",
-      "current_price": 47.42,
-      "unrealized_pnl": -23.75
+      "current_price": 47.495,
+      "unrealized_pnl": -20.63
     },
     {
       "ticker": "COE",
@@ -23,8 +23,8 @@
       "shares": 120.6273,
       "invested": 2000.0,
       "exit_date_target": "2026-07-31",
-      "current_price": 16.93,
-      "unrealized_pnl": 42.22
+      "current_price": 17.105,
+      "unrealized_pnl": 63.33
     },
     {
       "ticker": "AVR",
@@ -35,8 +35,8 @@
       "shares": 61.3497,
       "invested": 500.0,
       "exit_date_target": "2026-08-01",
-      "current_price": 7.9,
-      "unrealized_pnl": -15.34
+      "current_price": 8.24,
+      "unrealized_pnl": 5.52
     }
   ],
   "closed": [
