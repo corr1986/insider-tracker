@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 31/07/2026 02:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 31/07/2026 03:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $15,121 |
-| Valore posizioni | $4,542 |
-| **Equity totale** | **$19,663** |
-| P&L non realizzato | +$42 |
+| Valore posizioni | $4,575 |
+| **Equity totale** | **$19,697** |
+| P&L non realizzato | +$75 |
 | P&L realizzato | $379 |
 | Trade chiusi | 17 (11W / 6L) |
 | Win Rate | 65% |
@@ -16,9 +16,9 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **AVR** | 🟡 8 | $8.15 | 61.3 | $8.21 | +0.67% | +$3 | $500 | 01/08 |
-| **COE** | 🔥 19 | $16.58 | 120.6 | $17.09 | +3.08% | +$62 | $2,000 | 31/07 |
-| **FSBC** | 🔥 18 | $47.99 | 41.7 | $47.44 | -1.15% | $23 | $2,000 | 03/08 |
+| **AVR** | 🟡 8 | $8.15 | 61.3 | $8.28 | +1.60% | +$8 | $500 | 01/08 |
+| **COE** | 🔥 19 | $16.58 | 120.6 | $17.32 | +4.49% | +$90 | $2,000 | 31/07 |
+| **FSBC** | 🔥 18 | $47.99 | 41.7 | $47.45 | -1.13% | $22 | $2,000 | 03/08 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
