@@ -1,44 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15175.69,
-  "positions": [
-    {
-      "ticker": "FSBC",
-      "yf_ticker": "FSBC",
-      "score": 18,
-      "signal_date": "2026-07-27",
-      "entry_price": 47.99,
-      "shares": 41.6753,
-      "invested": 2000.0,
-      "exit_date_target": "2026-08-03",
-      "current_price": 47.19,
-      "unrealized_pnl": -33.34
-    },
-    {
-      "ticker": "AVR",
-      "yf_ticker": "AVR",
-      "score": 8,
-      "signal_date": "2026-07-29",
-      "entry_price": 8.15,
-      "shares": 61.3497,
-      "invested": 500.0,
-      "exit_date_target": "2026-08-01",
-      "current_price": 7.84,
-      "unrealized_pnl": -19.02
-    },
-    {
-      "ticker": "COE",
-      "yf_ticker": "COE",
-      "score": 15,
-      "signal_date": "2026-07-31",
-      "entry_price": 17.03,
-      "shares": 117.4398,
-      "invested": 2000.0,
-      "exit_date_target": "2026-08-03",
-      "current_price": 17.66,
-      "unrealized_pnl": 73.99
-    }
-  ],
+  "cash": 19723.7,
+  "positions": [],
   "closed": [
     {
       "ticker": "PRIM",
@@ -258,6 +221,45 @@
       "exit_date": "2026-07-31",
       "pnl": 54.28,
       "pnl_pct": 2.71,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "FSBC",
+      "score": 18,
+      "signal_date": "2026-07-27",
+      "entry_price": 47.99,
+      "shares": 41.6753,
+      "invested": 2000.0,
+      "exit_price": 47.19,
+      "exit_date": "2026-08-03",
+      "pnl": -33.34,
+      "pnl_pct": -1.67,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "AVR",
+      "score": 8,
+      "signal_date": "2026-07-29",
+      "entry_price": 8.15,
+      "shares": 61.3497,
+      "invested": 500.0,
+      "exit_price": 8.27,
+      "exit_date": "2026-08-03",
+      "pnl": 7.36,
+      "pnl_pct": 1.47,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "COE",
+      "score": 15,
+      "signal_date": "2026-07-31",
+      "entry_price": 17.03,
+      "shares": 117.4398,
+      "invested": 2000.0,
+      "exit_price": 17.66,
+      "exit_date": "2026-08-03",
+      "pnl": 73.99,
+      "pnl_pct": 3.7,
       "closed_by": "expiry"
     }
   ]
