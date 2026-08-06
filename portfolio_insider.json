@@ -1,7 +1,20 @@
 {
   "capital_initial": 20000.0,
-  "cash": 19723.7,
-  "positions": [],
+  "cash": 17723.7,
+  "positions": [
+    {
+      "ticker": "COE",
+      "yf_ticker": "COE",
+      "score": 19,
+      "signal_date": "2026-08-06",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-08-13",
+      "current_price": null,
+      "unrealized_pnl": null
+    }
+  ],
   "closed": [
     {
       "ticker": "PRIM",
