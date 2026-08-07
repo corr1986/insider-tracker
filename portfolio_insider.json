@@ -11,8 +11,8 @@
       "shares": 101.5228,
       "invested": 2000.0,
       "exit_date_target": "2026-08-13",
-      "current_price": 19.64,
-      "unrealized_pnl": -6.09
+      "current_price": 19.3205,
+      "unrealized_pnl": -38.53
     },
     {
       "ticker": "LUMN",
@@ -23,8 +23,8 @@
       "shares": 165.0165,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.295,
-      "unrealized_pnl": 38.78
+      "current_price": 6.315,
+      "unrealized_pnl": 42.08
     }
   ],
   "closed": [
