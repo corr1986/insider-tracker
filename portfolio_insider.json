@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 17723.7,
+  "cash": 16723.7,
   "positions": [
     {
       "ticker": "COE",
@@ -13,6 +13,18 @@
       "exit_date_target": "2026-08-13",
       "current_price": 19.18,
       "unrealized_pnl": -52.79
+    },
+    {
+      "ticker": "LUMN",
+      "yf_ticker": "LUMN",
+      "score": 11,
+      "signal_date": "2026-08-07",
+      "entry_price": null,
+      "shares": null,
+      "invested": 1000.0,
+      "exit_date_target": "2026-09-06",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
