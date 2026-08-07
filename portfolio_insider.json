@@ -19,12 +19,12 @@
       "yf_ticker": "LUMN",
       "score": 11,
       "signal_date": "2026-08-07",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 6.06,
+      "shares": 165.0165,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 5.9,
+      "unrealized_pnl": -26.4
     }
   ],
   "closed": [
