@@ -11,8 +11,8 @@
       "shares": 101.5228,
       "invested": 2000.0,
       "exit_date_target": "2026-08-13",
-      "current_price": 19.69,
-      "unrealized_pnl": -1.02
+      "current_price": 19.2044,
+      "unrealized_pnl": -50.31
     },
     {
       "ticker": "LUMN",
@@ -23,8 +23,8 @@
       "shares": 165.0165,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.49,
-      "unrealized_pnl": 70.96
+      "current_price": 6.545,
+      "unrealized_pnl": 80.03
     },
     {
       "ticker": "COE",
@@ -35,8 +35,8 @@
       "shares": 101.7294,
       "invested": 2000.0,
       "exit_date_target": "2026-08-18",
-      "current_price": 19.69,
-      "unrealized_pnl": 3.05
+      "current_price": 19.2044,
+      "unrealized_pnl": -46.35
     }
   ],
   "closed": [
