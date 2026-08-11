@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 12/08/2026 02:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 12/08/2026 03:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $14,724 |
-| Valore posizioni | $4,869 |
-| **Equity totale** | **$19,593** |
-| P&L non realizzato | $131 |
+| Valore posizioni | $5,008 |
+| **Equity totale** | **$19,732** |
+| P&L non realizzato | +$8 |
 | P&L realizzato | $276 |
 | Trade chiusi | 21 (14W / 7L) |
 | Win Rate | 67% |
@@ -16,9 +16,9 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **COE** | 🔥 23 | $19.66 | 101.7 | $18.76 | -4.58% | $92 | $2,000 | 18/08 |
-| **LUMN** | 🟢 11 | $6.06 | 165.0 | $6.40 | +5.61% | +$56 | $1,000 | 06/09 |
-| **COE** | 🔥 19 | $19.70 | 101.5 | $18.76 | -4.77% | $95 | $2,000 | 13/08 |
+| **COE** | 🔥 23 | $19.66 | 101.7 | $19.44 | -1.12% | $22 | $2,000 | 18/08 |
+| **LUMN** | 🟢 11 | $6.06 | 165.0 | $6.41 | +5.69% | +$57 | $1,000 | 06/09 |
+| **COE** | 🔥 19 | $19.70 | 101.5 | $19.44 | -1.32% | $26 | $2,000 | 13/08 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
