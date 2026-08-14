@@ -11,8 +11,8 @@
       "shares": 165.0165,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.44,
-      "unrealized_pnl": 62.71
+      "current_price": 6.595,
+      "unrealized_pnl": 88.28
     },
     {
       "ticker": "COE",
@@ -23,8 +23,8 @@
       "shares": 101.7294,
       "invested": 2000.0,
       "exit_date_target": "2026-08-18",
-      "current_price": 19.79,
-      "unrealized_pnl": 13.22
+      "current_price": 19.86,
+      "unrealized_pnl": 20.35
     },
     {
       "ticker": "COE",
@@ -35,8 +35,8 @@
       "shares": 99.3049,
       "invested": 2000.0,
       "exit_date_target": "2026-08-20",
-      "current_price": 19.79,
-      "unrealized_pnl": -34.76
+      "current_price": 19.86,
+      "unrealized_pnl": -27.81
     },
     {
       "ticker": "AMRZ",
@@ -47,8 +47,8 @@
       "shares": 42.8357,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 46.63,
-      "unrealized_pnl": -2.57
+      "current_price": 46.715,
+      "unrealized_pnl": 1.07
     }
   ],
   "closed": [
