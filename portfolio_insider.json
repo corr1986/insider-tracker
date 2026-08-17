@@ -11,8 +11,8 @@
       "shares": 165.0165,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.72,
-      "unrealized_pnl": 108.91
+      "current_price": 6.575,
+      "unrealized_pnl": 84.98
     },
     {
       "ticker": "COE",
@@ -23,8 +23,8 @@
       "shares": 101.7294,
       "invested": 2000.0,
       "exit_date_target": "2026-08-18",
-      "current_price": 19.67,
-      "unrealized_pnl": 1.02
+      "current_price": 19.75,
+      "unrealized_pnl": 9.16
     },
     {
       "ticker": "COE",
@@ -35,8 +35,8 @@
       "shares": 99.3049,
       "invested": 2000.0,
       "exit_date_target": "2026-08-20",
-      "current_price": 19.67,
-      "unrealized_pnl": -46.67
+      "current_price": 19.75,
+      "unrealized_pnl": -38.73
     },
     {
       "ticker": "AMRZ",
@@ -47,20 +47,20 @@
       "shares": 42.8357,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 46.69,
-      "unrealized_pnl": -0.0
+      "current_price": 46.155,
+      "unrealized_pnl": -22.92
     },
     {
       "ticker": "ANGX",
       "yf_ticker": "ANGX",
       "score": 16,
       "signal_date": "2026-08-17",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 4.6,
+      "shares": 434.7826,
       "invested": 2000.0,
       "exit_date_target": "2026-08-24",
-      "current_price": 4.37,
-      "unrealized_pnl": null
+      "current_price": 4.6599,
+      "unrealized_pnl": 26.04
     }
   ],
   "closed": [
