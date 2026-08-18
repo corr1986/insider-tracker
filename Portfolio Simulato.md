@@ -1,30 +1,30 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 18/08/2026 22:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 18/08/2026 23:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $10,737 |
-| Valore posizioni | $9,380 |
-| **Equity totale** | **$20,117** |
-| P&L non realizzato | +$380 |
-| P&L realizzato | $263 |
-| Trade chiusi | 23 (15W / 8L) |
-| Win Rate | 65% |
+| Cash disponibile | $12,498 |
+| Valore posizioni | $7,326 |
+| **Equity totale** | **$19,825** |
+| P&L non realizzato | +$326 |
+| P&L realizzato | $502 |
+| Trade chiusi | 24 (15W / 9L) |
+| Win Rate | 62% |
 
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **ANGX** | 🔥 20 | $4.60 | 434.8 | $5.25 | +14.02% | +$280 | $2,000 | 21/08 |
-| **ANGX** | 🔥 16 | $4.60 | 434.8 | $5.25 | +14.02% | +$280 | $2,000 | 24/08 |
-| **AMRZ** | 🔥 20 | $46.69 | 42.8 | $44.67 | -4.33% | $87 | $2,000 | 13/09 |
-| **COE** | 🔥 19 | $20.14 | 99.3 | $19.02 | -5.56% | $111 | $2,000 | 20/08 |
-| **LUMN** | 🟢 11 | $6.06 | 165.0 | $6.17 | +1.73% | +$17 | $1,000 | 06/09 |
+| **ANGX** | 🔥 20 | $4.60 | 434.8 | $5.07 | +10.22% | +$204 | $2,000 | 21/08 |
+| **ANGX** | 🔥 16 | $4.60 | 434.8 | $5.07 | +10.22% | +$204 | $2,000 | 24/08 |
+| **AMRZ** | 🔥 20 | $46.69 | 42.8 | $44.42 | -4.86% | $97 | $2,000 | 13/09 |
+| **LUMN** | 🟢 11 | $6.06 | 165.0 | $6.15 | +1.49% | +$15 | $1,000 | 06/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 18/08 | COE | 19 | $20.14 | $17.74 | $2,000 | $238 | -11.9% |
 | 18/08 | COE | 23 | $19.66 | $19.35 | $2,000 | $32 | -1.6% |
 | 13/08 | COE | 19 | $19.70 | $20.14 | $2,000 | +$45 | +2.2% |
 | 03/08 | COE | 15 | $17.03 | $17.66 | $2,000 | +$74 | +3.7% |
