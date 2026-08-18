@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 8768.37,
+  "cash": 10736.83,
   "positions": [
     {
       "ticker": "LUMN",
@@ -13,18 +13,6 @@
       "exit_date_target": "2026-09-06",
       "current_price": 6.58,
       "unrealized_pnl": 85.81
-    },
-    {
-      "ticker": "COE",
-      "yf_ticker": "COE",
-      "score": 23,
-      "signal_date": "2026-08-11",
-      "entry_price": 19.66,
-      "shares": 101.7294,
-      "invested": 2000.0,
-      "exit_date_target": "2026-08-18",
-      "current_price": 18.87,
-      "unrealized_pnl": -80.37
     },
     {
       "ticker": "COE",
@@ -67,12 +55,12 @@
       "yf_ticker": "ANGX",
       "score": 20,
       "signal_date": "2026-08-18",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 4.6,
+      "shares": 434.7826,
       "invested": 2000.0,
       "exit_date_target": "2026-08-21",
-      "current_price": null,
-      "unrealized_pnl": null
+      "current_price": 4.71,
+      "unrealized_pnl": 47.83
     }
   ],
   "closed": [
@@ -346,6 +334,19 @@
       "exit_date": "2026-08-13",
       "pnl": 44.67,
       "pnl_pct": 2.23,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "COE",
+      "score": 23,
+      "signal_date": "2026-08-11",
+      "entry_price": 19.66,
+      "shares": 101.7294,
+      "invested": 2000.0,
+      "exit_price": 19.35,
+      "exit_date": "2026-08-18",
+      "pnl": -31.54,
+      "pnl_pct": -1.58,
       "closed_by": "expiry"
     }
   ]
