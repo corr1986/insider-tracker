@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.165,
-      "unrealized_pnl": -7.25
+      "current_price": 6.22,
+      "unrealized_pnl": 1.61
     },
     {
       "ticker": "AMRZ",
@@ -23,8 +23,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 45.69,
-      "unrealized_pnl": -47.32
+      "current_price": 45.75,
+      "unrealized_pnl": -44.75
     },
     {
       "ticker": "ANGX",
@@ -35,8 +35,8 @@
       "shares": 434.7826,
       "invested": 2000.0,
       "exit_date_target": "2026-08-24",
-      "current_price": 4.8538,
-      "unrealized_pnl": 110.35
+      "current_price": 4.8557,
+      "unrealized_pnl": 111.17
     },
     {
       "ticker": "ANGX",
@@ -47,8 +47,8 @@
       "shares": 417.5365,
       "invested": 2000.0,
       "exit_date_target": "2026-08-21",
-      "current_price": 4.8538,
-      "unrealized_pnl": 26.64
+      "current_price": 4.8557,
+      "unrealized_pnl": 27.43
     }
   ],
   "closed": [
