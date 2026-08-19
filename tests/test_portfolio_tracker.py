@@ -211,6 +211,31 @@ def test_get_open_price_searches_a_window_after_target_date(mock_yf):
 
 
 @patch("portfolio_tracker.yf")
+def test_get_open_price_ignores_bar_before_target_date(mock_yf):
+    # Quando la seduta richiesta non ha ancora aperto, Yahoo restituisce la
+    # barra del giorno PRECEDENTE: va scartata, altrimenti l'entry viene
+    # registrata a un prezzo stantio di un giorno e non viene più corretta.
+    hist = pd.DataFrame(
+        {"Open": [4.79], "Close": [4.85]},
+        index=[pd.Timestamp("2026-08-18")]
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    assert get_open_price("ANGX", date(2026, 8, 19)) is None
+
+
+@patch("portfolio_tracker.yf")
+def test_get_open_price_picks_target_bar_when_prior_bar_also_returned(mock_yf):
+    # Se la finestra contiene sia la barra precedente sia quella richiesta,
+    # deve essere usata quella del giorno del segnale.
+    hist = pd.DataFrame(
+        {"Open": [4.60, 4.79], "Close": [4.71, 4.85]},
+        index=[pd.Timestamp("2026-08-17"), pd.Timestamp("2026-08-18")]
+    )
+    mock_yf.Ticker.return_value.history.return_value = hist
+    assert get_open_price("ANGX", date(2026, 8, 18)) == pytest.approx(4.79)
+
+
+@patch("portfolio_tracker.yf")
 def test_get_open_price_returns_none_on_empty(mock_yf):
     mock_yf.Ticker.return_value.history.return_value = pd.DataFrame()
     assert get_open_price("NAKA", date(2026, 5, 29)) is None

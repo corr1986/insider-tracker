@@ -144,7 +144,14 @@ def get_open_price(ticker: str, target_date: date) -> Optional[float]:
             auto_adjust=True,
         )
         if not hist.empty and "Open" in hist.columns:
-            return float(hist["Open"].iloc[0])
+            # Yahoo restituisce la barra del giorno PRECEDENTE quando la seduta
+            # richiesta non ha ancora aperto: va scartata, altrimenti l'entry
+            # verrebbe registrata a un prezzo stantio e mai più corretta.
+            # Si prende la prima barra dal giorno del segnale in poi (il ">"
+            # copre il fallback su festività/weekend).
+            for idx, row in hist.iterrows():
+                if idx.date() >= target_date:
+                    return float(row["Open"])
     except Exception as exc:
         logger.warning("yfinance open price error for %s on %s: %s", ticker, target_date, exc)
     return None
