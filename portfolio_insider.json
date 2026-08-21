@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 11613.22,
+  "cash": 13437.85,
   "positions": [
     {
       "ticker": "LUMN",
@@ -39,18 +39,6 @@
       "unrealized_pnl": -100.0
     },
     {
-      "ticker": "ANGX",
-      "yf_ticker": "ANGX",
-      "score": 20,
-      "signal_date": "2026-08-18",
-      "entry_price": 4.79,
-      "shares": 417.5365,
-      "invested": 2000.0,
-      "exit_date_target": "2026-08-21",
-      "current_price": 4.37,
-      "unrealized_pnl": -175.37
-    },
-    {
       "ticker": "PAM",
       "yf_ticker": "PAM",
       "score": 9,
@@ -59,7 +47,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-08-24",
-      "current_price": null,
+      "current_price": 79.39,
       "unrealized_pnl": null
     }
   ],
@@ -361,6 +349,19 @@
       "pnl": -335.83,
       "pnl_pct": -16.79,
       "closed_by": "stop_loss"
+    },
+    {
+      "ticker": "ANGX",
+      "score": 20,
+      "signal_date": "2026-08-18",
+      "entry_price": 4.79,
+      "shares": 417.5365,
+      "invested": 2000.0,
+      "exit_price": 4.37,
+      "exit_date": "2026-08-21",
+      "pnl": -175.37,
+      "pnl_pct": -8.77,
+      "closed_by": "expiry"
     }
   ]
 }
