@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13806.6,
+  "cash": 13306.6,
   "positions": [
     {
       "ticker": "LUMN",
@@ -37,6 +37,18 @@
       "exit_date_target": "2026-09-23",
       "current_price": 16.8,
       "unrealized_pnl": -52.17
+    },
+    {
+      "ticker": "TENX",
+      "yf_ticker": "TENX",
+      "score": 10,
+      "signal_date": "2026-08-25",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-09-01",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
