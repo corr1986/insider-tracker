@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 5.99,
-      "unrealized_pnl": -35.43
+      "current_price": 5.98,
+      "unrealized_pnl": -37.04
     },
     {
       "ticker": "AMRZ",
@@ -47,8 +47,8 @@
       "shares": 240.3846,
       "invested": 500.0,
       "exit_date_target": "2026-09-01",
-      "current_price": 2.16,
-      "unrealized_pnl": 19.23
+      "current_price": 2.175,
+      "unrealized_pnl": 22.84
     },
     {
       "ticker": "PAM",
@@ -59,8 +59,8 @@
       "shares": 6.2383,
       "invested": 500.0,
       "exit_date_target": "2026-08-29",
-      "current_price": 79.81,
-      "unrealized_pnl": -2.12
+      "current_price": 80.34,
+      "unrealized_pnl": 1.19
     }
   ],
   "closed": [
