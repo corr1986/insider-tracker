@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 27/08/2026 02:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 27/08/2026 03:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $12,807 |
-| Valore posizioni | $5,777 |
-| **Equity totale** | **$18,584** |
-| P&L non realizzato | $223 |
+| Valore posizioni | $5,779 |
+| **Equity totale** | **$18,586** |
+| P&L non realizzato | $221 |
 | P&L realizzato | $1,193 |
 | Trade chiusi | 27 (14W / 13L) |
 | Win Rate | 52% |
@@ -16,11 +16,11 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **PAM** | 🟡 8 | $80.15 | 6.2 | $80.34 | +0.24% | +$1 | $500 | 29/08 |
-| **TENX** | 🟡 10 | $2.08 | 240.4 | $2.17 | +4.57% | +$23 | $500 | 01/09 |
+| **PAM** | 🟡 8 | $80.15 | 6.2 | $80.64 | +0.61% | +$3 | $500 | 29/08 |
+| **TENX** | 🟡 10 | $2.08 | 240.4 | $2.16 | +3.61% | +$18 | $500 | 01/09 |
 | **COE** | 🔥 15 | $17.25 | 115.9 | $16.21 | -6.03% | $121 | $2,000 | 23/09 |
-| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $44.71 | -4.46% | $89 | $2,000 | 13/09 |
-| **LUMN** | 🟢 11 | $6.21 | 161.0 | $5.98 | -3.70% | $37 | $1,000 | 06/09 |
+| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $44.67 | -4.55% | $91 | $2,000 | 13/09 |
+| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.02 | -3.06% | $31 | $1,000 | 06/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
