@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12806.6,
+  "cash": 10806.6,
   "positions": [
     {
       "ticker": "LUMN",
@@ -61,6 +61,18 @@
       "exit_date_target": "2026-08-29",
       "current_price": 80.72,
       "unrealized_pnl": 3.56
+    },
+    {
+      "ticker": "NPB",
+      "yf_ticker": "NPB",
+      "score": 15,
+      "signal_date": "2026-08-27",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-09-26",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
