@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.125,
-      "unrealized_pnl": -13.69
+      "current_price": 6.16,
+      "unrealized_pnl": -8.05
     },
     {
       "ticker": "AMRZ",
@@ -23,8 +23,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 44.62,
-      "unrealized_pnl": -93.05
+      "current_price": 44.63,
+      "unrealized_pnl": -92.62
     },
     {
       "ticker": "COE",
@@ -35,8 +35,8 @@
       "shares": 115.942,
       "invested": 2000.0,
       "exit_date_target": "2026-09-23",
-      "current_price": 16.42,
-      "unrealized_pnl": -96.23
+      "current_price": 16.11,
+      "unrealized_pnl": -132.17
     },
     {
       "ticker": "TENX",
@@ -47,8 +47,8 @@
       "shares": 240.3846,
       "invested": 500.0,
       "exit_date_target": "2026-09-01",
-      "current_price": 2.15,
-      "unrealized_pnl": 16.83
+      "current_price": 2.1899,
+      "unrealized_pnl": 26.42
     },
     {
       "ticker": "PAM",
@@ -59,8 +59,8 @@
       "shares": 6.2383,
       "invested": 500.0,
       "exit_date_target": "2026-08-29",
-      "current_price": 80.03,
-      "unrealized_pnl": -0.75
+      "current_price": 80.735,
+      "unrealized_pnl": 3.65
     },
     {
       "ticker": "NPB",
@@ -71,8 +71,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 17.0299,
-      "unrealized_pnl": -5.87
+      "current_price": 17.05,
+      "unrealized_pnl": -3.51
     }
   ],
   "closed": [
