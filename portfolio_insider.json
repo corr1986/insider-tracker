@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 5.9779,
-      "unrealized_pnl": -37.38
+      "current_price": 6.055,
+      "unrealized_pnl": -24.96
     },
     {
       "ticker": "AMRZ",
@@ -23,8 +23,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 44.38,
-      "unrealized_pnl": -103.31
+      "current_price": 44.505,
+      "unrealized_pnl": -97.96
     },
     {
       "ticker": "TENX",
@@ -35,8 +35,8 @@
       "shares": 240.3846,
       "invested": 500.0,
       "exit_date_target": "2026-09-01",
-      "current_price": 2.16,
-      "unrealized_pnl": 19.23
+      "current_price": 2.1633,
+      "unrealized_pnl": 20.02
     },
     {
       "ticker": "PAM",
@@ -47,8 +47,8 @@
       "shares": 6.2383,
       "invested": 500.0,
       "exit_date_target": "2026-08-29",
-      "current_price": 80.9,
-      "unrealized_pnl": 4.68
+      "current_price": 80.85,
+      "unrealized_pnl": 4.37
     },
     {
       "ticker": "NPB",
@@ -59,8 +59,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 17.13,
-      "unrealized_pnl": 5.85
+      "current_price": 17.07,
+      "unrealized_pnl": -1.17
     }
   ],
   "closed": [
