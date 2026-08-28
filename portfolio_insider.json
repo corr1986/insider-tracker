@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 10806.6,
+  "cash": 12606.6,
   "positions": [
     {
       "ticker": "LUMN",
@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.01,
-      "unrealized_pnl": -32.21
+      "current_price": 5.9779,
+      "unrealized_pnl": -37.38
     },
     {
       "ticker": "AMRZ",
@@ -23,20 +23,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 44.3,
-      "unrealized_pnl": -106.72
-    },
-    {
-      "ticker": "COE",
-      "yf_ticker": "COE",
-      "score": 15,
-      "signal_date": "2026-08-24",
-      "entry_price": 17.25,
-      "shares": 115.942,
-      "invested": 2000.0,
-      "exit_date_target": "2026-09-23",
-      "current_price": 15.9463,
-      "unrealized_pnl": -151.15
+      "current_price": 44.38,
+      "unrealized_pnl": -103.31
     },
     {
       "ticker": "TENX",
@@ -47,8 +35,8 @@
       "shares": 240.3846,
       "invested": 500.0,
       "exit_date_target": "2026-09-01",
-      "current_price": 2.17,
-      "unrealized_pnl": 21.63
+      "current_price": 2.16,
+      "unrealized_pnl": 19.23
     },
     {
       "ticker": "PAM",
@@ -59,8 +47,8 @@
       "shares": 6.2383,
       "invested": 500.0,
       "exit_date_target": "2026-08-29",
-      "current_price": 81.28,
-      "unrealized_pnl": 7.05
+      "current_price": 80.9,
+      "unrealized_pnl": 4.68
     },
     {
       "ticker": "NPB",
@@ -71,8 +59,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 17.0232,
-      "unrealized_pnl": -6.65
+      "current_price": 17.13,
+      "unrealized_pnl": 5.85
     }
   ],
   "closed": [
@@ -412,6 +400,19 @@
       "pnl": -5.16,
       "pnl_pct": -1.03,
       "closed_by": "expiry"
+    },
+    {
+      "ticker": "COE",
+      "score": 15,
+      "signal_date": "2026-08-24",
+      "entry_price": 17.25,
+      "shares": 115.942,
+      "invested": 2000.0,
+      "exit_price": 15.525,
+      "exit_date": "2026-08-28",
+      "pnl": -200.0,
+      "pnl_pct": -10.0,
+      "closed_by": "stop_loss"
     }
   ]
 }
