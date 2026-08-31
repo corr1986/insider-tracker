@@ -1,5 +1,5 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 01/09/2026 00:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 01/09/2026 01:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
@@ -7,7 +7,7 @@
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $12,548 |
 | Valore posizioni | $5,845 |
-| **Equity totale** | **$18,393** |
+| **Equity totale** | **$18,394** |
 | P&L non realizzato | $155 |
 | P&L realizzato | $1,452 |
 | Trade chiusi | 30 (15W / 15L) |
@@ -16,10 +16,10 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.55 | +1.64% | +$16 | $1,000 | 07/09 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $16.96 | -0.70% | $14 | $2,000 | 26/09 |
-| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $44.01 | -5.96% | $119 | $2,000 | 13/09 |
-| **LUMN** | 🟢 11 | $6.21 | 161.0 | $5.97 | -3.86% | $39 | $1,000 | 06/09 |
+| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.59 | +1.85% | +$19 | $1,000 | 07/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $16.93 | -0.88% | $18 | $2,000 | 26/09 |
+| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $43.92 | -6.15% | $123 | $2,000 | 13/09 |
+| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.01 | -3.26% | $33 | $1,000 | 06/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
