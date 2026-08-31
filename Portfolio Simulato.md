@@ -1,30 +1,30 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 31/08/2026 21:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 31/08/2026 22:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $12,108 |
-| Valore posizioni | $5,389 |
-| **Equity totale** | **$17,498** |
-| P&L non realizzato | $111 |
-| P&L realizzato | $1,392 |
-| Trade chiusi | 29 (15W / 14L) |
-| Win Rate | 52% |
+| Cash disponibile | $12,548 |
+| Valore posizioni | $5,835 |
+| **Equity totale** | **$18,383** |
+| P&L non realizzato | $165 |
+| P&L realizzato | $1,452 |
+| Trade chiusi | 30 (15W / 15L) |
+| Win Rate | 50% |
 
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **KLAR** | 🟢 11 | — | — | $14.20 | — | — | $1,000 | 07/09 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.04 | -0.23% | $5 | $2,000 | 26/09 |
-| **TENX** | 🟡 10 | $2.08 | 240.4 | $2.13 | +2.40% | +$12 | $500 | 01/09 |
-| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $44.67 | -4.55% | $91 | $2,000 | 13/09 |
-| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.04 | -2.74% | $27 | $1,000 | 06/09 |
+| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.40 | +0.56% | +$6 | $1,000 | 07/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $16.91 | -1.00% | $20 | $2,000 | 26/09 |
+| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $44.00 | -5.98% | $120 | $2,000 | 13/09 |
+| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.01 | -3.14% | $31 | $1,000 | 06/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 31/08 | TENX | 10 | $2.08 | $1.83 | $500 | $60 | -12.0% |
 | 31/08 | PAM | 8 | $80.15 | $80.45 | $500 | +$2 | +0.4% |
 | 28/08 | COE | 15 | $17.25 | $15.53 | $2,000 | $200 | -10.0% |
 | 24/08 | PAM | 9 | $80.35 | $79.52 | $500 | $5 | -1.0% |
