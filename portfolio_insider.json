@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12548.37,
+  "cash": 12048.37,
   "positions": [
     {
       "ticker": "LUMN",
@@ -49,6 +49,18 @@
       "exit_date_target": "2026-09-07",
       "current_price": 14.69,
       "unrealized_pnl": 25.84
+    },
+    {
+      "ticker": "PAM",
+      "yf_ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-09-01",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-09-08",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
