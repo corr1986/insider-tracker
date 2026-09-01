@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.36,
-      "unrealized_pnl": 24.15
+      "current_price": 6.324,
+      "unrealized_pnl": 18.36
     },
     {
       "ticker": "AMRZ",
@@ -23,8 +23,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 43.0,
-      "unrealized_pnl": -162.28
+      "current_price": 43.125,
+      "unrealized_pnl": -156.94
     },
     {
       "ticker": "NPB",
@@ -35,8 +35,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 16.66,
-      "unrealized_pnl": -49.18
+      "current_price": 16.67,
+      "unrealized_pnl": -48.01
     },
     {
       "ticker": "KLAR",
@@ -47,8 +47,8 @@
       "shares": 69.8324,
       "invested": 1000.0,
       "exit_date_target": "2026-09-07",
-      "current_price": 14.315,
-      "unrealized_pnl": -0.35
+      "current_price": 14.225,
+      "unrealized_pnl": -6.63
     },
     {
       "ticker": "PAM",
@@ -59,8 +59,8 @@
       "shares": 6.0731,
       "invested": 500.0,
       "exit_date_target": "2026-09-08",
-      "current_price": 84.37,
-      "unrealized_pnl": 12.39
+      "current_price": 83.96,
+      "unrealized_pnl": 9.9
     }
   ],
   "closed": [
