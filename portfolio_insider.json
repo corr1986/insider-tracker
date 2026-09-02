@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12048.37,
+  "cash": 11548.37,
   "positions": [
     {
       "ticker": "LUMN",
@@ -61,6 +61,18 @@
       "exit_date_target": "2026-09-08",
       "current_price": 84.08,
       "unrealized_pnl": 10.63
+    },
+    {
+      "ticker": "AUGO",
+      "yf_ticker": "AUGO",
+      "score": 8,
+      "signal_date": "2026-09-02",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-09-09",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
