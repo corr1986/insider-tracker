@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 04/09/2026 03:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 04/09/2026 04:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $10,548 |
-| Valore posizioni | $8,057 |
-| **Equity totale** | **$18,605** |
-| P&L non realizzato | +$57 |
+| Valore posizioni | $8,064 |
+| **Equity totale** | **$18,613** |
+| P&L non realizzato | +$64 |
 | P&L realizzato | $1,452 |
 | Trade chiusi | 30 (15W / 15L) |
 | Win Rate | 50% |
@@ -16,13 +16,13 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **NPB** | 🟢 11 | $17.13 | 58.4 | $17.27 | +0.85% | +$8 | $1,000 | 06/09 |
-| **AUGO** | 🟡 8 | $83.00 | 6.0 | $88.17 | +6.23% | +$31 | $500 | 09/09 |
-| **PAM** | 🟡 8 | $82.33 | 6.1 | $84.48 | +2.61% | +$13 | $500 | 08/09 |
-| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.52 | +1.40% | +$14 | $1,000 | 07/09 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.27 | +1.14% | +$23 | $2,000 | 26/09 |
-| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $43.78 | -6.44% | $129 | $2,000 | 13/09 |
-| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.81 | +9.63% | +$96 | $1,000 | 06/09 |
+| **NPB** | 🟢 11 | $17.13 | 58.4 | $17.21 | +0.47% | +$5 | $1,000 | 06/09 |
+| **AUGO** | 🟡 8 | $83.00 | 6.0 | $88.11 | +6.16% | +$31 | $500 | 09/09 |
+| **PAM** | 🟡 8 | $82.33 | 6.1 | $84.74 | +2.93% | +$15 | $500 | 08/09 |
+| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.40 | +0.56% | +$6 | $1,000 | 07/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.21 | +0.76% | +$15 | $2,000 | 26/09 |
+| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $44.01 | -5.96% | $119 | $2,000 | 13/09 |
+| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.91 | +11.27% | +$113 | $1,000 | 06/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
