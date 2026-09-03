@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 03/09/2026 22:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 03/09/2026 23:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $10,548 |
-| Valore posizioni | $8,009 |
-| **Equity totale** | **$18,558** |
-| P&L non realizzato | +$9 |
+| Valore posizioni | $7,991 |
+| **Equity totale** | **$18,539** |
+| P&L non realizzato | $9 |
 | P&L realizzato | $1,452 |
 | Trade chiusi | 30 (15W / 15L) |
 | Win Rate | 50% |
@@ -16,13 +16,13 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **NPB** | 🟢 11 | $17.13 | 58.4 | $17.23 | +0.58% | +$6 | $1,000 | 06/09 |
-| **AUGO** | 🟡 8 | $83.00 | 6.0 | $87.52 | +5.45% | +$27 | $500 | 09/09 |
-| **PAM** | 🟡 8 | $82.33 | 6.1 | $86.43 | +4.98% | +$25 | $500 | 08/09 |
-| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.54 | +1.50% | +$15 | $1,000 | 07/09 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.23 | +0.88% | +$18 | $2,000 | 26/09 |
-| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $42.84 | -8.46% | $169 | $2,000 | 13/09 |
-| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.75 | +8.78% | +$88 | $1,000 | 06/09 |
+| **NPB** | 🟢 11 | $17.13 | 58.4 | $17.16 | +0.18% | +$2 | $1,000 | 06/09 |
+| **AUGO** | 🟡 8 | $83.00 | 6.0 | $88.11 | +6.16% | +$31 | $500 | 09/09 |
+| **PAM** | 🟡 8 | $82.33 | 6.1 | $84.82 | +3.02% | +$15 | $500 | 08/09 |
+| **KLAR** | 🟢 11 | $14.32 | 69.8 | $14.51 | +1.34% | +$13 | $1,000 | 07/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.16 | +0.47% | +$9 | $2,000 | 26/09 |
+| **AMRZ** | 🔥 20 | $46.80 | 42.7 | $43.02 | -8.08% | $162 | $2,000 | 13/09 |
+| **LUMN** | 🟢 11 | $6.21 | 161.0 | $6.72 | +8.21% | +$82 | $1,000 | 06/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
