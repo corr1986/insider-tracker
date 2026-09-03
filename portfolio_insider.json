@@ -11,8 +11,8 @@
       "shares": 161.0306,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 6.72,
-      "unrealized_pnl": 82.13
+      "current_price": 6.635,
+      "unrealized_pnl": 68.44
     },
     {
       "ticker": "AMRZ",
@@ -23,8 +23,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 43.015,
-      "unrealized_pnl": -161.64
+      "current_price": 43.12,
+      "unrealized_pnl": -157.15
     },
     {
       "ticker": "NPB",
@@ -35,8 +35,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 17.16,
-      "unrealized_pnl": 9.37
+      "current_price": 17.2,
+      "unrealized_pnl": 14.05
     },
     {
       "ticker": "KLAR",
@@ -47,8 +47,8 @@
       "shares": 69.8324,
       "invested": 1000.0,
       "exit_date_target": "2026-09-07",
-      "current_price": 14.5121,
-      "unrealized_pnl": 13.41
+      "current_price": 14.55,
+      "unrealized_pnl": 16.06
     },
     {
       "ticker": "PAM",
@@ -59,8 +59,8 @@
       "shares": 6.0731,
       "invested": 500.0,
       "exit_date_target": "2026-09-08",
-      "current_price": 84.82,
-      "unrealized_pnl": 15.12
+      "current_price": 84.6,
+      "unrealized_pnl": 13.79
     },
     {
       "ticker": "AUGO",
@@ -71,8 +71,8 @@
       "shares": 6.0241,
       "invested": 500.0,
       "exit_date_target": "2026-09-09",
-      "current_price": 88.11,
-      "unrealized_pnl": 30.78
+      "current_price": 87.8,
+      "unrealized_pnl": 28.92
     },
     {
       "ticker": "NPB",
@@ -83,8 +83,8 @@
       "shares": 58.3771,
       "invested": 1000.0,
       "exit_date_target": "2026-09-06",
-      "current_price": 17.16,
-      "unrealized_pnl": 1.75
+      "current_price": 17.2,
+      "unrealized_pnl": 4.09
     }
   ],
   "closed": [
