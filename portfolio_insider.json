@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 10048.37,
+  "cash": 13153.59,
   "positions": [
-    {
-      "ticker": "LUMN",
-      "yf_ticker": "LUMN",
-      "score": 11,
-      "signal_date": "2026-08-07",
-      "entry_price": 6.21,
-      "shares": 161.0306,
-      "invested": 1000.0,
-      "exit_date_target": "2026-09-06",
-      "current_price": 6.77,
-      "unrealized_pnl": 90.18
-    },
     {
       "ticker": "AMRZ",
       "yf_ticker": "AMRZ",
@@ -37,18 +25,6 @@
       "exit_date_target": "2026-09-26",
       "current_price": 17.28,
       "unrealized_pnl": 23.42
-    },
-    {
-      "ticker": "KLAR",
-      "yf_ticker": "KLAR",
-      "score": 11,
-      "signal_date": "2026-08-31",
-      "entry_price": 14.32,
-      "shares": 69.8324,
-      "invested": 1000.0,
-      "exit_date_target": "2026-09-07",
-      "current_price": 14.41,
-      "unrealized_pnl": 6.28
     },
     {
       "ticker": "PAM",
@@ -75,18 +51,6 @@
       "unrealized_pnl": 11.51
     },
     {
-      "ticker": "NPB",
-      "yf_ticker": "NPB",
-      "score": 11,
-      "signal_date": "2026-09-03",
-      "entry_price": 17.13,
-      "shares": 58.3771,
-      "invested": 1000.0,
-      "exit_date_target": "2026-09-06",
-      "current_price": 17.28,
-      "unrealized_pnl": 8.76
-    },
-    {
       "ticker": "PFLEX",
       "yf_ticker": "PFLEX",
       "score": 8,
@@ -95,7 +59,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-10-07",
-      "current_price": null,
+      "current_price": 6.83,
       "unrealized_pnl": null
     }
   ],
@@ -475,6 +439,45 @@
       "pnl": -60.1,
       "pnl_pct": -12.02,
       "closed_by": "stop_loss"
+    },
+    {
+      "ticker": "LUMN",
+      "score": 11,
+      "signal_date": "2026-08-07",
+      "entry_price": 6.21,
+      "shares": 161.0306,
+      "invested": 1000.0,
+      "exit_price": 6.77,
+      "exit_date": "2026-09-07",
+      "pnl": 90.18,
+      "pnl_pct": 9.02,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "KLAR",
+      "score": 11,
+      "signal_date": "2026-08-31",
+      "entry_price": 14.32,
+      "shares": 69.8324,
+      "invested": 1000.0,
+      "exit_price": 14.41,
+      "exit_date": "2026-09-07",
+      "pnl": 6.28,
+      "pnl_pct": 0.63,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "NPB",
+      "score": 11,
+      "signal_date": "2026-09-03",
+      "entry_price": 17.13,
+      "shares": 58.3771,
+      "invested": 1000.0,
+      "exit_price": 17.28,
+      "exit_date": "2026-09-07",
+      "pnl": 8.76,
+      "pnl_pct": 0.88,
+      "closed_by": "expiry"
     }
   ]
 }
