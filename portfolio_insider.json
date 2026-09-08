@@ -11,8 +11,8 @@
       "shares": 42.7376,
       "invested": 2000.0,
       "exit_date_target": "2026-09-13",
-      "current_price": 43.82,
-      "unrealized_pnl": -127.24
+      "current_price": 42.91,
+      "unrealized_pnl": -166.13
     },
     {
       "ticker": "NPB",
@@ -23,8 +23,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 17.28,
-      "unrealized_pnl": 23.42
+      "current_price": 17.4275,
+      "unrealized_pnl": 40.69
     },
     {
       "ticker": "AUGO",
@@ -35,8 +35,8 @@
       "shares": 6.0241,
       "invested": 500.0,
       "exit_date_target": "2026-09-09",
-      "current_price": 84.91,
-      "unrealized_pnl": 11.51
+      "current_price": 85.89,
+      "unrealized_pnl": 17.41
     },
     {
       "ticker": "PFLEX",
