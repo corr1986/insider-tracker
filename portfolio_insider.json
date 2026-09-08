@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12653.59,
+  "cash": 13168.59,
   "positions": [
     {
       "ticker": "AMRZ",
@@ -25,18 +25,6 @@
       "exit_date_target": "2026-09-26",
       "current_price": 17.28,
       "unrealized_pnl": 23.42
-    },
-    {
-      "ticker": "PAM",
-      "yf_ticker": "PAM",
-      "score": 8,
-      "signal_date": "2026-09-01",
-      "entry_price": 82.33,
-      "shares": 6.0731,
-      "invested": 500.0,
-      "exit_date_target": "2026-09-08",
-      "current_price": 84.8,
-      "unrealized_pnl": 15.0
     },
     {
       "ticker": "AUGO",
@@ -71,7 +59,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": null,
+      "current_price": 6.83,
       "unrealized_pnl": null
     }
   ],
@@ -489,6 +477,19 @@
       "exit_date": "2026-09-07",
       "pnl": 8.76,
       "pnl_pct": 0.88,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-09-01",
+      "entry_price": 82.33,
+      "shares": 6.0731,
+      "invested": 500.0,
+      "exit_price": 84.8,
+      "exit_date": "2026-09-08",
+      "pnl": 15.0,
+      "pnl_pct": 3.0,
       "closed_by": "expiry"
     }
   ]
