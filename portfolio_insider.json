@@ -11,8 +11,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 17.0,
-      "unrealized_pnl": -9.37
+      "current_price": 17.125,
+      "unrealized_pnl": 5.27
     },
     {
       "ticker": "PFLEX",
@@ -47,20 +47,20 @@
       "shares": 6.8446,
       "invested": 500.0,
       "exit_date_target": "2026-09-16",
-      "current_price": 72.56,
-      "unrealized_pnl": -3.35
+      "current_price": 71.9,
+      "unrealized_pnl": -7.87
     },
     {
       "ticker": "UPST",
       "yf_ticker": "UPST",
       "score": 11,
       "signal_date": "2026-09-11",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 26.22,
+      "shares": 38.1388,
       "invested": 1000.0,
       "exit_date_target": "2026-09-18",
-      "current_price": 25.1,
-      "unrealized_pnl": null
+      "current_price": 25.62,
+      "unrealized_pnl": -22.88
     }
   ],
   "closed": [
