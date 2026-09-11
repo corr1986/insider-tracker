@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 14975.35,
+  "cash": 13975.35,
   "positions": [
     {
       "ticker": "NPB",
@@ -49,6 +49,18 @@
       "exit_date_target": "2026-09-16",
       "current_price": 72.56,
       "unrealized_pnl": -3.35
+    },
+    {
+      "ticker": "UPST",
+      "yf_ticker": "UPST",
+      "score": 11,
+      "signal_date": "2026-09-11",
+      "entry_price": null,
+      "shares": null,
+      "invested": 1000.0,
+      "exit_date_target": "2026-09-18",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
