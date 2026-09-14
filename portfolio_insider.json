@@ -23,8 +23,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-07",
-      "current_price": 6.77,
-      "unrealized_pnl": -4.39
+      "current_price": 6.76,
+      "unrealized_pnl": -5.12
     },
     {
       "ticker": "PFLEX",
@@ -35,8 +35,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 6.77,
-      "unrealized_pnl": -4.39
+      "current_price": 6.76,
+      "unrealized_pnl": -5.12
     },
     {
       "ticker": "UBER",
@@ -71,7 +71,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-09-17",
-      "current_price": null,
+      "current_price": 5.45,
       "unrealized_pnl": null
     }
   ],
