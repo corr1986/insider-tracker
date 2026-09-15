@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 15/09/2026 22:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 15/09/2026 23:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $13,475 |
-| Valore posizioni | $4,945 |
-| **Equity totale** | **$18,421** |
-| P&L non realizzato | $55 |
+| Valore posizioni | $4,931 |
+| **Equity totale** | **$18,407** |
+| P&L non realizzato | $69 |
 | P&L realizzato | $1,525 |
 | Trade chiusi | 36 (20W / 16L) |
 | Win Rate | 56% |
@@ -16,12 +16,12 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **ANGX** | 🟡 9 | $5.57 | 89.8 | $5.47 | -1.71% | $9 | $500 | 17/09 |
-| **UPST** | 🟢 11 | $26.22 | 38.1 | $25.54 | -2.61% | $26 | $1,000 | 18/09 |
-| **UBER** | 🟡 8 | $73.05 | 6.8 | $71.56 | -2.04% | $10 | $500 | 16/09 |
+| **ANGX** | 🟡 9 | $5.57 | 89.8 | $5.50 | -1.26% | $6 | $500 | 17/09 |
+| **UPST** | 🟢 11 | $26.22 | 38.1 | $25.37 | -3.24% | $32 | $1,000 | 18/09 |
+| **UBER** | 🟡 8 | $73.05 | 6.8 | $71.53 | -2.08% | $10 | $500 | 16/09 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.74 | -1.32% | $7 | $500 | 08/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.74 | -1.32% | $7 | $500 | 07/10 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.11 | +0.18% | +$4 | $2,000 | 26/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $17.02 | -0.32% | $6 | $2,000 | 26/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
