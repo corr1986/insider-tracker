@@ -11,8 +11,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 16.945,
-      "unrealized_pnl": -15.81
+      "current_price": 16.9,
+      "unrealized_pnl": -21.08
     },
     {
       "ticker": "PFLEX",
@@ -47,8 +47,8 @@
       "shares": 38.1388,
       "invested": 1000.0,
       "exit_date_target": "2026-09-18",
-      "current_price": 25.27,
-      "unrealized_pnl": -36.23
+      "current_price": 25.34,
+      "unrealized_pnl": -33.56
     },
     {
       "ticker": "ANGX",
@@ -59,8 +59,8 @@
       "shares": 89.7666,
       "invested": 500.0,
       "exit_date_target": "2026-09-17",
-      "current_price": 5.265,
-      "unrealized_pnl": -27.38
+      "current_price": 5.29,
+      "unrealized_pnl": -25.13
     }
   ],
   "closed": [
