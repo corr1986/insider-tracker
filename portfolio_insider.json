@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13464.26,
+  "cash": 13940.02,
   "positions": [
     {
       "ticker": "NPB",
@@ -23,8 +23,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-07",
-      "current_price": 6.73,
-      "unrealized_pnl": -7.32
+      "current_price": 6.72,
+      "unrealized_pnl": -8.05
     },
     {
       "ticker": "PFLEX",
@@ -35,8 +35,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 6.73,
-      "unrealized_pnl": -7.32
+      "current_price": 6.72,
+      "unrealized_pnl": -8.05
     },
     {
       "ticker": "UPST",
@@ -51,18 +51,6 @@
       "unrealized_pnl": -52.25
     },
     {
-      "ticker": "ANGX",
-      "yf_ticker": "ANGX",
-      "score": 9,
-      "signal_date": "2026-09-14",
-      "entry_price": 5.57,
-      "shares": 89.7666,
-      "invested": 500.0,
-      "exit_date_target": "2026-09-17",
-      "current_price": 5.3,
-      "unrealized_pnl": -24.24
-    },
-    {
       "ticker": "SBLK",
       "yf_ticker": "SBLK",
       "score": 9,
@@ -71,7 +59,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-09-24",
-      "current_price": null,
+      "current_price": 30.87,
       "unrealized_pnl": null
     }
   ],
@@ -541,6 +529,19 @@
       "exit_date": "2026-09-16",
       "pnl": -11.09,
       "pnl_pct": -2.22,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "ANGX",
+      "score": 9,
+      "signal_date": "2026-09-14",
+      "entry_price": 5.57,
+      "shares": 89.7666,
+      "invested": 500.0,
+      "exit_price": 5.3,
+      "exit_date": "2026-09-17",
+      "pnl": -24.24,
+      "pnl_pct": -4.85,
       "closed_by": "expiry"
     }
   ]
