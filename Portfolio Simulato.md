@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 18/09/2026 00:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 18/09/2026 01:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $13,940 |
-| Valore posizioni | $4,421 |
-| **Equity totale** | **$18,361** |
-| P&L non realizzato | $79 |
+| Valore posizioni | $4,429 |
+| **Equity totale** | **$18,369** |
+| P&L non realizzato | $71 |
 | P&L realizzato | $1,560 |
 | Trade chiusi | 38 (20W / 18L) |
 | Win Rate | 53% |
@@ -16,11 +16,11 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **SBLK** | 🟡 9 | $31.29 | 16.0 | $31.95 | +2.11% | +$11 | $500 | 24/09 |
-| **UPST** | 🟢 11 | $26.22 | 38.1 | $24.97 | -4.77% | $48 | $1,000 | 18/09 |
+| **SBLK** | 🟡 9 | $31.29 | 16.0 | $32.03 | +2.36% | +$12 | $500 | 24/09 |
+| **UPST** | 🟢 11 | $26.22 | 38.1 | $25.04 | -4.52% | $45 | $1,000 | 18/09 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.72 | -1.61% | $8 | $500 | 08/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.72 | -1.61% | $8 | $500 | 07/10 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $16.86 | -1.29% | $26 | $2,000 | 26/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $16.90 | -1.05% | $21 | $2,000 | 26/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
