@@ -11,8 +11,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 16.69,
-      "unrealized_pnl": -45.67
+      "current_price": 16.63,
+      "unrealized_pnl": -52.69
     },
     {
       "ticker": "PFLEX",
@@ -47,20 +47,20 @@
       "shares": 15.9795,
       "invested": 500.0,
       "exit_date_target": "2026-09-24",
-      "current_price": 31.75,
-      "unrealized_pnl": 7.35
+      "current_price": 32.1,
+      "unrealized_pnl": 12.94
     },
     {
       "ticker": "SBLK",
       "yf_ticker": "SBLK",
       "score": 18,
       "signal_date": "2026-09-18",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 32.05,
+      "shares": 62.4025,
       "invested": 2000.0,
       "exit_date_target": "2026-09-25",
-      "current_price": 31.75,
-      "unrealized_pnl": null
+      "current_price": 32.1,
+      "unrealized_pnl": 3.12
     }
   ],
   "closed": [
