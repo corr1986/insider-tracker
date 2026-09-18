@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13940.02,
+  "cash": 11940.02,
   "positions": [
     {
       "ticker": "NPB",
@@ -61,6 +61,18 @@
       "exit_date_target": "2026-09-24",
       "current_price": 31.75,
       "unrealized_pnl": 7.35
+    },
+    {
+      "ticker": "SBLK",
+      "yf_ticker": "SBLK",
+      "score": 18,
+      "signal_date": "2026-09-18",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-09-25",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
