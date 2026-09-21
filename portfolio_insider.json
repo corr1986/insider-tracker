@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12384.72,
+  "cash": 12827.92,
   "positions": [
     {
       "ticker": "NPB",
@@ -11,8 +11,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 16.5,
-      "unrealized_pnl": -67.92
+      "current_price": 16.43,
+      "unrealized_pnl": -76.11
     },
     {
       "ticker": "PFLEX",
@@ -47,8 +47,8 @@
       "shares": 15.9795,
       "invested": 500.0,
       "exit_date_target": "2026-09-24",
-      "current_price": 31.73,
-      "unrealized_pnl": 7.03
+      "current_price": 31.75,
+      "unrealized_pnl": 7.35
     },
     {
       "ticker": "SBLK",
@@ -59,20 +59,8 @@
       "shares": 62.4025,
       "invested": 2000.0,
       "exit_date_target": "2026-09-25",
-      "current_price": 31.73,
-      "unrealized_pnl": -19.97
-    },
-    {
-      "ticker": "CV",
-      "yf_ticker": "CV",
-      "score": 8,
-      "signal_date": "2026-09-21",
-      "entry_price": 6.91,
-      "shares": 72.3589,
-      "invested": 500.0,
-      "exit_date_target": "2026-09-28",
-      "current_price": 6.24,
-      "unrealized_pnl": -48.48
+      "current_price": 31.75,
+      "unrealized_pnl": -18.72
     }
   ],
   "closed": [
@@ -568,6 +556,19 @@
       "pnl": -55.3,
       "pnl_pct": -5.53,
       "closed_by": "expiry"
+    },
+    {
+      "ticker": "CV",
+      "score": 8,
+      "signal_date": "2026-09-21",
+      "entry_price": 6.91,
+      "shares": 72.3589,
+      "invested": 500.0,
+      "exit_price": 6.125,
+      "exit_date": "2026-09-21",
+      "pnl": -56.8,
+      "pnl_pct": -11.36,
+      "closed_by": "stop_loss"
     }
   ]
 }
