@@ -1,5 +1,5 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 24/09/2026 02:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 24/09/2026 03:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
@@ -17,11 +17,11 @@
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
 | **GRAB** | 🔥 15 | $3.04 | 656.8 | $3.17 | +3.94% | +$79 | $2,000 | 29/09 |
-| **SBLK** | 🔥 18 | $32.05 | 62.4 | $30.41 | -5.12% | $102 | $2,000 | 25/09 |
-| **SBLK** | 🟡 9 | $31.29 | 16.0 | $30.41 | -2.81% | $14 | $500 | 24/09 |
+| **SBLK** | 🔥 18 | $32.05 | 62.4 | $30.37 | -5.24% | $105 | $2,000 | 25/09 |
+| **SBLK** | 🟡 9 | $31.29 | 16.0 | $30.37 | -2.94% | $15 | $500 | 24/09 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.70 | -1.90% | $10 | $500 | 08/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.70 | -1.90% | $10 | $500 | 07/10 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $15.47 | -9.43% | $189 | $2,000 | 26/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $15.50 | -9.25% | $185 | $2,000 | 26/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
