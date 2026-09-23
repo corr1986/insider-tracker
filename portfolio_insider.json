@@ -11,8 +11,8 @@
       "shares": 117.096,
       "invested": 2000.0,
       "exit_date_target": "2026-09-26",
-      "current_price": 15.72,
-      "unrealized_pnl": -159.25
+      "current_price": 15.6251,
+      "unrealized_pnl": -170.36
     },
     {
       "ticker": "PFLEX",
@@ -47,8 +47,8 @@
       "shares": 15.9795,
       "invested": 500.0,
       "exit_date_target": "2026-09-24",
-      "current_price": 30.3739,
-      "unrealized_pnl": -14.64
+      "current_price": 30.52,
+      "unrealized_pnl": -12.3
     },
     {
       "ticker": "SBLK",
@@ -59,8 +59,8 @@
       "shares": 62.4025,
       "invested": 2000.0,
       "exit_date_target": "2026-09-25",
-      "current_price": 30.3739,
-      "unrealized_pnl": -104.59
+      "current_price": 30.52,
+      "unrealized_pnl": -95.48
     },
     {
       "ticker": "GRAB",
@@ -71,8 +71,8 @@
       "shares": 656.8144,
       "invested": 2000.0,
       "exit_date_target": "2026-09-29",
-      "current_price": 3.165,
-      "unrealized_pnl": 78.82
+      "current_price": 3.175,
+      "unrealized_pnl": 85.39
     }
   ],
   "closed": [
