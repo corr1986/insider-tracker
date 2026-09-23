@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 24/09/2026 00:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 24/09/2026 01:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $10,828 |
-| Valore posizioni | $7,288 |
-| **Equity totale** | **$18,116** |
-| P&L non realizzato | $212 |
+| Valore posizioni | $7,275 |
+| **Equity totale** | **$18,103** |
+| P&L non realizzato | $225 |
 | P&L realizzato | $1,672 |
 | Trade chiusi | 40 (20W / 20L) |
 | Win Rate | 50% |
@@ -16,12 +16,12 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **GRAB** | 🔥 15 | $3.04 | 656.8 | $3.17 | +4.27% | +$85 | $2,000 | 29/09 |
-| **SBLK** | 🔥 18 | $32.05 | 62.4 | $30.52 | -4.77% | $95 | $2,000 | 25/09 |
-| **SBLK** | 🟡 9 | $31.29 | 16.0 | $30.52 | -2.46% | $12 | $500 | 24/09 |
+| **GRAB** | 🔥 15 | $3.04 | 656.8 | $3.17 | +3.94% | +$79 | $2,000 | 29/09 |
+| **SBLK** | 🔥 18 | $32.05 | 62.4 | $30.54 | -4.71% | $94 | $2,000 | 25/09 |
+| **SBLK** | 🟡 9 | $31.29 | 16.0 | $30.54 | -2.40% | $12 | $500 | 24/09 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.70 | -1.90% | $10 | $500 | 08/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.70 | -1.90% | $10 | $500 | 07/10 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $15.63 | -8.52% | $170 | $2,000 | 26/09 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $15.55 | -8.93% | $179 | $2,000 | 26/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
