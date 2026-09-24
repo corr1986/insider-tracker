@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 10813.7,
+  "cash": 12610.54,
   "positions": [
-    {
-      "ticker": "NPB",
-      "yf_ticker": "NPB",
-      "score": 15,
-      "signal_date": "2026-08-27",
-      "entry_price": 17.08,
-      "shares": 117.096,
-      "invested": 2000.0,
-      "exit_date_target": "2026-09-26",
-      "current_price": 15.53,
-      "unrealized_pnl": -181.5
-    },
     {
       "ticker": "PFLEX",
       "yf_ticker": "PFLEX",
@@ -47,8 +35,8 @@
       "shares": 62.4025,
       "invested": 2000.0,
       "exit_date_target": "2026-09-25",
-      "current_price": 30.4,
-      "unrealized_pnl": -102.96
+      "current_price": 30.32,
+      "unrealized_pnl": -107.96
     },
     {
       "ticker": "GRAB",
@@ -59,20 +47,20 @@
       "shares": 656.8144,
       "invested": 2000.0,
       "exit_date_target": "2026-09-29",
-      "current_price": 3.2,
-      "unrealized_pnl": 101.81
+      "current_price": 3.17,
+      "unrealized_pnl": 82.1
     },
     {
       "ticker": "OFIX",
       "yf_ticker": "OFIX",
       "score": 9,
       "signal_date": "2026-09-24",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 9.23,
+      "shares": 54.1712,
       "invested": 500.0,
       "exit_date_target": "2026-09-27",
-      "current_price": 9.18,
-      "unrealized_pnl": null
+      "current_price": 9.09,
+      "unrealized_pnl": -7.58
     }
   ],
   "closed": [
@@ -594,6 +582,19 @@
       "pnl": -14.22,
       "pnl_pct": -2.84,
       "closed_by": "expiry"
+    },
+    {
+      "ticker": "NPB",
+      "score": 15,
+      "signal_date": "2026-08-27",
+      "entry_price": 17.08,
+      "shares": 117.096,
+      "invested": 2000.0,
+      "exit_price": 15.345,
+      "exit_date": "2026-09-24",
+      "pnl": -203.16,
+      "pnl_pct": -10.16,
+      "closed_by": "stop_loss"
     }
   ]
 }
