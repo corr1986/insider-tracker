@@ -35,8 +35,8 @@
       "shares": 62.4025,
       "invested": 2000.0,
       "exit_date_target": "2026-09-25",
-      "current_price": 30.58,
-      "unrealized_pnl": -91.73
+      "current_price": 30.2,
+      "unrealized_pnl": -115.44
     },
     {
       "ticker": "GRAB",
@@ -47,8 +47,8 @@
       "shares": 656.8144,
       "invested": 2000.0,
       "exit_date_target": "2026-09-29",
-      "current_price": 3.151,
-      "unrealized_pnl": 69.62
+      "current_price": 3.135,
+      "unrealized_pnl": 59.11
     },
     {
       "ticker": "OFIX",
@@ -59,8 +59,8 @@
       "shares": 54.1712,
       "invested": 500.0,
       "exit_date_target": "2026-09-27",
-      "current_price": 9.05,
-      "unrealized_pnl": -9.75
+      "current_price": 9.227,
+      "unrealized_pnl": -0.16
     }
   ],
   "closed": [
