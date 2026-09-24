@@ -1,31 +1,32 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 24/09/2026 03:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 24/09/2026 15:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $10,828 |
-| Valore posizioni | $7,255 |
-| **Equity totale** | **$18,083** |
-| P&L non realizzato | $245 |
-| P&L realizzato | $1,672 |
-| Trade chiusi | 40 (20W / 20L) |
-| Win Rate | 50% |
+| Cash disponibile | $10,814 |
+| Valore posizioni | $6,801 |
+| **Equity totale** | **$17,615** |
+| P&L non realizzato | $199 |
+| P&L realizzato | $1,686 |
+| Trade chiusi | 41 (20W / 21L) |
+| Win Rate | 49% |
 
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **GRAB** | 🔥 15 | $3.04 | 656.8 | $3.17 | +3.94% | +$79 | $2,000 | 29/09 |
-| **SBLK** | 🔥 18 | $32.05 | 62.4 | $30.37 | -5.24% | $105 | $2,000 | 25/09 |
-| **SBLK** | 🟡 9 | $31.29 | 16.0 | $30.37 | -2.94% | $15 | $500 | 24/09 |
-| **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.70 | -1.90% | $10 | $500 | 08/10 |
-| **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.70 | -1.90% | $10 | $500 | 07/10 |
-| **NPB** | 🔥 15 | $17.08 | 117.1 | $15.50 | -9.25% | $185 | $2,000 | 26/09 |
+| **OFIX** | 🟡 9 | — | — | $9.18 | — | — | $500 | 27/09 |
+| **GRAB** | 🔥 15 | $3.04 | 656.8 | $3.20 | +5.09% | +$102 | $2,000 | 29/09 |
+| **SBLK** | 🔥 18 | $32.05 | 62.4 | $30.40 | -5.15% | $103 | $2,000 | 25/09 |
+| **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.72 | -1.61% | $8 | $500 | 08/10 |
+| **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.72 | -1.61% | $8 | $500 | 07/10 |
+| **NPB** | 🔥 15 | $17.08 | 117.1 | $15.53 | -9.07% | $182 | $2,000 | 26/09 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 24/09 | SBLK | 9 | $31.29 | $30.40 | $500 | $14 | -2.8% |
 | 21/09 | CV | 8 | $6.91 | $6.12 | $500 | $57 | -11.4% |
 | 18/09 | UPST | 11 | $26.22 | $24.77 | $1,000 | $55 | -5.5% |
 | 17/09 | ANGX | 9 | $5.57 | $5.30 | $500 | $24 | -4.8% |
