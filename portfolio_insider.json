@@ -35,8 +35,8 @@
       "shares": 656.8144,
       "invested": 2000.0,
       "exit_date_target": "2026-09-29",
-      "current_price": 3.17,
-      "unrealized_pnl": 82.1
+      "current_price": 3.166,
+      "unrealized_pnl": 79.47
     },
     {
       "ticker": "OFIX",
@@ -47,8 +47,8 @@
       "shares": 54.1712,
       "invested": 500.0,
       "exit_date_target": "2026-09-27",
-      "current_price": 9.525,
-      "unrealized_pnl": 15.98
+      "current_price": 9.52,
+      "unrealized_pnl": 15.71
     },
     {
       "ticker": "NYAX",
@@ -59,8 +59,8 @@
       "shares": 43.7445,
       "invested": 2000.0,
       "exit_date_target": "2026-10-02",
-      "current_price": 45.47,
-      "unrealized_pnl": -10.94
+      "current_price": 45.34,
+      "unrealized_pnl": -16.62
     }
   ],
   "closed": [
