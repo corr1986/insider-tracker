@@ -47,8 +47,8 @@
       "shares": 54.1712,
       "invested": 500.0,
       "exit_date_target": "2026-09-27",
-      "current_price": 9.83,
-      "unrealized_pnl": 32.5
+      "current_price": 9.77,
+      "unrealized_pnl": 29.25
     },
     {
       "ticker": "NYAX",
@@ -59,8 +59,8 @@
       "shares": 43.7445,
       "invested": 2000.0,
       "exit_date_target": "2026-10-02",
-      "current_price": 44.8401,
-      "unrealized_pnl": -38.49
+      "current_price": 45.155,
+      "unrealized_pnl": -24.72
     }
   ],
   "closed": [
