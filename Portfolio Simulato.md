@@ -1,5 +1,5 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 29/09/2026 21:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 29/09/2026 22:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
@@ -16,8 +16,8 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **CX** | 🟡 8 | $9.79 | 51.1 | $9.53 | -2.66% | $13 | $500 | 05/10 |
-| **NYAX** | 🔥 15 | $45.72 | 43.7 | $44.66 | -2.32% | $46 | $2,000 | 02/10 |
+| **CX** | 🟡 8 | $9.79 | 51.1 | $9.65 | -1.43% | $7 | $500 | 05/10 |
+| **NYAX** | 🔥 15 | $45.72 | 43.7 | $44.52 | -2.64% | $53 | $2,000 | 02/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.61 | -3.22% | $16 | $500 | 08/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.61 | -3.22% | $16 | $500 | 07/10 |
 
