@@ -35,8 +35,8 @@
       "shares": 43.7445,
       "invested": 2000.0,
       "exit_date_target": "2026-10-02",
-      "current_price": 44.91,
-      "unrealized_pnl": -35.43
+      "current_price": 44.57,
+      "unrealized_pnl": -50.31
     },
     {
       "ticker": "CX",
@@ -47,8 +47,8 @@
       "shares": 51.0725,
       "invested": 500.0,
       "exit_date_target": "2026-10-05",
-      "current_price": 9.645,
-      "unrealized_pnl": -7.41
+      "current_price": 9.65,
+      "unrealized_pnl": -7.15
     }
   ],
   "closed": [
