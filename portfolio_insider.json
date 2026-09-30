@@ -35,8 +35,8 @@
       "shares": 43.7445,
       "invested": 2000.0,
       "exit_date_target": "2026-10-02",
-      "current_price": 47.56,
-      "unrealized_pnl": 80.49
+      "current_price": 47.71,
+      "unrealized_pnl": 87.05
     },
     {
       "ticker": "CX",
@@ -47,8 +47,8 @@
       "shares": 51.0725,
       "invested": 500.0,
       "exit_date_target": "2026-10-05",
-      "current_price": 9.565,
-      "unrealized_pnl": -11.49
+      "current_price": 9.51,
+      "unrealized_pnl": -14.3
     },
     {
       "ticker": "PAM",
@@ -59,8 +59,8 @@
       "shares": 6.4742,
       "invested": 500.0,
       "exit_date_target": "2026-10-03",
-      "current_price": 78.235,
-      "unrealized_pnl": 6.51
+      "current_price": 77.77,
+      "unrealized_pnl": 3.5
     }
   ],
   "closed": [
