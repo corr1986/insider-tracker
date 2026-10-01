@@ -11,8 +11,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-07",
-      "current_price": 6.61,
-      "unrealized_pnl": -16.11
+      "current_price": 6.62,
+      "unrealized_pnl": -15.37
     },
     {
       "ticker": "PFLEX",
@@ -23,8 +23,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 6.61,
-      "unrealized_pnl": -16.11
+      "current_price": 6.62,
+      "unrealized_pnl": -15.37
     },
     {
       "ticker": "NYAX",
@@ -71,7 +71,7 @@
       "shares": null,
       "invested": 2000.0,
       "exit_date_target": "2026-10-08",
-      "current_price": null,
+      "current_price": 47.71,
       "unrealized_pnl": null
     }
   ],
