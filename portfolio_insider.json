@@ -35,8 +35,8 @@
       "shares": 51.0725,
       "invested": 500.0,
       "exit_date_target": "2026-10-05",
-      "current_price": 9.4,
-      "unrealized_pnl": -19.92
+      "current_price": 9.415,
+      "unrealized_pnl": -19.15
     },
     {
       "ticker": "PAM",
@@ -47,8 +47,8 @@
       "shares": 6.4742,
       "invested": 500.0,
       "exit_date_target": "2026-10-03",
-      "current_price": 76.09,
-      "unrealized_pnl": -7.38
+      "current_price": 75.52,
+      "unrealized_pnl": -11.07
     },
     {
       "ticker": "NYAX",
@@ -59,20 +59,20 @@
       "shares": 41.1184,
       "invested": 2000.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 48.25,
-      "unrealized_pnl": -16.04
+      "current_price": 49.33,
+      "unrealized_pnl": 28.37
     },
     {
       "ticker": "CRESY",
       "yf_ticker": "CRESY",
       "score": 9,
       "signal_date": "2026-10-02",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 11.38,
+      "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.36,
-      "unrealized_pnl": null
+      "current_price": 11.315,
+      "unrealized_pnl": -2.86
     }
   ],
   "closed": [
