@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13131.26,
+  "cash": 14112.54,
   "positions": [
     {
       "ticker": "PFLEX",
@@ -25,30 +25,6 @@
       "exit_date_target": "2026-10-08",
       "current_price": 6.62,
       "unrealized_pnl": -15.37
-    },
-    {
-      "ticker": "CX",
-      "yf_ticker": "CX",
-      "score": 8,
-      "signal_date": "2026-09-28",
-      "entry_price": 9.79,
-      "shares": 51.0725,
-      "invested": 500.0,
-      "exit_date_target": "2026-10-05",
-      "current_price": 9.53,
-      "unrealized_pnl": -13.28
-    },
-    {
-      "ticker": "PAM",
-      "yf_ticker": "PAM",
-      "score": 8,
-      "signal_date": "2026-09-30",
-      "entry_price": 77.23,
-      "shares": 6.4742,
-      "invested": 500.0,
-      "exit_date_target": "2026-10-03",
-      "current_price": 76.39,
-      "unrealized_pnl": -5.44
     },
     {
       "ticker": "NYAX",
@@ -83,7 +59,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": null,
+      "current_price": 76.39,
       "unrealized_pnl": null
     }
   ],
@@ -670,6 +646,32 @@
       "exit_date": "2026-10-02",
       "pnl": 110.67,
       "pnl_pct": 5.53,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "CX",
+      "score": 8,
+      "signal_date": "2026-09-28",
+      "entry_price": 9.79,
+      "shares": 51.0725,
+      "invested": 500.0,
+      "exit_price": 9.53,
+      "exit_date": "2026-10-05",
+      "pnl": -13.28,
+      "pnl_pct": -2.66,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-09-30",
+      "entry_price": 77.23,
+      "shares": 6.4742,
+      "invested": 500.0,
+      "exit_price": 76.39,
+      "exit_date": "2026-10-05",
+      "pnl": -5.44,
+      "pnl_pct": -1.09,
       "closed_by": "expiry"
     }
   ]
