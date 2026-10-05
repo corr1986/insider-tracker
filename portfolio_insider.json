@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13631.26,
+  "cash": 13131.26,
   "positions": [
     {
       "ticker": "PFLEX",
@@ -73,6 +73,18 @@
       "exit_date_target": "2026-11-01",
       "current_price": 11.34,
       "unrealized_pnl": -1.76
+    },
+    {
+      "ticker": "PAM",
+      "yf_ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-10-05",
+      "entry_price": null,
+      "shares": null,
+      "invested": 500.0,
+      "exit_date_target": "2026-10-08",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
