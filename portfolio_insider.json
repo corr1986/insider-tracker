@@ -35,8 +35,8 @@
       "shares": 41.1184,
       "invested": 2000.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 50.01,
-      "unrealized_pnl": 56.33
+      "current_price": 50.185,
+      "unrealized_pnl": 63.53
     },
     {
       "ticker": "CRESY",
@@ -47,8 +47,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.79,
-      "unrealized_pnl": 18.01
+      "current_price": 11.83,
+      "unrealized_pnl": 19.77
     },
     {
       "ticker": "PAM",
@@ -59,8 +59,8 @@
       "shares": 6.3291,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 78.99,
-      "unrealized_pnl": -0.06
+      "current_price": 79.095,
+      "unrealized_pnl": 0.6
     }
   ],
   "closed": [
