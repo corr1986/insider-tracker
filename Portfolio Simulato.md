@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 07/10/2026 22:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 07/10/2026 23:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $14,099 |
-| Valore posizioni | $3,949 |
-| **Equity totale** | **$18,048** |
-| P&L non realizzato | $51 |
+| Valore posizioni | $3,959 |
+| **Equity totale** | **$18,058** |
+| P&L non realizzato | $41 |
 | P&L realizzato | $1,901 |
 | Trade chiusi | 49 (23W / 26L) |
 | Win Rate | 47% |
@@ -16,9 +16,9 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **AVR** | 🟡 9 | $6.83 | 73.2 | $6.92 | +1.32% | +$7 | $500 | 10/10 |
-| **PAM** | 🟡 8 | $79.00 | 6.3 | $80.10 | +1.39% | +$7 | $500 | 08/10 |
-| **CRESY** | 🟡 9 | $11.38 | 43.9 | $11.81 | +3.78% | +$19 | $500 | 01/11 |
+| **AVR** | 🟡 9 | $6.83 | 73.2 | $7.01 | +2.64% | +$13 | $500 | 10/10 |
+| **PAM** | 🟡 8 | $79.00 | 6.3 | $81.14 | +2.72% | +$14 | $500 | 08/10 |
+| **CRESY** | 🟡 9 | $11.38 | 43.9 | $11.74 | +3.16% | +$16 | $500 | 01/11 |
 | **NYAX** | 🔥 15 | $48.64 | 41.1 | $46.95 | -3.47% | $69 | $2,000 | 08/10 |
 | **PFLEX** | 🟡 8 | $6.83 | 73.2 | $6.64 | -2.78% | $14 | $500 | 08/10 |
 

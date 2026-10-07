@@ -35,8 +35,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.81,
-      "unrealized_pnl": 18.89
+      "current_price": 11.74,
+      "unrealized_pnl": 15.82
     },
     {
       "ticker": "PAM",
@@ -47,8 +47,8 @@
       "shares": 6.3291,
       "invested": 500.0,
       "exit_date_target": "2026-10-08",
-      "current_price": 80.1,
-      "unrealized_pnl": 6.96
+      "current_price": 81.145,
+      "unrealized_pnl": 13.58
     },
     {
       "ticker": "AVR",
@@ -59,8 +59,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-10",
-      "current_price": 6.92,
-      "unrealized_pnl": 6.59
+      "current_price": 7.01,
+      "unrealized_pnl": 13.18
     }
   ],
   "closed": [
