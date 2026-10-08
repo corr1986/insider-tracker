@@ -1,31 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 14098.63,
+  "cash": 17007.61,
   "positions": [
-    {
-      "ticker": "PFLEX",
-      "yf_ticker": "PFLEX",
-      "score": 8,
-      "signal_date": "2026-09-08",
-      "entry_price": 6.83,
-      "shares": 73.2064,
-      "invested": 500.0,
-      "exit_date_target": "2026-10-08",
-      "current_price": 6.64,
-      "unrealized_pnl": -13.91
-    },
-    {
-      "ticker": "NYAX",
-      "yf_ticker": "NYAX",
-      "score": 15,
-      "signal_date": "2026-10-01",
-      "entry_price": 48.64,
-      "shares": 41.1184,
-      "invested": 2000.0,
-      "exit_date_target": "2026-10-08",
-      "current_price": 46.61,
-      "unrealized_pnl": -83.47
-    },
     {
       "ticker": "CRESY",
       "yf_ticker": "CRESY",
@@ -37,18 +13,6 @@
       "exit_date_target": "2026-11-01",
       "current_price": 11.63,
       "unrealized_pnl": 10.98
-    },
-    {
-      "ticker": "PAM",
-      "yf_ticker": "PAM",
-      "score": 8,
-      "signal_date": "2026-10-05",
-      "entry_price": 79.0,
-      "shares": 6.3291,
-      "invested": 500.0,
-      "exit_date_target": "2026-10-08",
-      "current_price": 80.12,
-      "unrealized_pnl": 7.09
     },
     {
       "ticker": "AVR",
@@ -685,6 +649,45 @@
       "exit_date": "2026-10-07",
       "pnl": -13.91,
       "pnl_pct": -2.78,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "PFLEX",
+      "score": 8,
+      "signal_date": "2026-09-08",
+      "entry_price": 6.83,
+      "shares": 73.2064,
+      "invested": 500.0,
+      "exit_price": 6.63,
+      "exit_date": "2026-10-08",
+      "pnl": -14.64,
+      "pnl_pct": -2.93,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "NYAX",
+      "score": 15,
+      "signal_date": "2026-10-01",
+      "entry_price": 48.64,
+      "shares": 41.1184,
+      "invested": 2000.0,
+      "exit_price": 46.61,
+      "exit_date": "2026-10-08",
+      "pnl": -83.47,
+      "pnl_pct": -4.17,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "PAM",
+      "score": 8,
+      "signal_date": "2026-10-05",
+      "entry_price": 79.0,
+      "shares": 6.3291,
+      "invested": 500.0,
+      "exit_price": 80.12,
+      "exit_date": "2026-10-08",
+      "pnl": 7.09,
+      "pnl_pct": 1.42,
       "closed_by": "expiry"
     }
   ]
