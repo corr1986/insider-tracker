@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.71,
-      "unrealized_pnl": 14.5
+      "current_price": 11.72,
+      "unrealized_pnl": 14.94
     },
     {
       "ticker": "AVR",
@@ -23,8 +23,8 @@
       "shares": 73.2064,
       "invested": 500.0,
       "exit_date_target": "2026-10-10",
-      "current_price": 6.58,
-      "unrealized_pnl": -18.3
+      "current_price": 6.73,
+      "unrealized_pnl": -7.32
     }
   ],
   "closed": [
