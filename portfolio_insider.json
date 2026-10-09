@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 17007.61,
+  "cash": 15007.61,
   "positions": [
     {
       "ticker": "CRESY",
@@ -25,6 +25,18 @@
       "exit_date_target": "2026-10-10",
       "current_price": 6.63,
       "unrealized_pnl": -14.64
+    },
+    {
+      "ticker": "COE",
+      "yf_ticker": "COE",
+      "score": 23,
+      "signal_date": "2026-10-09",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-10-12",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
