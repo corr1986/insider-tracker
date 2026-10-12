@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.58,
-      "unrealized_pnl": 8.79
+      "current_price": 11.54,
+      "unrealized_pnl": 7.03
     },
     {
       "ticker": "REF",
@@ -23,8 +23,8 @@
       "shares": 72.5689,
       "invested": 1000.0,
       "exit_date_target": "2026-10-15",
-      "current_price": 14.25,
-      "unrealized_pnl": 34.11
+      "current_price": 14.08,
+      "unrealized_pnl": 21.77
     }
   ],
   "closed": [
