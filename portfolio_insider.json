@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15007.61,
+  "cash": 14007.61,
   "positions": [
     {
       "ticker": "CRESY",
@@ -37,6 +37,18 @@
       "exit_date_target": "2026-10-12",
       "current_price": 12.22,
       "unrealized_pnl": 227.89
+    },
+    {
+      "ticker": "REF",
+      "yf_ticker": "REF",
+      "score": 12,
+      "signal_date": "2026-10-12",
+      "entry_price": null,
+      "shares": null,
+      "invested": 1000.0,
+      "exit_date_target": "2026-10-15",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
