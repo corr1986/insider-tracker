@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.68,
-      "unrealized_pnl": 13.18
+      "current_price": 11.57,
+      "unrealized_pnl": 8.35
     },
     {
       "ticker": "TRXB",
@@ -23,8 +23,8 @@
       "shares": 37.2856,
       "invested": 500.0,
       "exit_date_target": "2026-10-21",
-      "current_price": 13.58,
-      "unrealized_pnl": 6.34
+      "current_price": 13.995,
+      "unrealized_pnl": 21.81
     },
     {
       "ticker": "BORR",
@@ -35,8 +35,8 @@
       "shares": 106.1571,
       "invested": 500.0,
       "exit_date_target": "2026-10-18",
-      "current_price": 4.495,
-      "unrealized_pnl": -22.82
+      "current_price": 4.525,
+      "unrealized_pnl": -19.64
     },
     {
       "ticker": "TRXB",
@@ -47,8 +47,8 @@
       "shares": 35.2858,
       "invested": 500.0,
       "exit_date_target": "2026-10-23",
-      "current_price": 13.58,
-      "unrealized_pnl": -20.82
+      "current_price": 13.995,
+      "unrealized_pnl": -6.18
     }
   ],
   "closed": [
