@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15215.14,
+  "cash": 16237.06,
   "positions": [
     {
       "ticker": "CRESY",
@@ -13,18 +13,6 @@
       "exit_date_target": "2026-11-01",
       "current_price": 11.39,
       "unrealized_pnl": 0.44
-    },
-    {
-      "ticker": "REF",
-      "yf_ticker": "REF",
-      "score": 12,
-      "signal_date": "2026-10-13",
-      "entry_price": 14.14,
-      "shares": 70.7214,
-      "invested": 1000.0,
-      "exit_date_target": "2026-10-16",
-      "current_price": 14.45,
-      "unrealized_pnl": 21.92
     },
     {
       "ticker": "TRXB",
@@ -59,7 +47,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-10-23",
-      "current_price": null,
+      "current_price": 14.16,
       "unrealized_pnl": null
     }
   ],
@@ -763,6 +751,19 @@
       "exit_date": "2026-10-15",
       "pnl": -15.97,
       "pnl_pct": -1.6,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "REF",
+      "score": 12,
+      "signal_date": "2026-10-13",
+      "entry_price": 14.14,
+      "shares": 70.7214,
+      "invested": 1000.0,
+      "exit_price": 14.45,
+      "exit_date": "2026-10-16",
+      "pnl": 21.92,
+      "pnl_pct": 2.19,
       "closed_by": "expiry"
     }
   ]
