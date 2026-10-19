@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15737.06,
+  "cash": 16219.01,
   "positions": [
     {
       "ticker": "CRESY",
@@ -27,18 +27,6 @@
       "unrealized_pnl": 22.37
     },
     {
-      "ticker": "BORR",
-      "yf_ticker": "BORR",
-      "score": 8,
-      "signal_date": "2026-10-15",
-      "entry_price": 4.71,
-      "shares": 106.1571,
-      "invested": 500.0,
-      "exit_date_target": "2026-10-18",
-      "current_price": 4.54,
-      "unrealized_pnl": -18.05
-    },
-    {
       "ticker": "TRXB",
       "yf_ticker": "TRXB",
       "score": 8,
@@ -59,7 +47,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-10-26",
-      "current_price": null,
+      "current_price": 0.14,
       "unrealized_pnl": null
     }
   ],
@@ -776,6 +764,19 @@
       "exit_date": "2026-10-16",
       "pnl": 21.92,
       "pnl_pct": 2.19,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "BORR",
+      "score": 8,
+      "signal_date": "2026-10-15",
+      "entry_price": 4.71,
+      "shares": 106.1571,
+      "invested": 500.0,
+      "exit_price": 4.54,
+      "exit_date": "2026-10-19",
+      "pnl": -18.05,
+      "pnl_pct": -3.61,
       "closed_by": "expiry"
     }
   ]
