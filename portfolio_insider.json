@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.4245,
-      "unrealized_pnl": 1.96
+      "current_price": 11.365,
+      "unrealized_pnl": -0.66
     },
     {
       "ticker": "TRXB",
@@ -23,8 +23,8 @@
       "shares": 37.2856,
       "invested": 500.0,
       "exit_date_target": "2026-10-21",
-      "current_price": 14.24,
-      "unrealized_pnl": 30.95
+      "current_price": 14.665,
+      "unrealized_pnl": 46.79
     },
     {
       "ticker": "TRXB",
@@ -35,8 +35,8 @@
       "shares": 35.2858,
       "invested": 500.0,
       "exit_date_target": "2026-10-23",
-      "current_price": 14.24,
-      "unrealized_pnl": 2.47
+      "current_price": 14.665,
+      "unrealized_pnl": 17.47
     },
     {
       "ticker": "IAM",
@@ -47,8 +47,8 @@
       "shares": 30.656,
       "invested": 500.0,
       "exit_date_target": "2026-10-27",
-      "current_price": 16.9,
-      "unrealized_pnl": 18.09
+      "current_price": 16.984,
+      "unrealized_pnl": 20.66
     }
   ],
   "closed": [
