@@ -1,29 +1,29 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 21/10/2026 04:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 21/10/2026 15:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $16,152 |
-| Valore posizioni | $2,029 |
+| Cash disponibile | $16,691 |
+| Valore posizioni | $1,490 |
 | **Equity totale** | **$18,181** |
-| P&L non realizzato | +$29 |
-| P&L realizzato | $1,848 |
-| Trade chiusi | 58 (26W / 32L) |
-| Win Rate | 45% |
+| P&L non realizzato | $10 |
+| P&L realizzato | $1,809 |
+| Trade chiusi | 59 (27W / 32L) |
+| Win Rate | 46% |
 
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
 | **IAM** | 🟡 8 | $16.31 | 30.7 | $16.01 | -1.84% | $9 | $500 | 27/10 |
 | **TRXB** | 🟡 8 | $14.17 | 35.3 | $14.44 | +1.91% | +$10 | $500 | 23/10 |
-| **TRXB** | 🟡 8 | $13.41 | 37.3 | $14.44 | +7.68% | +$38 | $500 | 21/10 |
 | **CRESY** | 🟡 9 | $11.38 | 43.9 | $11.15 | -2.02% | $10 | $500 | 01/11 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 21/10 | TRXB | 8 | $13.41 | $14.44 | $500 | +$38 | +7.7% |
 | 19/10 | SAFX | 8 | $0.19 | $0.16 | $500 | $67 | -13.3% |
 | 19/10 | BORR | 8 | $4.71 | $4.54 | $500 | $18 | -3.6% |
 | 16/10 | REF | 12 | $14.14 | $14.45 | $1,000 | +$22 | +2.2% |
