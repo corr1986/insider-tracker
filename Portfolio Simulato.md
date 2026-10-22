@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 22/10/2026 21:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 22/10/2026 22:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $16,191 |
-| Valore posizioni | $1,512 |
-| **Equity totale** | **$17,703** |
-| P&L non realizzato | +$12 |
+| Valore posizioni | $2,003 |
+| **Equity totale** | **$18,194** |
+| P&L non realizzato | +$3 |
 | P&L realizzato | $1,809 |
 | Trade chiusi | 59 (27W / 32L) |
 | Win Rate | 46% |
@@ -16,10 +16,10 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **TENX** | 🟡 10 | — | — | $1.63 | — | — | $500 | 29/10 |
-| **IAM** | 🟡 8 | $16.31 | 30.7 | $15.80 | -3.13% | $16 | $500 | 27/10 |
-| **TRXB** | 🟡 8 | $14.17 | 35.3 | $15.24 | +7.55% | +$38 | $500 | 23/10 |
-| **CRESY** | 🟡 9 | $11.38 | 43.9 | $11.16 | -1.93% | $10 | $500 | 01/11 |
+| **TENX** | 🟡 10 | $1.74 | 287.4 | $1.69 | -2.87% | $14 | $500 | 29/10 |
+| **IAM** | 🟡 8 | $16.31 | 30.7 | $15.30 | -6.19% | $31 | $500 | 27/10 |
+| **TRXB** | 🟡 8 | $14.17 | 35.3 | $16.00 | +12.91% | +$65 | $500 | 23/10 |
+| **CRESY** | 🟡 9 | $11.38 | 43.9 | $11.02 | -3.16% | $16 | $500 | 01/11 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |

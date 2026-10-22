@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 11.16,
-      "unrealized_pnl": -9.67
+      "current_price": 11.02,
+      "unrealized_pnl": -15.82
     },
     {
       "ticker": "TRXB",
@@ -23,8 +23,8 @@
       "shares": 35.2858,
       "invested": 500.0,
       "exit_date_target": "2026-10-23",
-      "current_price": 15.24,
-      "unrealized_pnl": 37.76
+      "current_price": 16.0,
+      "unrealized_pnl": 64.57
     },
     {
       "ticker": "IAM",
@@ -35,20 +35,20 @@
       "shares": 30.656,
       "invested": 500.0,
       "exit_date_target": "2026-10-27",
-      "current_price": 15.8,
-      "unrealized_pnl": -15.63
+      "current_price": 15.3,
+      "unrealized_pnl": -30.96
     },
     {
       "ticker": "TENX",
       "yf_ticker": "TENX",
       "score": 10,
       "signal_date": "2026-10-22",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 1.74,
+      "shares": 287.3563,
       "invested": 500.0,
       "exit_date_target": "2026-10-29",
-      "current_price": 1.63,
-      "unrealized_pnl": null
+      "current_price": 1.69,
+      "unrealized_pnl": -14.37
     }
   ],
   "closed": [
