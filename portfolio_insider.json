@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 10.8098,
-      "unrealized_pnl": -25.05
+      "current_price": 10.867,
+      "unrealized_pnl": -22.54
     },
     {
       "ticker": "TENX",
@@ -23,8 +23,8 @@
       "shares": 287.3563,
       "invested": 500.0,
       "exit_date_target": "2026-10-29",
-      "current_price": 1.8,
-      "unrealized_pnl": 17.24
+      "current_price": 1.835,
+      "unrealized_pnl": 27.3
     }
   ],
   "closed": [
