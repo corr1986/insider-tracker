@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 10.895,
-      "unrealized_pnl": -21.31
+      "current_price": 10.885,
+      "unrealized_pnl": -21.75
     },
     {
       "ticker": "LONA",
@@ -23,8 +23,8 @@
       "shares": 96.1538,
       "invested": 500.0,
       "exit_date_target": "2026-11-05",
-      "current_price": 5.25,
-      "unrealized_pnl": 4.81
+      "current_price": 5.24,
+      "unrealized_pnl": 3.85
     }
   ],
   "closed": [
