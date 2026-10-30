@@ -11,8 +11,8 @@
       "shares": 43.9367,
       "invested": 500.0,
       "exit_date_target": "2026-11-01",
-      "current_price": 10.845,
-      "unrealized_pnl": -23.51
+      "current_price": 10.76,
+      "unrealized_pnl": -27.24
     },
     {
       "ticker": "LONA",
@@ -23,8 +23,8 @@
       "shares": 96.1538,
       "invested": 500.0,
       "exit_date_target": "2026-11-05",
-      "current_price": 4.7901,
-      "unrealized_pnl": -39.41
+      "current_price": 4.8,
+      "unrealized_pnl": -38.46
     },
     {
       "ticker": "TFC",
@@ -35,8 +35,8 @@
       "shares": 20.1694,
       "invested": 1000.0,
       "exit_date_target": "2026-11-02",
-      "current_price": 48.47,
-      "unrealized_pnl": -22.39
+      "current_price": 48.445,
+      "unrealized_pnl": -22.89
     }
   ],
   "closed": [
