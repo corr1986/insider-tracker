@@ -1,26 +1,25 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 03/11/2026 02:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 03/11/2026 03:21 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $17,685 |
-| Valore posizioni | $454 |
-| **Equity totale** | **$18,139** |
-| P&L non realizzato | $46 |
-| P&L realizzato | $1,815 |
-| Trade chiusi | 64 (29W / 35L) |
+| Cash disponibile | $18,130 |
+| Valore posizioni | $0 |
+| **Equity totale** | **$18,130** |
+| P&L non realizzato | +$0 |
+| P&L realizzato | $1,870 |
+| Trade chiusi | 65 (29W / 36L) |
 | Win Rate | 45% |
 
 ## Posizioni aperte
-| Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
-|---|---|---|---|---|---|---|---|---|
-| **LONA** | 🟡 8 | $5.20 | 96.2 | $4.72 | -9.23% | $46 | $500 | 05/11 |
+*Nessuna posizione aperta.*
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 02/11 | LONA | 8 | $5.20 | $4.63 | $500 | $55 | -11.0% |
 | 02/11 | TFC | 11 | $49.58 | $48.79 | $1,000 | $16 | -1.6% |
 | 02/11 | CRESY | 9 | $11.38 | $10.77 | $500 | $27 | -5.4% |
 | 29/10 | TENX | 10 | $1.74 | $1.88 | $500 | +$40 | +8.1% |
