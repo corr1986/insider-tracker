@@ -7,12 +7,12 @@
       "yf_ticker": "BBTX",
       "score": 12,
       "signal_date": "2026-11-03",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 16.16,
+      "shares": 61.8812,
       "invested": 1000.0,
       "exit_date_target": "2026-11-10",
-      "current_price": 16.0,
-      "unrealized_pnl": null
+      "current_price": 16.0399,
+      "unrealized_pnl": -7.43
     }
   ],
   "closed": [
