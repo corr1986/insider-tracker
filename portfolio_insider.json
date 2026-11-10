@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15630.05,
+  "cash": 16678.32,
   "positions": [
-    {
-      "ticker": "BBTX",
-      "yf_ticker": "BBTX",
-      "score": 12,
-      "signal_date": "2026-11-03",
-      "entry_price": 16.16,
-      "shares": 61.8812,
-      "invested": 1000.0,
-      "exit_date_target": "2026-11-10",
-      "current_price": 16.83,
-      "unrealized_pnl": 41.46
-    },
     {
       "ticker": "PAM",
       "yf_ticker": "PAM",
@@ -23,8 +11,8 @@
       "shares": 7.8101,
       "invested": 500.0,
       "exit_date_target": "2026-11-13",
-      "current_price": 64.92,
-      "unrealized_pnl": 7.03
+      "current_price": 64.95,
+      "unrealized_pnl": 7.26
     },
     {
       "ticker": "SOPH",
@@ -35,7 +23,7 @@
       "shares": null,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": null,
+      "current_price": 7.49,
       "unrealized_pnl": null
     }
   ],
@@ -870,6 +858,19 @@
       "pnl": -54.81,
       "pnl_pct": -10.96,
       "closed_by": "stop_loss"
+    },
+    {
+      "ticker": "BBTX",
+      "score": 12,
+      "signal_date": "2026-11-03",
+      "entry_price": 16.16,
+      "shares": 61.8812,
+      "invested": 1000.0,
+      "exit_price": 16.94,
+      "exit_date": "2026-11-10",
+      "pnl": 48.27,
+      "pnl_pct": 4.83,
+      "closed_by": "expiry"
     }
   ]
 }
