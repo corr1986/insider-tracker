@@ -11,8 +11,8 @@
       "shares": 7.8101,
       "invested": 500.0,
       "exit_date_target": "2026-11-13",
-      "current_price": 63.36,
-      "unrealized_pnl": -5.15
+      "current_price": 63.53,
+      "unrealized_pnl": -3.83
     },
     {
       "ticker": "SOPH",
@@ -23,8 +23,8 @@
       "shares": 126.5823,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": 7.81,
-      "unrealized_pnl": -11.39
+      "current_price": 7.73,
+      "unrealized_pnl": -21.52
     }
   ],
   "closed": [
