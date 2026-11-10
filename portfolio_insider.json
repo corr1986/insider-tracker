@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 16630.05,
+  "cash": 15630.05,
   "positions": [
     {
       "ticker": "BBTX",
@@ -25,6 +25,18 @@
       "exit_date_target": "2026-11-13",
       "current_price": 64.92,
       "unrealized_pnl": 7.03
+    },
+    {
+      "ticker": "SOPH",
+      "yf_ticker": "SOPH",
+      "score": 12,
+      "signal_date": "2026-11-10",
+      "entry_price": null,
+      "shares": null,
+      "invested": 1000.0,
+      "exit_date_target": "2026-11-17",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
