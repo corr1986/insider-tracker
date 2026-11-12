@@ -11,8 +11,8 @@
       "shares": 7.8101,
       "invested": 500.0,
       "exit_date_target": "2026-11-13",
-      "current_price": 63.9,
-      "unrealized_pnl": -0.94
+      "current_price": 63.81,
+      "unrealized_pnl": -1.64
     },
     {
       "ticker": "SOPH",
@@ -23,8 +23,8 @@
       "shares": 126.5823,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": 7.9,
-      "unrealized_pnl": 0.0
+      "current_price": 7.79,
+      "unrealized_pnl": -13.92
     },
     {
       "ticker": "FUN",
@@ -35,8 +35,8 @@
       "shares": 180.5054,
       "invested": 2000.0,
       "exit_date_target": "2026-11-14",
-      "current_price": 11.145,
-      "unrealized_pnl": 11.73
+      "current_price": 11.15,
+      "unrealized_pnl": 12.64
     },
     {
       "ticker": "FUN",
@@ -47,8 +47,8 @@
       "shares": 182.4818,
       "invested": 2000.0,
       "exit_date_target": "2026-11-15",
-      "current_price": 11.145,
-      "unrealized_pnl": 33.76
+      "current_price": 11.15,
+      "unrealized_pnl": 34.67
     }
   ],
   "closed": [
