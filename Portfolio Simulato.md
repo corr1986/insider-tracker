@@ -1,14 +1,14 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 12/11/2026 23:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 13/11/2026 00:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
 | Cash disponibile | $12,678 |
-| Valore posizioni | $5,396 |
-| **Equity totale** | **$18,074** |
-| P&L non realizzato | $104 |
+| Valore posizioni | $5,538 |
+| **Equity totale** | **$18,216** |
+| P&L non realizzato | +$38 |
 | P&L realizzato | $1,822 |
 | Trade chiusi | 66 (30W / 36L) |
 | Win Rate | 45% |
@@ -16,10 +16,10 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **FUN** | 🔥 14 | $10.96 | 182.5 | $10.94 | -0.18% | $4 | $2,000 | 15/11 |
-| **FUN** | 🔥 14 | $11.08 | 180.5 | $10.94 | -1.26% | $25 | $2,000 | 14/11 |
-| **SOPH** | 🟢 12 | $7.90 | 126.6 | $7.41 | -6.20% | $62 | $1,000 | 17/11 |
-| **PAM** | 🟡 9 | $64.02 | 7.8 | $62.32 | -2.66% | $13 | $500 | 13/11 |
+| **FUN** | 🔥 14 | $10.96 | 182.5 | $11.19 | +2.10% | +$42 | $2,000 | 15/11 |
+| **FUN** | 🔥 14 | $11.08 | 180.5 | $11.19 | +0.99% | +$20 | $2,000 | 14/11 |
+| **SOPH** | 🟢 12 | $7.90 | 126.6 | $7.71 | -2.41% | $24 | $1,000 | 17/11 |
+| **PAM** | 🟡 9 | $64.02 | 7.8 | $64.03 | +0.02% | +$0 | $500 | 13/11 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
