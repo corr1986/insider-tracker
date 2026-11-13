@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 11678.32,
+  "cash": 12171.99,
   "positions": [
-    {
-      "ticker": "PAM",
-      "yf_ticker": "PAM",
-      "score": 9,
-      "signal_date": "2026-11-06",
-      "entry_price": 64.02,
-      "shares": 7.8101,
-      "invested": 500.0,
-      "exit_date_target": "2026-11-13",
-      "current_price": 63.39,
-      "unrealized_pnl": -4.92
-    },
     {
       "ticker": "SOPH",
       "yf_ticker": "SOPH",
@@ -23,8 +11,8 @@
       "shares": 126.5823,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": 7.8,
-      "unrealized_pnl": -12.66
+      "current_price": 7.86,
+      "unrealized_pnl": -5.06
     },
     {
       "ticker": "FUN",
@@ -35,8 +23,8 @@
       "shares": 180.5054,
       "invested": 2000.0,
       "exit_date_target": "2026-11-14",
-      "current_price": 11.33,
-      "unrealized_pnl": 45.13
+      "current_price": 11.19,
+      "unrealized_pnl": 19.86
     },
     {
       "ticker": "FUN",
@@ -47,8 +35,8 @@
       "shares": 182.4818,
       "invested": 2000.0,
       "exit_date_target": "2026-11-15",
-      "current_price": 11.33,
-      "unrealized_pnl": 67.52
+      "current_price": 11.19,
+      "unrealized_pnl": 41.97
     },
     {
       "ticker": "FIP",
@@ -59,7 +47,7 @@
       "shares": null,
       "invested": 1000.0,
       "exit_date_target": "2026-12-13",
-      "current_price": null,
+      "current_price": 4.23,
       "unrealized_pnl": null
     }
   ],
@@ -906,6 +894,19 @@
       "exit_date": "2026-11-10",
       "pnl": 48.27,
       "pnl_pct": 4.83,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "PAM",
+      "score": 9,
+      "signal_date": "2026-11-06",
+      "entry_price": 64.02,
+      "shares": 7.8101,
+      "invested": 500.0,
+      "exit_price": 63.21,
+      "exit_date": "2026-11-13",
+      "pnl": -6.33,
+      "pnl_pct": -1.27,
       "closed_by": "expiry"
     }
   ]
