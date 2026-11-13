@@ -11,8 +11,8 @@
       "shares": 126.5823,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": 7.6824,
-      "unrealized_pnl": -27.54
+      "current_price": 7.83,
+      "unrealized_pnl": -8.86
     },
     {
       "ticker": "FUN",
@@ -23,8 +23,8 @@
       "shares": 180.5054,
       "invested": 2000.0,
       "exit_date_target": "2026-11-14",
-      "current_price": 11.49,
-      "unrealized_pnl": 74.01
+      "current_price": 11.35,
+      "unrealized_pnl": 48.74
     },
     {
       "ticker": "FUN",
@@ -35,8 +35,8 @@
       "shares": 182.4818,
       "invested": 2000.0,
       "exit_date_target": "2026-11-15",
-      "current_price": 11.49,
-      "unrealized_pnl": 96.72
+      "current_price": 11.35,
+      "unrealized_pnl": 71.17
     },
     {
       "ticker": "FIP",
@@ -47,8 +47,8 @@
       "shares": 235.2941,
       "invested": 1000.0,
       "exit_date_target": "2026-12-13",
-      "current_price": 4.08,
-      "unrealized_pnl": -40.0
+      "current_price": 4.085,
+      "unrealized_pnl": -38.82
     }
   ],
   "closed": [
