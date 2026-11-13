@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 12678.32,
+  "cash": 11678.32,
   "positions": [
     {
       "ticker": "PAM",
@@ -49,6 +49,18 @@
       "exit_date_target": "2026-11-15",
       "current_price": 11.33,
       "unrealized_pnl": 67.52
+    },
+    {
+      "ticker": "FIP",
+      "yf_ticker": "FIP",
+      "score": 11,
+      "signal_date": "2026-11-13",
+      "entry_price": null,
+      "shares": null,
+      "invested": 1000.0,
+      "exit_date_target": "2026-12-13",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
