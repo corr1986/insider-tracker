@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15364.49,
+  "cash": 16263.31,
   "positions": [
     {
       "ticker": "SOPH",
@@ -11,32 +11,20 @@
       "shares": 126.5823,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": 8.21,
-      "unrealized_pnl": 39.24
-    },
-    {
-      "ticker": "FIP",
-      "yf_ticker": "FIP",
-      "score": 11,
-      "signal_date": "2026-11-13",
-      "entry_price": 4.25,
-      "shares": 235.2941,
-      "invested": 1000.0,
-      "exit_date_target": "2026-12-13",
-      "current_price": 3.93,
-      "unrealized_pnl": -75.29
+      "current_price": 8.04,
+      "unrealized_pnl": 17.72
     },
     {
       "ticker": "UPST",
       "yf_ticker": "UPST",
       "score": 11,
       "signal_date": "2026-11-16",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 19.5,
+      "shares": 51.2821,
       "invested": 1000.0,
       "exit_date_target": "2026-11-19",
-      "current_price": 19.56,
-      "unrealized_pnl": null
+      "current_price": 19.05,
+      "unrealized_pnl": -23.08
     }
   ],
   "closed": [
@@ -922,6 +910,19 @@
       "pnl": 107.66,
       "pnl_pct": 5.38,
       "closed_by": "expiry"
+    },
+    {
+      "ticker": "FIP",
+      "score": 11,
+      "signal_date": "2026-11-13",
+      "entry_price": 4.25,
+      "shares": 235.2941,
+      "invested": 1000.0,
+      "exit_price": 3.82,
+      "exit_date": "2026-11-16",
+      "pnl": -101.18,
+      "pnl_pct": -10.12,
+      "closed_by": "stop_loss"
     }
   ]
 }
