@@ -11,8 +11,8 @@
       "shares": 126.5823,
       "invested": 1000.0,
       "exit_date_target": "2026-11-17",
-      "current_price": 8.04,
-      "unrealized_pnl": 17.72
+      "current_price": 7.695,
+      "unrealized_pnl": -25.95
     },
     {
       "ticker": "UPST",
@@ -23,8 +23,8 @@
       "shares": 51.2821,
       "invested": 1000.0,
       "exit_date_target": "2026-11-19",
-      "current_price": 19.17,
-      "unrealized_pnl": -16.92
+      "current_price": 19.04,
+      "unrealized_pnl": -23.59
     }
   ],
   "closed": [
