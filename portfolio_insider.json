@@ -11,20 +11,20 @@
       "shares": 51.2821,
       "invested": 1000.0,
       "exit_date_target": "2026-11-19",
-      "current_price": 19.09,
-      "unrealized_pnl": -21.03
+      "current_price": 18.7074,
+      "unrealized_pnl": -40.65
     },
     {
       "ticker": "PAM",
       "yf_ticker": "PAM",
       "score": 9,
       "signal_date": "2026-11-17",
-      "entry_price": null,
-      "shares": null,
+      "entry_price": 61.45,
+      "shares": 8.1367,
       "invested": 500.0,
       "exit_date_target": "2026-11-20",
-      "current_price": 60.94,
-      "unrealized_pnl": null
+      "current_price": 62.435,
+      "unrealized_pnl": 8.01
     }
   ],
   "closed": [
