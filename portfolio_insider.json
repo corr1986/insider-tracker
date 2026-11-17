@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15763.31,
+  "cash": 16705.08,
   "positions": [
-    {
-      "ticker": "SOPH",
-      "yf_ticker": "SOPH",
-      "score": 12,
-      "signal_date": "2026-11-10",
-      "entry_price": 7.9,
-      "shares": 126.5823,
-      "invested": 1000.0,
-      "exit_date_target": "2026-11-17",
-      "current_price": 7.51,
-      "unrealized_pnl": -49.37
-    },
     {
       "ticker": "UPST",
       "yf_ticker": "UPST",
@@ -23,8 +11,8 @@
       "shares": 51.2821,
       "invested": 1000.0,
       "exit_date_target": "2026-11-19",
-      "current_price": 18.965,
-      "unrealized_pnl": -27.44
+      "current_price": 19.09,
+      "unrealized_pnl": -21.03
     },
     {
       "ticker": "PAM",
@@ -35,7 +23,7 @@
       "shares": null,
       "invested": 500.0,
       "exit_date_target": "2026-11-20",
-      "current_price": null,
+      "current_price": 60.94,
       "unrealized_pnl": null
     }
   ],
@@ -935,6 +923,19 @@
       "pnl": -101.18,
       "pnl_pct": -10.12,
       "closed_by": "stop_loss"
+    },
+    {
+      "ticker": "SOPH",
+      "score": 12,
+      "signal_date": "2026-11-10",
+      "entry_price": 7.9,
+      "shares": 126.5823,
+      "invested": 1000.0,
+      "exit_price": 7.44,
+      "exit_date": "2026-11-17",
+      "pnl": -58.23,
+      "pnl_pct": -5.82,
+      "closed_by": "expiry"
     }
   ]
 }
