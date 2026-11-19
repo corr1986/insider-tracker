@@ -1,5 +1,5 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 20/11/2026 02:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 20/11/2026 03:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
@@ -16,9 +16,9 @@
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **PAM** | 🔥 19 | $62.86 | 31.8 | $62.32 | -0.86% | $17 | $2,000 | 22/11 |
-| **PAM** | 🟢 12 | $62.51 | 16.0 | $62.32 | -0.30% | $3 | $1,000 | 21/11 |
-| **PAM** | 🟡 9 | $61.45 | 8.1 | $62.32 | +1.42% | +$7 | $500 | 20/11 |
+| **PAM** | 🔥 19 | $62.86 | 31.8 | $62.33 | -0.85% | $17 | $2,000 | 22/11 |
+| **PAM** | 🟢 12 | $62.51 | 16.0 | $62.33 | -0.30% | $3 | $1,000 | 21/11 |
+| **PAM** | 🟡 9 | $61.45 | 8.1 | $62.33 | +1.42% | +$7 | $500 | 20/11 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
