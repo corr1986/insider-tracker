@@ -1,6 +1,6 @@
 {
   "capital_initial": 20000.0,
-  "cash": 15134.5,
+  "cash": 13134.5,
   "positions": [
     {
       "ticker": "PAM",
@@ -25,6 +25,18 @@
       "exit_date_target": "2026-11-22",
       "current_price": 61.11,
       "unrealized_pnl": -55.68
+    },
+    {
+      "ticker": "UPST",
+      "yf_ticker": "UPST",
+      "score": 15,
+      "signal_date": "2026-11-23",
+      "entry_price": null,
+      "shares": null,
+      "invested": 2000.0,
+      "exit_date_target": "2026-11-26",
+      "current_price": null,
+      "unrealized_pnl": null
     }
   ],
   "closed": [
