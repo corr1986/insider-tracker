@@ -1,27 +1,28 @@
 # Portfolio Simulato — Insider Tracker
-*Aggiornato: 26/11/2026 04:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
+*Aggiornato: 26/11/2026 15:20 (Bali) — [📊 Vedi su GitHub](https://github.com/corr1986/insider-tracker/blob/main/Portfolio%20Simulato.md)*
 
 ## Riepilogo
 | Voce | Valore |
 |---|---|
 | Capitale iniziale | $20,000 |
-| Cash disponibile | $14,033 |
-| Valore posizioni | $4,057 |
-| **Equity totale** | **$18,090** |
-| P&L non realizzato | +$57 |
-| P&L realizzato | $1,967 |
-| Trade chiusi | 75 (33W / 42L) |
-| Win Rate | 44% |
+| Cash disponibile | $15,063 |
+| Valore posizioni | $2,007 |
+| **Equity totale** | **$17,070** |
+| P&L non realizzato | +$7 |
+| P&L realizzato | $1,937 |
+| Trade chiusi | 76 (34W / 42L) |
+| Win Rate | 45% |
 
 ## Posizioni aperte
 | Ticker | Score | Entry | Qty | Prezzo att. | P&L % | P&L $ | Investito | Scadenza |
 |---|---|---|---|---|---|---|---|---|
-| **PAM** | 🔥 20 | $62.10 | 32.2 | $62.80 | +1.13% | +$23 | $2,000 | 01/12 |
-| **UPST** | 🔥 15 | $17.01 | 117.6 | $17.30 | +1.70% | +$34 | $2,000 | 26/11 |
+| **KDK** | 🟢 11 | — | — | $1.23 | — | — | $1,000 | 03/12 |
+| **PAM** | 🔥 20 | $62.10 | 32.2 | $62.32 | +0.35% | +$7 | $2,000 | 01/12 |
 
 ## Storico trade chiusi
 | Data | Ticker | Score | Entry | Uscita | Investito | P&L | % |
 |---|---|---|---|---|---|---|---|
+| 26/11 | UPST | 15 | $17.01 | $17.26 | $2,000 | +$29 | +1.5% |
 | 23/11 | PAM | 19 | $62.86 | $60.63 | $2,000 | $71 | -3.5% |
 | 23/11 | PAM | 12 | $62.51 | $60.63 | $1,000 | $30 | -3.0% |
 | 20/11 | PAM | 9 | $61.45 | $62.04 | $500 | +$5 | +1.0% |

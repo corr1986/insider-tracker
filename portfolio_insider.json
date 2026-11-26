@@ -1,19 +1,7 @@
 {
   "capital_initial": 20000.0,
-  "cash": 13033.47,
+  "cash": 15062.75,
   "positions": [
-    {
-      "ticker": "UPST",
-      "yf_ticker": "UPST",
-      "score": 15,
-      "signal_date": "2026-11-23",
-      "entry_price": 17.011,
-      "shares": 117.571,
-      "invested": 2000.0,
-      "exit_date_target": "2026-11-26",
-      "current_price": 17.3003,
-      "unrealized_pnl": 34.01
-    },
     {
       "ticker": "PAM",
       "yf_ticker": "PAM",
@@ -23,8 +11,8 @@
       "shares": 32.2061,
       "invested": 2000.0,
       "exit_date_target": "2026-12-01",
-      "current_price": 62.8,
-      "unrealized_pnl": 22.54
+      "current_price": 62.32,
+      "unrealized_pnl": 7.09
     },
     {
       "ticker": "KDK",
@@ -35,7 +23,7 @@
       "shares": null,
       "invested": 1000.0,
       "exit_date_target": "2026-12-03",
-      "current_price": null,
+      "current_price": 1.23,
       "unrealized_pnl": null
     }
   ],
@@ -999,6 +987,19 @@
       "exit_date": "2026-11-23",
       "pnl": -70.95,
       "pnl_pct": -3.55,
+      "closed_by": "expiry"
+    },
+    {
+      "ticker": "UPST",
+      "score": 15,
+      "signal_date": "2026-11-23",
+      "entry_price": 17.011,
+      "shares": 117.571,
+      "invested": 2000.0,
+      "exit_price": 17.26,
+      "exit_date": "2026-11-26",
+      "pnl": 29.28,
+      "pnl_pct": 1.46,
       "closed_by": "expiry"
     }
   ]
