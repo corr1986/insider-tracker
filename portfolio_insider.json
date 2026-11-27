@@ -35,7 +35,7 @@
       "shares": null,
       "invested": 1000.0,
       "exit_date_target": "2026-12-04",
-      "current_price": null,
+      "current_price": 1.23,
       "unrealized_pnl": null
     }
   ],
