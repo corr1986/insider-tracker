@@ -11,8 +11,8 @@
       "shares": 32.2061,
       "invested": 2000.0,
       "exit_date_target": "2026-12-01",
-      "current_price": 63.95,
-      "unrealized_pnl": 59.58
+      "current_price": 63.54,
+      "unrealized_pnl": 46.38
     },
     {
       "ticker": "KDK",
@@ -23,8 +23,8 @@
       "shares": 781.25,
       "invested": 1000.0,
       "exit_date_target": "2026-12-03",
-      "current_price": 1.275,
-      "unrealized_pnl": -3.91
+      "current_price": 1.245,
+      "unrealized_pnl": -27.34
     },
     {
       "ticker": "KDK",
@@ -35,8 +35,8 @@
       "shares": 781.25,
       "invested": 1000.0,
       "exit_date_target": "2026-12-04",
-      "current_price": 1.275,
-      "unrealized_pnl": -3.91
+      "current_price": 1.245,
+      "unrealized_pnl": -27.34
     }
   ],
   "closed": [
